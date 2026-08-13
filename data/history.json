@@ -1,0 +1,516 @@
+{
+  "entries": [
+    {
+      "date": "2026-08-07",
+      "saved_at": "2026-08-07T10:06:41",
+      "signals": [
+        {
+          "coin_id": "cardano",
+          "symbol": "ADA",
+          "name": "Cardano",
+          "action": "BUY",
+          "entry": 0.201731,
+          "sl": 0.18559252,
+          "tp1": 0.21181755,
+          "tp2": 0.22190410000000002,
+          "confidence": 82
+        },
+        {
+          "coin_id": "ethena",
+          "symbol": "ENA",
+          "name": "Ethena",
+          "action": "BUY",
+          "entry": 0.095889,
+          "sl": 0.08821788000000001,
+          "tp1": 0.10068345000000001,
+          "tp2": 0.10547790000000001,
+          "confidence": 77
+        },
+        {
+          "coin_id": "pudgy-penguins",
+          "symbol": "PENGU",
+          "name": "Pudgy Penguins",
+          "action": "SELL",
+          "entry": 0.00604454,
+          "sl": 0.0065281032000000004,
+          "tp1": 0.005742313,
+          "tp2": 0.005440086,
+          "confidence": 77
+        },
+        {
+          "coin_id": "plasma",
+          "symbol": "XPL",
+          "name": "Plasma",
+          "action": "BUY",
+          "entry": 0.077121,
+          "sl": 0.07095132,
+          "tp1": 0.08097705,
+          "tp2": 0.0848331,
+          "confidence": 77
+        },
+        {
+          "coin_id": "eigenlayer",
+          "symbol": "EIGEN",
+          "name": "EigenCloud (prev. EigenLayer)",
+          "action": "SELL",
+          "entry": 0.177904,
+          "sl": 0.19213632000000003,
+          "tp1": 0.1690088,
+          "tp2": 0.16011360000000002,
+          "confidence": 77
+        }
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "session": "PAGI",
+      "saved_at": "2026-08-08T08:41:35+07:00",
+      "signals": [
+        {
+          "coin_id": "kaito",
+          "symbol": "KAITO",
+          "name": "KAITO",
+          "action": "SELL",
+          "entry": 0.817503,
+          "sl": 0.8333283110876735,
+          "tp1": 0.7964025852164354,
+          "tp2": 0.785852377824653,
+          "confidence": 69
+        },
+        {
+          "coin_id": "cysic",
+          "symbol": "CYS",
+          "name": "Cysic",
+          "action": "BUY",
+          "entry": 0.967597,
+          "sl": 0.935223788705866,
+          "tp1": 1.0107612817255123,
+          "tp2": 1.0323434225882682,
+          "confidence": 63
+        },
+        {
+          "coin_id": "talus",
+          "symbol": "US",
+          "name": "Talus",
+          "action": "SELL",
+          "entry": 0.051296,
+          "sl": 0.0523931187190829,
+          "tp1": 0.0498331750412228,
+          "tp2": 0.04910176256183421,
+          "confidence": 63
+        }
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "session": "MALAM",
+      "saved_at": "2026-08-08T19:56:21+07:00",
+      "signals": [
+        {
+          "coin_id": "pudgy-penguins",
+          "symbol": "PENGU",
+          "name": "Pudgy Penguins",
+          "action": "BUY",
+          "entry": 0.00622146,
+          "sl": 0.006181440173654316,
+          "tp1": 0.006274819768460912,
+          "tp2": 0.006301499652691368,
+          "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-09",
+      "session": "PAGI",
+      "saved_at": "2026-08-09T08:59:07+07:00",
+      "signals": [
+        {
+          "coin_id": "cash-cat",
+          "symbol": "CASHCAT",
+          "name": "Cash Cat",
+          "action": "BUY",
+          "entry": 0.123277,
+          "sl": 0.11807228571359138,
+          "tp1": 0.1302166190485448,
+          "tp2": 0.13368642857281723,
+          "confidence": 69
+        },
+        {
+          "coin_id": "cysic",
+          "symbol": "CYS",
+          "name": "Cysic",
+          "action": "BUY",
+          "entry": 0.845794,
+          "sl": 0.789394530872857,
+          "tp1": 0.9209932921695241,
+          "tp2": 0.9585929382542862,
+          "confidence": 63
+        }
+      ]
+    },
+    {
+      "date": "2026-08-09",
+      "session": "MALAM",
+      "saved_at": "2026-08-09T20:00:06+07:00",
+      "signals": [
+        {
+          "coin_id": "curve-dao-token",
+          "symbol": "CRV",
+          "name": "Curve DAO",
+          "action": "BUY",
+          "entry": 0.238456,
+          "sl": 0.23619058004799856,
+          "tp1": 0.24147655993600192,
+          "tp2": 0.24298683990400288,
+          "confidence": 69
+        },
+        {
+          "coin_id": "bittensor",
+          "symbol": "TAO",
+          "name": "Bittensor",
+          "action": "BUY",
+          "entry": 206.1,
+          "sl": 204.306193158094,
+          "tp1": 208.49174245587466,
+          "tp2": 209.687613683812,
+          "confidence": 69
+        },
+        {
+          "coin_id": "pump-fun",
+          "symbol": "PUMP",
+          "name": "Pump.fun",
+          "action": "BUY",
+          "entry": 0.00259446,
+          "sl": 0.002559836393011485,
+          "tp1": 0.0026406248093180196,
+          "tp2": 0.002663707213977029,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-10",
+      "session": "PAGI",
+      "saved_at": "2026-08-10T09:01:50+07:00",
+      "signals": [
+        {
+          "coin_id": "cash-cat",
+          "symbol": "CASHCAT",
+          "name": "Cash Cat",
+          "action": "BUY",
+          "entry": 0.139247,
+          "sl": 0.13300268894611517,
+          "tp1": 0.14757274807184648,
+          "tp2": 0.1517356221077697,
+          "confidence": 63
+        },
+        {
+          "coin_id": "talus",
+          "symbol": "US",
+          "name": "Talus",
+          "action": "SELL",
+          "entry": 0.04435965,
+          "sl": 0.046002169253712234,
+          "tp1": 0.042169624328383684,
+          "tp2": 0.04107461149257553,
+          "confidence": 69
+        },
+        {
+          "coin_id": "pudgy-penguins",
+          "symbol": "PENGU",
+          "name": "Pudgy Penguins",
+          "action": "BUY",
+          "entry": 0.00659635,
+          "sl": 0.006494550310361538,
+          "tp1": 0.00673208291951795,
+          "tp2": 0.0067999493792769245,
+          "confidence": 63
+        }
+      ]
+    },
+    {
+      "date": "2026-08-10",
+      "session": "MALAM",
+      "saved_at": "2026-08-10T20:18:10+07:00",
+      "signals": [
+        {
+          "coin_id": "cash-cat",
+          "symbol": "CASHCAT",
+          "name": "Cash Cat",
+          "action": "BUY",
+          "entry": 0.153209,
+          "sl": 0.14666878604604922,
+          "tp1": 0.16192928527193443,
+          "tp2": 0.16628942790790163,
+          "confidence": 63
+        },
+        {
+          "coin_id": "cysic",
+          "symbol": "CYS",
+          "name": "Cysic",
+          "action": "BUY",
+          "entry": 1.31,
+          "sl": 1.2351605810504842,
+          "tp1": 1.4097858919326878,
+          "tp2": 1.4596788378990315,
+          "confidence": 63
+        },
+        {
+          "coin_id": "hash-2",
+          "symbol": "HASH",
+          "name": "Provenance Blockchain",
+          "action": "SELL",
+          "entry": 0.00635999,
+          "sl": 0.006708593315504474,
+          "tp1": 0.005895185579327368,
+          "tp2": 0.005662783368991052,
+          "confidence": 63
+        },
+        {
+          "coin_id": "audiera",
+          "symbol": "BEAT",
+          "name": "Audiera",
+          "action": "SELL",
+          "entry": 2.44,
+          "sl": 2.583452021054708,
+          "tp1": 2.2487306385937225,
+          "tp2": 2.1530959578905833,
+          "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "session": "PAGI",
+      "saved_at": "2026-08-11T08:59:13+07:00",
+      "signals": [
+        {
+          "coin_id": "audiera",
+          "symbol": "BEAT",
+          "name": "Audiera",
+          "action": "SELL",
+          "entry": 1.3,
+          "sl": 1.4863342200883825,
+          "tp1": 1.0515543732154904,
+          "tp2": 0.9273315598232355,
+          "confidence": 69
+        },
+        {
+          "coin_id": "kaito",
+          "symbol": "KAITO",
+          "name": "KAITO",
+          "action": "SELL",
+          "entry": 0.662425,
+          "sl": 0.6713141508217014,
+          "tp1": 0.6505727989043981,
+          "tp2": 0.6446466983565973,
+          "confidence": 63
+        },
+        {
+          "coin_id": "convex-finance",
+          "symbol": "CVX",
+          "name": "Convex Finance",
+          "action": "BUY",
+          "entry": 1.75,
+          "sl": 1.7193750550721627,
+          "tp1": 1.790833259903783,
+          "tp2": 1.8112498898556748,
+          "confidence": 69
+        },
+        {
+          "coin_id": "kinesis-silver",
+          "symbol": "KAG",
+          "name": "Kinesis Silver",
+          "action": "BUY",
+          "entry": 63.13,
+          "sl": 61.281345179171694,
+          "tp1": 65.59487309443774,
+          "tp2": 66.82730964165661,
+          "confidence": 63
+        }
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "session": "MALAM",
+      "saved_at": "2026-08-11T20:15:06+07:00",
+      "signals": [
+        {
+          "coin_id": "cysic",
+          "symbol": "CYS",
+          "name": "Cysic",
+          "action": "BUY",
+          "entry": 1.45,
+          "sl": 1.4003397333989867,
+          "tp1": 1.516213688801351,
+          "tp2": 1.5493205332020266,
+          "confidence": 63
+        },
+        {
+          "coin_id": "fetch-ai",
+          "symbol": "FET",
+          "name": "Artificial Superintelligence Alliance",
+          "action": "SELL",
+          "entry": 0.134442,
+          "sl": 0.1350171115600473,
+          "tp1": 0.1336751845866036,
+          "tp2": 0.1332917768799054,
+          "confidence": 63
+        }
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "session": "PAGI",
+      "saved_at": "2026-08-12T09:12:08+07:00",
+      "signals": [
+        {
+          "coin_id": "velvet",
+          "symbol": "VELVET",
+          "name": "Velvet",
+          "action": "BUY",
+          "entry": 0.621335,
+          "sl": 0.5787906780945757,
+          "tp1": 0.6780607625405656,
+          "tp2": 0.7064236438108484,
+          "confidence": 69
+        },
+        {
+          "coin_id": "holoworld",
+          "symbol": "HOLO",
+          "name": "Holoworld",
+          "action": "BUY",
+          "entry": 0.094784,
+          "sl": 0.09113440657379077,
+          "tp1": 0.09965012456827897,
+          "tp2": 0.10208318685241845,
+          "confidence": 69
+        },
+        {
+          "coin_id": "kaito",
+          "symbol": "KAITO",
+          "name": "KAITO",
+          "action": "SELL",
+          "entry": 0.628828,
+          "sl": 0.6369015291413191,
+          "tp1": 0.6180632944782413,
+          "tp2": 0.6126809417173619,
+          "confidence": 63
+        },
+        {
+          "coin_id": "curve-dao-token",
+          "symbol": "CRV",
+          "name": "Curve DAO",
+          "action": "BUY",
+          "entry": 0.276301,
+          "sl": 0.27285353220478265,
+          "tp1": 0.2808976237269565,
+          "tp2": 0.2831959355904347,
+          "confidence": 69
+        },
+        {
+          "coin_id": "worldcoin-wld",
+          "symbol": "WLD",
+          "name": "Worldcoin",
+          "action": "BUY",
+          "entry": 0.343217,
+          "sl": 0.3394771410882353,
+          "tp1": 0.3482034785490196,
+          "tp2": 0.35069671782352946,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "session": "MALAM",
+      "saved_at": "2026-08-12T20:16:45+07:00",
+      "signals": [
+        {
+          "coin_id": "cysic",
+          "symbol": "CYS",
+          "name": "Cysic",
+          "action": "BUY",
+          "entry": 1.54,
+          "sl": 1.4550090955736732,
+          "tp1": 1.653321205901769,
+          "tp2": 1.7099818088526537,
+          "confidence": 69
+        },
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "SELL",
+          "entry": 3.56,
+          "sl": 3.608361040988655,
+          "tp1": 3.4955186120151267,
+          "tp2": 3.46327791802269,
+          "confidence": 63
+        },
+        {
+          "coin_id": "bonk",
+          "symbol": "BONK",
+          "name": "Bonk",
+          "action": "SELL",
+          "entry": 2.25e-06,
+          "sl": 2.270653329216554e-06,
+          "tp1": 2.222462227711262e-06,
+          "tp2": 2.208693341566893e-06,
+          "confidence": 63
+        },
+        {
+          "coin_id": "virtual-protocol",
+          "symbol": "VIRTUAL",
+          "name": "Virtuals Protocol",
+          "action": "BUY",
+          "entry": 0.569448,
+          "sl": 0.562564114875175,
+          "tp1": 0.5786265134997666,
+          "tp2": 0.5832157702496499,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "session": "PAGI",
+      "saved_at": "2026-08-13T09:11:59+07:00",
+      "signals": [
+        {
+          "coin_id": "apriori",
+          "symbol": "APR",
+          "name": "aPriori",
+          "action": "BUY",
+          "entry": 0.573047,
+          "sl": 0.5175884088581575,
+          "tp1": 0.6469917881891233,
+          "tp2": 0.6839641822836849,
+          "confidence": 69
+        },
+        {
+          "coin_id": "audiera",
+          "symbol": "BEAT",
+          "name": "Audiera",
+          "action": "SELL",
+          "entry": 0.92506,
+          "sl": 1.0214453221076703,
+          "tp1": 0.7965462371897729,
+          "tp2": 0.7322893557846595,
+          "confidence": 63
+        },
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "SELL",
+          "entry": 3.54,
+          "sl": 3.577126003463123,
+          "tp1": 3.4904986620491694,
+          "tp2": 3.465747993073754,
+          "confidence": 63
+        }
+      ]
+    }
+  ]
+}
