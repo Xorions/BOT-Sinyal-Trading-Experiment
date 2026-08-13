@@ -31,6 +31,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
           MTF_SCAN_LIMIT: ${{ vars.MTF_SCAN_LIMIT }}
           CONFLUENCE_MIN: ${{ vars.CONFLUENCE_MIN }}
           # --- Automated Trading Bitget (opsional) ---
