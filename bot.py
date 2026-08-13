@@ -11,7 +11,7 @@ Alur per eksekusi:
    dieksekusi ke Bitget Futures oleh modul terpisah execution/bitget_executor.py
    (laporan live ke TELEGRAM_ADMIN_CHAT_ID).
 
-Jadwal 2x sehari (GitHub Actions): 07:00 WIB (Sesi Pagi) & 19:00 WIB (Sesi Malam).
+Jadwal 2x sehari (GitHub Actions): 10:00 WIB (Sesi Pagi) & 16:00 WIB (Sesi Malam).
 Untuk uji lokal:  python bot.py
 """
 

@@ -1,6 +1,6 @@
 # BOT-Sinyal-Trading
 
-Bot Telegram **Day Trading Lanjutan** yang mengirim sinyal trading crypto **2x sehari** (07:00 WIB Sesi Pagi & 19:00 WIB Sesi Malam) berdasarkan analisis **Multi-Timeframe (MTF)** dari data CoinGecko (gratis, tanpa API key berbayar). Termasuk modul **Automated Trading Bitget (opsional, default nonaktif)** yang mengeksekusi sinyal BUY/SELL yang lolos filter ketat ke Bitget Futures USDT-M.
+Bot Telegram **Day Trading Lanjutan** yang mengirim sinyal trading crypto **2x sehari** (10:00 WIB Sesi Pagi & 16:00 WIB Sesi Malam) berdasarkan analisis **Multi-Timeframe (MTF)** dari data CoinGecko (gratis, tanpa API key berbayar). Termasuk modul **Automated Trading Bitget (opsional, default nonaktif)** yang mengeksekusi sinyal BUY/SELL yang lolos filter ketat ke Bitget Futures USDT-M.
 
 ## Fitur
 
@@ -15,7 +15,7 @@ Bot Telegram **Day Trading Lanjutan** yang mengirim sinyal trading crypto **2x s
 
 ## Cara Kerja
 
-Setiap sesi (07:00 & 19:00 WIB), GitHub Actions menjalankan `bot.py`:
+Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
 1. Satu panggilan CoinGecko mengambil **Top 250 koin** (market cap) + sparkline 7 hari — stablecoin disaring.
 2. **Quick scan** semua koin → shortlist kandidat momentum terkuat (`MTF_SCAN_LIMIT`, default 6).
 3. **Deep scan MTF** per kandidat: chart 30 hari (1H/4H/1D) + 2 hari (15M). Hitung konfluensi SMC/OB, S&D/S&R, MACD/RSI, Whale/Volume.
@@ -95,7 +95,7 @@ data/history.json             # History sinyal yang dikirim (di-commit tiap sesi
 signals/indicators.py         # RSI, SMA, EMA, MACD, ATR, BOS/CHoCH, OB, S/R, S&D, RSI div, Whale
 signals/engine.py             # Skoring MTF + Confluence Checklist → format pesan
 tests/                        # Tes unit (unittest, tanpa network) — termasuk mock eksekutor Bitget
-.github/workflows/daily.yml   # Scheduler 2x sehari (07:00 & 19:00 WIB)
+.github/workflows/daily.yml   # Scheduler 2x sehari (10:00 & 16:00 WIB)
 ```
 
 ## Disclaimer

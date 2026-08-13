@@ -1,6 +1,6 @@
 """Penyimpanan & evaluasi performa sinyal antar sesi (performance tracking).
 
-Bot berjalan 2x sehari (Sesi Pagi 07:00 WIB dan Sesi Malam 19:00 WIB). Sinyal
+Bot berjalan 2x sehari (Sesi Pagi 10:00 WIB dan Sesi Malam 16:00 WIB). Sinyal
 yang dikirim disimpan di `data/history.json` dengan kunci (tanggal, sesi).
 Setiap sesi HARUS dievaluasi pada sesi berikutnya: sesi Malam mengevaluasi
 sinyal sesi Pagi (hari yang sama), sesi Pagi mengevaluasi sinyal sesi Malam
@@ -42,8 +42,8 @@ _RESULT_BADGE = {
 }
 
 _SESSION_LABEL = {
-    SESSION_PAGI: "Pagi (07:00 WIB)",
-    SESSION_MALAM: "Malam (19:00 WIB)",
+    SESSION_PAGI: "Pagi (10:00 WIB)",
+    SESSION_MALAM: "Malam (16:00 WIB)",
 }
 
 
@@ -52,8 +52,8 @@ def _now_wib() -> datetime:
 
 
 def current_session() -> str:
-    """Sesi saat ini berdasarkan jam lokal WIB (07:00 = PAGI, 19:00 = MALAM)."""
-    return SESSION_PAGI if _now_wib().hour < 12 else SESSION_MALAM
+    """Sesi saat ini berdasarkan jam lokal WIB (10:00 = PAGI, 16:00 = MALAM)."""
+    return SESSION_PAGI if _now_wib().hour < 13 else SESSION_MALAM
 
 
 def session_label(session: str) -> str:

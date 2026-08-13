@@ -5,7 +5,7 @@ Panduan untuk AI agent dan developer yang bekerja di project **BOT-Sinyal-Tradin
 ## 1. Overview Arsitektur & Tech Stack
 
 ### Arsitektur
-Bot sinyal **Day Trading Lanjutan** Telegram yang dijalankan **2x sehari** (07:00 WIB Sesi Pagi & 19:00 WIB Sesi Malam) melalui GitHub Actions (cron). Setiap sesi **diawali evaluasi sinyal dari sesi sebelumnya** (Sesi Malam mengevaluasi Sesi Pagi hari yang sama; Sesi Pagi mengevaluasi Sesi Malam hari sebelumnya).
+Bot sinyal **Day Trading Lanjutan** Telegram yang dijalankan **2x sehari** (10:00 WIB Sesi Pagi & 16:00 WIB Sesi Malam) melalui GitHub Actions (cron). Setiap sesi **diawali evaluasi sinyal dari sesi sebelumnya** (Sesi Malam mengevaluasi Sesi Pagi hari yang sama; Sesi Pagi mengevaluasi Sesi Malam hari sebelumnya).
 
 Alur per eksekusi: quick scan top koin (satu panggilan CoinGecko) → shortlist kandidat momentum → **deep scan Multi-Timeframe (MTF)** per kandidat (chart 30 hari → LTF 1H/15M, HTF 4H/1D) → gabung skor + konfluensi (SMC/OB, S&D/S&R, MACD/RSI, Whale/Volume) → pilih TOP-5 sinyal → evaluasi sesi sebelumnya dari `data/history.json` → kirim pesan ke Telegram → simpan sinyal sesi ini ke history.
 
@@ -22,7 +22,7 @@ data/history.json             # History sinyal yang dikirim (auto di-commit tiap
 signals/indicators.py         # RSI, SMA, EMA, MACD, ATR, swing, BOS/CHoCH, OB, S/R, S&D, RSI div, Whale
 signals/engine.py             # Skoring quick + analisis MTF + Confluence Checklist → format pesan
 tests/                        # Tes unit (unittest, tanpa network)
-.github/workflows/daily.yml   # Scheduler 2x sehari (cron 0 0,12 * * * = 07:00 & 19:00 WIB)
+.github/workflows/daily.yml   # Scheduler 2x sehari (cron 0 3,9 * * * = 10:00 & 16:00 WIB)
 .env                          # Kredensial (TIDAK di-commit)
 ```
 
@@ -31,7 +31,7 @@ tests/                        # Tes unit (unittest, tanpa network)
 - **requests** untuk semua HTTP (CoinGecko, Telegram)
 - **ccxt** untuk eksekusi order di Bitget Futures (USDT-M Perpetual) — hanya dibutuhkan saat autotrade aktif
 - **python-dotenv** untuk memuat `.env`
-- **GitHub Actions** (cron `0 0,12 * * *`) sebagai scheduler gratis
+- **GitHub Actions** (cron `0 3,9 * * *`) sebagai scheduler gratis
 - **Sumber data publik gratis**: CoinGecko API, Telegram Bot API
 
 ## 2. Day Trading Lanjutan — Analisis Multi-Timeframe (MTF)

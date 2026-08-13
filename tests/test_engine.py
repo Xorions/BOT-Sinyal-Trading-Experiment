@@ -200,9 +200,9 @@ class TestFormatMessage(unittest.TestCase):
         sig = build_final_signal(_quick_signal(), _bullish_mtf())
         body = format_message(
             [sig],
-            "Sat, 08 Aug 2026, 07:00 WIB",
+            "Sat, 08 Aug 2026, 10:00 WIB",
             250,
-            session_label="Pagi (07:00 WIB)",
+            session_label="Pagi (10:00 WIB)",
         )
         self.assertIn("CONFLUENCE CHECKLIST", body)
         self.assertIn("SMC/OB", body)

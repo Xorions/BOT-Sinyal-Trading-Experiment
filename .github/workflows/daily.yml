@@ -1,9 +1,9 @@
 name: Crypto Day Trading Signals
 
-# 2x sehari: 00:00 UTC = 07:00 WIB (Sesi Pagi) & 12:00 UTC = 19:00 WIB (Sesi Malam)
+# 2x sehari: 03:00 UTC = 10:00 WIB (Sesi Pagi) & 09:00 UTC = 16:00 WIB (Sesi Malam)
 on:
   schedule:
-    - cron: "0 0,12 * * *"
+    - cron: "0 3,9 * * *"
   workflow_dispatch:
 
 # Butuh akses tulis untuk meng-commit data/history.json (history sinyal)
