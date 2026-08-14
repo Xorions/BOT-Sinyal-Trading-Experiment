@@ -511,6 +511,68 @@
           "confidence": 63
         }
       ]
+    },
+    {
+      "date": "2026-08-14",
+      "session": "PAGI",
+      "saved_at": "2026-08-14T11:48:44+07:00",
+      "signals": [
+        {
+          "coin_id": "pump-fun",
+          "symbol": "PUMP",
+          "name": "Pump.fun",
+          "action": "BUY",
+          "entry": 0.00290472,
+          "sl": 0.0028562885771137255,
+          "tp1": 0.0029692952305150327,
+          "tp2": 0.0030015828457725493,
+          "confidence": 63
+        },
+        {
+          "coin_id": "akedo",
+          "symbol": "AKE",
+          "name": "Akedo",
+          "action": "BUY",
+          "entry": 0.00772501,
+          "sl": 0.007169153719096252,
+          "tp1": 0.008466151707871662,
+          "tp2": 0.008836722561807495,
+          "confidence": 63
+        },
+        {
+          "coin_id": "audiera",
+          "symbol": "BEAT",
+          "name": "Audiera",
+          "action": "SELL",
+          "entry": 0.859029,
+          "sl": 0.8967763781308622,
+          "tp1": 0.8086991624921839,
+          "tp2": 0.7835342437382757,
+          "confidence": 63
+        },
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "SELL",
+          "entry": 3.47,
+          "sl": 3.496919203419636,
+          "tp1": 3.4341077287738195,
+          "tp2": 3.416161593160729,
+          "confidence": 63
+        },
+        {
+          "coin_id": "fgrs-figure-tokenized-stock",
+          "symbol": "FGRS",
+          "name": "FGRS (Figure Tokenized Stock)",
+          "action": "BUY",
+          "entry": 32.34,
+          "sl": 30.93923425755112,
+          "tp1": 34.207687656598516,
+          "tp2": 35.14153148489777,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
