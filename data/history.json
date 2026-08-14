@@ -573,6 +573,57 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-14",
+      "session": "MALAM",
+      "saved_at": "2026-08-14T17:03:08+07:00",
+      "signals": [
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "SELL",
+          "entry": 3.43,
+          "sl": 3.4578556849055273,
+          "tp1": 3.3928590867926305,
+          "tp2": 3.3742886301889454,
+          "confidence": 69
+        },
+        {
+          "coin_id": "humanity",
+          "symbol": "H",
+          "name": "Humanity",
+          "action": "BUY",
+          "entry": 0.109716,
+          "sl": 0.105656206115965,
+          "tp1": 0.11512905851204665,
+          "tp2": 0.11783558776806996,
+          "confidence": 63
+        },
+        {
+          "coin_id": "audiera",
+          "symbol": "BEAT",
+          "name": "Audiera",
+          "action": "SELL",
+          "entry": 0.639675,
+          "sl": 0.6840909034949519,
+          "tp1": 0.580453795340064,
+          "tp2": 0.550843193010096,
+          "confidence": 63
+        },
+        {
+          "coin_id": "virtual-protocol",
+          "symbol": "VIRTUAL",
+          "name": "Virtuals Protocol",
+          "action": "SELL",
+          "entry": 0.565019,
+          "sl": 0.5712068971212336,
+          "tp1": 0.5567684705050219,
+          "tp2": 0.5526432057575329,
+          "confidence": 63
+        }
+      ]
     }
   ]
 }
