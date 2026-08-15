@@ -664,6 +664,57 @@
           "confidence": 63
         }
       ]
+    },
+    {
+      "date": "2026-08-15",
+      "session": "MALAM",
+      "saved_at": "2026-08-15T16:26:25+07:00",
+      "signals": [
+        {
+          "coin_id": "doublezero",
+          "symbol": "2Z",
+          "name": "DoubleZero",
+          "action": "SELL",
+          "entry": 0.04940758,
+          "sl": 0.050472952349469705,
+          "tp1": 0.04798708353404039,
+          "tp2": 0.04727683530106058,
+          "confidence": 63
+        },
+        {
+          "coin_id": "ether-fi",
+          "symbol": "ETHFI",
+          "name": "Ether.fi",
+          "action": "BUY",
+          "entry": 0.47895,
+          "sl": 0.47105267008245666,
+          "tp1": 0.4894797732233911,
+          "tp2": 0.4947446598350867,
+          "confidence": 69
+        },
+        {
+          "coin_id": "humanity",
+          "symbol": "H",
+          "name": "Humanity",
+          "action": "BUY",
+          "entry": 0.133143,
+          "sl": 0.12956535563634777,
+          "tp1": 0.13791319248486963,
+          "tp2": 0.14029828872730446,
+          "confidence": 69
+        },
+        {
+          "coin_id": "jito-governance-token",
+          "symbol": "JTO",
+          "name": "Jito",
+          "action": "BUY",
+          "entry": 0.587652,
+          "sl": 0.5801570849217718,
+          "tp1": 0.5976452201043042,
+          "tp2": 0.6026418301564564,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
