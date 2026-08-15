@@ -34,13 +34,15 @@ jobs:
           COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
           MTF_SCAN_LIMIT: ${{ vars.MTF_SCAN_LIMIT }}
           CONFLUENCE_MIN: ${{ vars.CONFLUENCE_MIN }}
-          # --- Automated Trading Bitget (opsional) ---
-          # Biarkan secrets kosong / jangan set vars ENABLE_BITGET_AUTOTRADE
+          REQUIRE_CONFLUENCE_CORE: ${{ vars.REQUIRE_CONFLUENCE_CORE }}
+          ATR_SL_MULT: ${{ vars.ATR_SL_MULT }}
+          # --- Automated Trading OKX (opsional) ---
+          # Biarkan secrets kosong / jangan set vars ENABLE_OKX_AUTOTRADE
           # jika belum ingin eksekusi order nyata.
-          ENABLE_BITGET_AUTOTRADE: ${{ vars.ENABLE_BITGET_AUTOTRADE }}
-          BITGET_API_KEY: ${{ secrets.BITGET_API_KEY }}
-          BITGET_SECRET_KEY: ${{ secrets.BITGET_SECRET_KEY }}
-          BITGET_PASSPHRASE: ${{ secrets.BITGET_PASSPHRASE }}
+          ENABLE_OKX_AUTOTRADE: ${{ vars.ENABLE_OKX_AUTOTRADE }}
+          OKX_API_KEY: ${{ secrets.OKX_API_KEY }}
+          OKX_SECRET_KEY: ${{ secrets.OKX_SECRET_KEY }}
+          OKX_PASSPHRASE: ${{ secrets.OKX_PASSPHRASE }}
           RISK_PERCENT_PER_TRADE: ${{ vars.RISK_PERCENT_PER_TRADE }}
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
         run: python bot.py

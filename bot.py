@@ -7,8 +7,8 @@ Alur per eksekusi:
 3. Evaluasi sinyal dari sesi sebelumnya (performance tracking).
 4. Kirim pesan ke Telegram (evaluasi di atas, lalu daftar sinyal dengan
    "Confluence Checklist"), simpan sinyal sesi ini ke history.
-5. Bila ENABLE_BITGET_AUTOTRADE=true, sinyal BUY/SELL yang lolos filter
-   dieksekusi ke Bitget Futures oleh modul terpisah execution/bitget_executor.py
+5. Bila ENABLE_OKX_AUTOTRADE=true, sinyal BUY/SELL yang lolos filter
+   dieksekusi ke OKX Futures oleh modul terpisah execution/okx_executor.py
    (laporan live ke TELEGRAM_ADMIN_CHAT_ID).
 
 Jadwal 2x sehari (GitHub Actions): 10:00 WIB (Sesi Pagi) & 16:00 WIB (Sesi Malam).
@@ -26,7 +26,7 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         pass
 
 from config import (
-    ENABLE_BITGET_AUTOTRADE,
+    ENABLE_OKX_AUTOTRADE,
     TELEGRAM_BOT_TOKEN,
     TELEGRAM_CHAT_ID,
     TOP_COINS,
@@ -84,18 +84,18 @@ def evaluate_previous_session(coins: list) -> str:
 
 
 def run_autotrade(signals: list) -> None:
-    """Eksekusi sinyal BUY/SELL valid ke Bitget Futures (hanya jika diaktifkan).
+    """Eksekusi sinyal BUY/SELL valid ke OKX Futures (hanya jika diaktifkan).
 
-    Modul terpisah `execution/bitget_executor.py`; kegagalan eksekusi atau
+    Modul terpisah `execution/okx_executor.py`; kegagalan eksekusi atau
     notifikasi TIDAK menggagalkan bot sinyal harian.
     """
-    if not ENABLE_BITGET_AUTOTRADE:
-        log.info("Autotrade Bitget nonaktif (ENABLE_BITGET_AUTOTRADE=false).")
+    if not ENABLE_OKX_AUTOTRADE:
+        log.info("Autotrade OKX nonaktif (ENABLE_OKX_AUTOTRADE=false).")
         return
 
     try:
-        from execution.bitget_executor import (
-            BitgetExecutionError,
+        from execution.okx_executor import (
+            OkxExecutionError,
             build_exchange,
             execute_signal,
         )
@@ -109,7 +109,7 @@ def run_autotrade(signals: list) -> None:
 
     try:
         exchange = build_exchange()
-    except BitgetExecutionError as exc:
+    except OkxExecutionError as exc:
         log.error("Autotrade tidak siap: %s", exc)
         return
 
@@ -122,7 +122,7 @@ def run_autotrade(signals: list) -> None:
                 notify_order_executed(report)
             except TelegramSendError as exc:
                 log.warning("Notifikasi ORDER EXECUTED gagal: %s", exc)
-        except BitgetExecutionError as exc:
+        except OkxExecutionError as exc:
             log.error("Eksekusi %s gagal: %s", signal.symbol, exc)
             try:
                 notify_execution_failed(signal.symbol, str(exc), signal.action)

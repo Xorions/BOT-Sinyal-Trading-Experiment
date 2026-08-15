@@ -3,6 +3,7 @@
 import unittest
 from unittest import mock
 
+import config
 from signals.engine import (
     ACTION_BUY,
     ACTION_SELL,
@@ -122,9 +123,58 @@ class TestBuildFinalSignal(unittest.TestCase):
     def test_sl_tp_atr_levels(self):
         sig = build_final_signal(_quick_signal(score=1.0, price=100.0), _bullish_mtf())
         sl, tp1, tp2 = signal_levels(sig)
-        self.assertAlmostEqual(sl, 100.0 - 2.5 * 1.5, places=6)
-        self.assertAlmostEqual(tp1, 100.0 + 2.5 * 2.0, places=6)
-        self.assertAlmostEqual(tp2, 100.0 + 2.5 * 3.0, places=6)
+        self.assertAlmostEqual(sl, 100.0 - 2.5 * config.ATR_SL_MULT, places=6)
+        self.assertAlmostEqual(tp1, 100.0 + 2.5 * config.ATR_TP1_MULT, places=6)
+        self.assertAlmostEqual(tp2, 100.0 + 2.5 * config.ATR_TP2_MULT, places=6)
+
+    def test_sl_beyond_swing_low(self):
+        mtf = _bullish_mtf()
+        mtf.atr_1h = 2.0
+        mtf.support = 96.5
+        sig = build_final_signal(_quick_signal(score=1.0, price=100.0), mtf)
+        sl, _, _ = signal_levels(sig)
+        atr_sl = 100.0 - 2.0 * config.ATR_SL_MULT
+        swing_sl = 96.5 - 2.0 * config.SWING_SL_BUFFER_MULT
+        expected = max(min(atr_sl, swing_sl), 100.0 - 2.0 * config.MAX_SL_MULT)
+        self.assertAlmostEqual(sl, expected, places=6)
+        self.assertLess(sl, 96.5)  # di luar swing low
+
+    def test_sl_beyond_swing_high(self):
+        mtf = _bullish_mtf()
+        mtf.ht_bias = "BEARISH"
+        mtf.bos_direction = "BEAR"
+        mtf.ob_bullish = False
+        mtf.ob_bearish = True
+        mtf.demand_zone = False
+        mtf.supply_zone = True
+        mtf.near_support = False
+        mtf.near_resistance = True
+        mtf.macd_cross = "BEARISH_CROSS"
+        mtf.rsi_bull_aligned = False
+        mtf.rsi_bear_aligned = True
+        mtf.whale_bull = False
+        mtf.whale_bear = True
+        mtf.bull_points = 0.0
+        mtf.bear_points = 4.5
+        mtf.atr_1h = 2.0
+        mtf.resistance = 103.5
+        sig = build_final_signal(
+            _quick_signal(score=-1.0, price=100.0, action=ACTION_SELL), mtf
+        )
+        sl, _, _ = signal_levels(sig)
+        atr_sl = 100.0 + 2.0 * config.ATR_SL_MULT
+        swing_sl = 103.5 + 2.0 * config.SWING_SL_BUFFER_MULT
+        expected = min(max(atr_sl, swing_sl), 100.0 + 2.0 * config.MAX_SL_MULT)
+        self.assertAlmostEqual(sl, expected, places=6)
+        self.assertGreater(sl, 103.5)  # di luar swing high
+
+    def test_sl_capped_by_max_sl_mult(self):
+        mtf = _bullish_mtf()
+        mtf.atr_1h = 2.0
+        mtf.support = 90.0  # swing sangat jauh -> SL dibatasi agar R:R tetap sehat
+        sig = build_final_signal(_quick_signal(score=1.0, price=100.0), mtf)
+        sl, _, _ = signal_levels(sig)
+        self.assertAlmostEqual(sl, 100.0 - 2.0 * config.MAX_SL_MULT, places=6)
 
     def test_low_confluence_demoted_to_neutral(self):
         weak = _bullish_mtf()
@@ -139,6 +189,40 @@ class TestBuildFinalSignal(unittest.TestCase):
         weak.bull_points = 1.5  # hanya HTF bias
         sig = build_final_signal(_quick_signal(score=1.0), weak)
         self.assertEqual(sig.action, "NEUTRAL")
+
+    def test_smc_only_without_core_demoted_to_neutral(self):
+        """SMC/OB 2/2 tapi S&D/S&R & MACD/RSI 0/2 -> WATCHLIST (bukan BUY/SELL)."""
+        weak = _bullish_mtf()
+        weak.demand_zone = False
+        weak.supply_zone = False
+        weak.near_support = False
+        weak.near_resistance = False
+        weak.macd_cross = ""
+        weak.rsi_bull_aligned = False
+        weak.rsi_bear_aligned = False
+        weak.whale_bull = False
+        weak.whale_bear = False
+        weak.bull_points = 2.0  # hanya SMC: BOS + OB
+        sig = build_final_signal(_quick_signal(score=1.0), weak)
+        self.assertEqual(sig.action, "NEUTRAL")
+        self.assertIn("WATCHLIST", "\n".join(sig.reasons))
+
+    def test_core_confirmed_promoted_to_buy(self):
+        mtf = _bullish_mtf()  # MACD/RSI 2/2 -> lolos gate konfluensi inti
+        sig = build_final_signal(_quick_signal(score=1.0), mtf)
+        self.assertEqual(sig.action, ACTION_BUY)
+
+    def test_smc_plus_core_check_promoted_to_buy(self):
+        """SMC/OB 2/2 + minimal 1 cek inti (mis. near support) -> BUY valid."""
+        mtf = _bullish_mtf()
+        mtf.macd_cross = ""
+        mtf.rsi_bull_aligned = False
+        mtf.near_support = True
+        mtf.demand_zone = False
+        mtf.whale_bull = False
+        mtf.bull_points = 3.0  # HTF 1.5 + BOS 1 + OB 1 -0.5? tetap > ambang via quick
+        sig = build_final_signal(_quick_signal(score=2.5), mtf)
+        self.assertEqual(sig.action, ACTION_BUY)
 
 
 class TestChecklist(unittest.TestCase):
@@ -200,9 +284,9 @@ class TestFormatMessage(unittest.TestCase):
         sig = build_final_signal(_quick_signal(), _bullish_mtf())
         body = format_message(
             [sig],
-            "Sat, 08 Aug 2026, 10:00 WIB",
+            "Sat, 08 Aug 2026, 07:00 WIB",
             250,
-            session_label="Pagi (10:00 WIB)",
+            session_label="Pagi (07:00 WIB)",
         )
         self.assertIn("CONFLUENCE CHECKLIST", body)
         self.assertIn("SMC/OB", body)

@@ -8,8 +8,10 @@ Alur kerja:
    - Utama: Support/Resistance, Supply/Demand, SMC (BOS/CHoCH), Order Block.
    - Pendukung: MACD crossover, RSI divergence, deteksi Volume/Whale Spike.
 3. Gabung skor quick + poin konfluensi MTF -> BUY/SELL/NEUTRAL. Sinyal butuh
-   minimal `CONFLUENCE_MIN` kategori selaras agar dipromosikan. Entry/SL/TP
-   berbasis ATR (fallback persen bila ATR tidak tersedia).
+   minimal `CONFLUENCE_MIN` item selaras DAN minimal `REQUIRE_CONFLUENCE_CORE`
+   dari kategori inti (S&D/S&R atau MACD/RSI) agar dipromosikan; koin yang
+   hanya bermodal SMC/OB diturunkan ke WATCHLIST. Entry/SL/TP berbasis ATR
+   dengan SL di luar swing low/high terdekat (fallback persen bila ATR kosong).
 4. Format pesan menyertakan "Confluence Checklist" per sinyal.
 """
 
@@ -23,8 +25,11 @@ from config import (
     BUY_THRESHOLD,
     CONFLUENCE_MIN,
     DISCLAIMER,
+    MAX_SL_MULT,
     MTF_SCAN_LIMIT,
+    REQUIRE_CONFLUENCE_CORE,
     SELL_THRESHOLD,
+    SWING_SL_BUFFER_MULT,
     TOP_SIGNALS,
     WHALE_VOLUME_MULT,
 )
@@ -221,17 +226,36 @@ def _turnover_percentiles(coins: List[Dict[str, Any]]) -> Dict[str, float]:
     return {cid: (index + 1) / count for index, (cid, _) in enumerate(values)}
 
 
-def _atr_levels(price: float, atr_value: float, action: str) -> Tuple[float, float, float]:
-    """SL/TP berbasis ATR (LTF 1H). Fallback ke persentase bila ATR kosong."""
+def _atr_levels(
+    price: float,
+    atr_value: float,
+    action: str,
+    swing_level: Optional[float] = None,
+) -> Tuple[float, float, float]:
+    """SL/TP berbasis ATR (LTF 1H). Fallback ke persentase bila ATR kosong.
+
+    `swing_level` = swing low (BUY) / swing high (SELL) terdekat. SL ditempatkan
+    di luar Key Level tersebut bila lebih lebar dari SL ATR (anti wick-out),
+    namun dibatasi `MAX_SL_MULT` agar risk-reward tetap terjaga.
+    """
     if atr_value and atr_value > 0:
+        atr_sl_dist = atr_value * ATR_SL_MULT
         if action == ACTION_SELL:
+            sl = price + atr_sl_dist
+            if swing_level and swing_level > price:
+                sl = max(sl, swing_level + atr_value * SWING_SL_BUFFER_MULT)
+            sl = min(sl, price + atr_value * MAX_SL_MULT)
             return (
-                price + atr_value * ATR_SL_MULT,
+                sl,
                 price - atr_value * ATR_TP1_MULT,
                 price - atr_value * ATR_TP2_MULT,
             )
+        sl = price - atr_sl_dist
+        if swing_level and swing_level < price:
+            sl = min(sl, swing_level - atr_value * SWING_SL_BUFFER_MULT)
+        sl = max(sl, price - atr_value * MAX_SL_MULT)
         return (
-            price - atr_value * ATR_SL_MULT,
+            sl,
             price + atr_value * ATR_TP1_MULT,
             price + atr_value * ATR_TP2_MULT,
         )
@@ -380,8 +404,8 @@ def analyze_mtf(coin_id: str) -> Optional[MTFResult]:
     rsi_value = rsi(c1)
     rsi_series_1h = rsi_series(c1)
     rsi_div = rsi_divergence(c1, [r if r is not None else 50.0 for r in rsi_series_1h])
-    rsi_bull_aligned = rsi_div == "BULLISH_DIV" or (rsi_value is not None and rsi_value < 35)
-    rsi_bear_aligned = rsi_div == "BEARISH_DIV" or (rsi_value is not None and rsi_value > 65)
+    rsi_bull_aligned = rsi_div == "BULLISH_DIV" or (rsi_value is not None and rsi_value < 30)
+    rsi_bear_aligned = rsi_div == "BEARISH_DIV" or (rsi_value is not None and rsi_value > 70)
 
     whale_up = volume_spike(v1, WHALE_VOLUME_MULT) and len(c1) >= 2 and c1[-1] > c1[-2]
     whale_down = volume_spike(v1, WHALE_VOLUME_MULT) and len(c1) >= 2 and c1[-1] < c1[-2]
@@ -541,8 +565,22 @@ def build_final_signal(quick: Signal, mtf: MTFResult) -> Signal:
     aligned_total = sum(ok for ok, _ in checklist.values())
     total_checks = sum(total for _, total in checklist.values())
 
+    demoted = False
     if action != ACTION_NEUTRAL and aligned_total < CONFLUENCE_MIN:
         action = ACTION_NEUTRAL
+        demoted = True
+
+    # Gate konfluensi inti: wajib minimal `REQUIRE_CONFLUENCE_CORE` cek selaras
+    # dari S&D/S&R atau MACD/RSI. SMC/OB + Whale/Vol saja tidak cukup — koin
+    # dengan SMC/OB 2/2 tapi S&D/S&R 0/2 & MACD/RSI 0/2 harus diturunkan.
+    core_aligned = checklist["S&D/S&R"][0] + checklist["MACD/RSI"][0]
+    if (
+        action != ACTION_NEUTRAL
+        and REQUIRE_CONFLUENCE_CORE > 0
+        and core_aligned < REQUIRE_CONFLUENCE_CORE
+    ):
+        action = ACTION_NEUTRAL
+        demoted = True
 
     if action == ACTION_BUY:
         reasons = list(mtf.bull_reasons)
@@ -555,13 +593,24 @@ def build_final_signal(quick: Signal, mtf: MTFResult) -> Signal:
             else list(quick.reasons)
         )
 
+    if demoted:
+        reasons.append(
+            f"Konfluensi inti lemah (S&D/S&R {checklist['S&D/S&R'][0]}/2 · "
+            f"MACD/RSI {checklist['MACD/RSI'][0]}/2) — dipindahkan ke WATCHLIST"
+        )
+
     if total_checks > 0:
         confidence = int(round(50 + aligned_total / total_checks * 45))
     else:
         confidence = 55 + int(abs(total) * 5)
     confidence = max(45, min(95, confidence))
 
-    sl, tp1, tp2 = _atr_levels(quick.price, mtf.atr_1h or 0.0, action)
+    swing_level = (
+        mtf.support
+        if action == ACTION_BUY
+        else (mtf.resistance if action == ACTION_SELL else None)
+    )
+    sl, tp1, tp2 = _atr_levels(quick.price, mtf.atr_1h or 0.0, action, swing_level)
 
     return Signal(
         coin_id=quick.coin_id,
