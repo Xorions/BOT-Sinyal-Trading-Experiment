@@ -36,13 +36,12 @@ jobs:
           CONFLUENCE_MIN: ${{ vars.CONFLUENCE_MIN }}
           REQUIRE_CONFLUENCE_CORE: ${{ vars.REQUIRE_CONFLUENCE_CORE }}
           ATR_SL_MULT: ${{ vars.ATR_SL_MULT }}
-          # --- Automated Trading OKX (opsional) ---
-          # Biarkan secrets kosong / jangan set vars ENABLE_OKX_AUTOTRADE
+          # --- Automated Trading Bybit (opsional) ---
+          # Biarkan secrets kosong / jangan set vars ENABLE_BYBIT_AUTOTRADE
           # jika belum ingin eksekusi order nyata.
-          ENABLE_OKX_AUTOTRADE: ${{ vars.ENABLE_OKX_AUTOTRADE }}
-          OKX_API_KEY: ${{ secrets.OKX_API_KEY }}
-          OKX_SECRET_KEY: ${{ secrets.OKX_SECRET_KEY }}
-          OKX_PASSPHRASE: ${{ secrets.OKX_PASSPHRASE }}
+          ENABLE_BYBIT_AUTOTRADE: ${{ vars.ENABLE_BYBIT_AUTOTRADE }}
+          BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
+          BYBIT_SECRET_KEY: ${{ secrets.BYBIT_SECRET_KEY }}
           RISK_PERCENT_PER_TRADE: ${{ vars.RISK_PERCENT_PER_TRADE }}
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
         run: python bot.py

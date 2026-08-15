@@ -33,7 +33,7 @@ def send_telegram(text: str, chat_id: str = "") -> None:
 
 
 # ---------------------------------------------------------------------------
-# Laporan private eksekusi trading (OKX Futures) ke TELEGRAM_ADMIN_CHAT_ID
+# Laporan private eksekusi trading (Bybit Futures) ke TELEGRAM_ADMIN_CHAT_ID
 # ---------------------------------------------------------------------------
 
 
@@ -67,10 +67,10 @@ def _fmt_price(value: float) -> str:
 
 
 def notify_order_executed(report: dict) -> None:
-    """🚀 [ORDER EXECUTED] — order berhasil dipasang di OKX (ke admin)."""
+    """🚀 [ORDER EXECUTED] — order berhasil dipasang di Bybit (ke admin)."""
     lines = [
         "🚀 <b>[ORDER EXECUTED]</b>",
-        f"💱 #{report.get('symbol')} <b>{report.get('action')}</b> · OKX Futures (USDT-M)",
+        f"💱 #{report.get('symbol')} <b>{report.get('action')}</b> · Bybit Futures (USDT-M)",
         f"🔑 Entry: <b>{_fmt_price(report.get('entry'))}</b>",
         f"🪓 SL: {_fmt_price(report.get('sl'))} (full position)",
         f"💰 TP1 (50%): {_fmt_price(report.get('tp1'))}",

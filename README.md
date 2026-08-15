@@ -1,6 +1,6 @@
 # BOT-Sinyal-Trading
 
-Bot Telegram **Day Trading Lanjutan** yang mengirim sinyal trading crypto **2x sehari** (10:00 WIB Sesi Pagi & 16:00 WIB Sesi Malam) berdasarkan analisis **Multi-Timeframe (MTF)** dari data CoinGecko (gratis, tanpa API key berbayar). Termasuk modul **Automated Trading OKX (opsional, default nonaktif)** yang mengeksekusi sinyal BUY/SELL yang lolos filter ketat ke OKX Futures USDT-M.
+Bot Telegram **Day Trading Lanjutan** yang mengirim sinyal trading crypto **2x sehari** (10:00 WIB Sesi Pagi & 16:00 WIB Sesi Malam) berdasarkan analisis **Multi-Timeframe (MTF)** dari data CoinGecko (gratis, tanpa API key berbayar). Termasuk modul **Automated Trading Bybit (opsional, default nonaktif)** yang mengeksekusi sinyal BUY/SELL yang lolos filter ketat ke Bybit Futures USDT-M.
 
 ## Fitur
 
@@ -11,7 +11,7 @@ Bot Telegram **Day Trading Lanjutan** yang mengirim sinyal trading crypto **2x s
 - **Confluence Checklist** di setiap sinyal: SMC/OB, S&D/S&R, MACD/RSI, Whale/Vol.
 - **Evaluasi sinyal sesi sebelumnya** di bagian atas pesan (HIT TP1/TP2/SL, FLOATING) — Sesi Malam mengevaluasi Sesi Pagi, Sesi Pagi mengevaluasi Sesi Malam.
 - **SL/TP berbasis ATR** (default SL 1.5× ATR, TP1 2×, TP2 3×).
-- **Automated Trading OKX (opsional)**: eksekusi market order + SL + TP1 50%/TP2 50% otomatis di OKX Futures USDT-M, position size berbasis risk (1% saldo), sakelar ON/OFF di `.env`, laporan live 🚀/⚠️ ke chat admin. Modul terpisah (`execution/`) sehingga tidak mengganggu bot sinyal harian.
+- **Automated Trading Bybit (opsional)**: eksekusi market order + SL + TP1 50%/TP2 50% otomatis di Bybit Futures USDT-M, position size berbasis risk (1% saldo), sakelar ON/OFF di `.env`, laporan live 🚀/⚠️ ke chat admin. Modul terpisah (`execution/`) sehingga tidak mengganggu bot sinyal harian.
 
 ## Cara Kerja
 
@@ -37,29 +37,28 @@ Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
    - `TELEGRAM_CHAT_ID`
    - Opsional: `vars` `MTF_SCAN_LIMIT`, `CONFLUENCE_MIN`.
 
-## Setup Automated Trading OKX (Opsional)
+## Setup Automated Trading Bybit (Opsional)
 
-> **Peringatan**: mulai dengan `ENABLE_OKX_AUTOTRADE=false`. Nyalakan hanya
+> **Peringatan**: mulai dengan `ENABLE_BYBIT_AUTOTRADE=false`. Nyalakan hanya
 > setelah kamu paham risiko trading futures. Uji dulu dengan akun demo/posisi kecil.
 
-1. Login [OKX](https://www.okx.com) → **Akun → API** (https://www.okx.com/account/my-api).
-2. Klik **Create API Key**, pilih tipe **Self**, buat **PASS PHRASE** sendiri (8–32 karakter, disimpan sekali saat pembuatan — ini BUKAN sandi akun).
-3. Aktifkan izin **Trade** saja. Jangan pernah aktifkan **Withdraw**.
+1. Login [Bybit](https://www.bybit.com) → **Akun → API Management** (https://www.bybit.com/app/user/api-management).
+2. Klik **Create New Key**, pilih tipe **Unified Trading Account (UTA) / Trading API**, atur izin **Order (Trade)** saja.
+3. **TIDAK ada passphrase** di Bybit API v5 — cukup **API Key + Secret Key**. Jangan pernah aktifkan **Withdraw**.
 4. Isi di `.env`:
    ```
-   OKX_API_KEY=<api key>
-   OKX_SECRET_KEY=<secret key>
-   OKX_PASSPHRASE=<pass phrase>
-   ENABLE_OKX_AUTOTRADE=false     # ganti true untuk eksekusi nyata
-   RISK_PERCENT_PER_TRADE=1.0     # risiko per trade (% free balance USDT)
+   BYBIT_API_KEY=<api key>
+   BYBIT_SECRET_KEY=<secret key>
+   ENABLE_BYBIT_AUTOTRADE=false     # ganti true untuk eksekusi nyata
+   RISK_PERCENT_PER_TRADE=1.0       # risiko per trade (% free balance USDT)
    TELEGRAM_ADMIN_CHAT_ID=<id chat admin kamu>
    ```
-5. Cara kerja: setiap sesi, sinyal **BUY/SELL yang lolos filter ketat** dieksekusi otomatis di OKX Futures USDT-M Perpetual (cross margin):
+5. Cara kerja: setiap sesi, sinyal **BUY/SELL yang lolos filter ketat** dieksekusi otomatis di Bybit USDT Perpetual (`defaultType=linear`):
    - **Position sizing dinamis**: `1% × saldo free USDT ÷ |Entry − SL|` → jumlah koin, dikonversi ke kontrak sesuai `contractSize` pasar.
-   - **Market order** entry + **Stop Loss** terpasang langsung (full position, via algo SL market).
+   - **Market order** entry + **Stop Loss** terpasang langsung (full position, via field `stopLoss` order).
    - **TP1 50% & TP2 50%**: dua take-profit reduce-only di level TP sinyal.
    - Notifikasi ke admin: 🚀 `[ORDER EXECUTED]` (order terpasang) atau ⚠️ `[EXECUTION FAILED]` (saldo tidak cukup / API error).
-6. Di GitHub Actions tambahkan secrets opsional: `OKX_API_KEY`, `OKX_SECRET_KEY`, `OKX_PASSPHRASE`, `TELEGRAM_ADMIN_CHAT_ID`, dan `vars` `ENABLE_OKX_AUTOTRADE` (biarkan kosong/hapus vars untuk tetap nonaktif).
+6. Di GitHub Actions tambahkan secrets opsional: `BYBIT_API_KEY`, `BYBIT_SECRET_KEY`, `TELEGRAM_ADMIN_CHAT_ID`, dan `vars` `ENABLE_BYBIT_AUTOTRADE` (biarkan kosong/hapus vars untuk tetap nonaktif).
 
 ## Konfigurasi
 
@@ -75,10 +74,9 @@ Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
 | `WHALE_VOLUME_MULT` | 2.5 | Ambang deteksi Whale Spike volume |
 | `BUY_THRESHOLD` | 3.0 | Skor minimum untuk BUY |
 | `SELL_THRESHOLD` | -3.0 | Skor minimum untuk SELL |
-| `ENABLE_OKX_AUTOTRADE` | `false` | `true` = eksekusi order NYATA di OKX Futures |
-| `OKX_API_KEY` | kosong | API Key OKX (izin Trade) |
-| `OKX_SECRET_KEY` | kosong | Secret Key OKX |
-| `OKX_PASSPHRASE` | kosong | Passphrase API OKX (dibuat saat membuat key) |
+| `ENABLE_BYBIT_AUTOTRADE` | `false` | `true` = eksekusi order NYATA di Bybit Futures |
+| `BYBIT_API_KEY` | kosong | API Key Bybit (UTA, izin Order/Trade) |
+| `BYBIT_SECRET_KEY` | kosong | Secret Key Bybit (tanpa passphrase) |
 | `RISK_PERCENT_PER_TRADE` | 1.0 | Risiko per trade (% saldo free USDT) |
 | `TELEGRAM_ADMIN_CHAT_ID` | kosong | Chat ID admin untuk laporan eksekusi (private) |
 
@@ -88,13 +86,13 @@ Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
 bot.py                        # Entry point: quick scan → deep MTF scan → evaluasi → kirim → autotrade (opsional)
 config.py                     # Konfigurasi & kredensial dari .env
 telegram_sender.py            # Kirim pesan ke Telegram + laporan admin eksekusi (ORDER EXECUTED / FAILED)
-execution/okx_executor.py     # Eksekusi terpisah: OKX Futures via CCXT (sizing, SL, TP1 50%/TP2 50%)
+execution/bybit_executor.py     # Eksekusi terpisah: Bybit Futures via CCXT (sizing, SL, TP1 50%/TP2 50%)
 data/market.py                # CoinGecko (top coins, sparkline 7d, market_chart OHLC MTF)
 data/history.py               # Simpan & evaluasi performa sinyal per sesi
 data/history.json             # History sinyal yang dikirim (di-commit tiap sesi)
 signals/indicators.py         # RSI, SMA, EMA, MACD, ATR, BOS/CHoCH, OB, S/R, S&D, RSI div, Whale
 signals/engine.py             # Skoring MTF + Confluence Checklist → format pesan
-tests/                        # Tes unit (unittest, tanpa network) — termasuk mock eksekutor OKX
+tests/                        # Tes unit (unittest, tanpa network) — termasuk mock eksekutor Bybit
 .github/workflows/daily.yml   # Scheduler 2x sehari (10:00 & 16:00 WIB)
 ```
 

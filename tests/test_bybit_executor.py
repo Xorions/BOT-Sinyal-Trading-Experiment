@@ -1,19 +1,18 @@
-"""Tes unit untuk execution/okx_executor.py (FakeExchange, tanpa network).
+"""Tes unit untuk execution/bybit_executor.py (FakeExchange, tanpa network).
 
 Memverifikasi:
-- konversi simbol -> pair USDT-M
+- konversi simbol -> pair USDT-M (linear)
 - risk-based position sizing (1% free balance)
 - alur market order + SL terpasang + TP1 50% / TP2 50% reduce-only
-- params khas OKX: tdMode='cross' pada semua order swap
+- kredensial Bybit hanya apiKey + secret (tanpa passphrase)
 - handling kegagalan (saldo 0, simbol tidak tersedia, kredensial kosong)
 """
 
 import unittest
 from unittest import mock
 
-from execution.okx_executor import (
-    OKX_TD_MODE,
-    OkxExecutionError,
+from execution.bybit_executor import (
+    BybitExecutionError,
     build_exchange,
     execute_signal,
     fetch_free_balance_usdt,
@@ -35,7 +34,7 @@ class FakeMarket:
 
 
 class FakeExchange:
-    """Simulasi minimal ccxt.okx: mencatat semua panggilan order."""
+    """Simulasi minimal ccxt.bybit: mencatat semua panggilan order."""
 
     def __init__(self, free_usdt=1000.0, contract_size=1.0, symbol="BTC/USDT:USDT"):
         self.free_usdt = free_usdt
@@ -106,16 +105,16 @@ class TestRiskSizing(unittest.TestCase):
         self.assertAlmostEqual(position_quantity(100.0, 105.0, 10.0), 2.0)
 
     def test_invalid_levels_raise(self):
-        with self.assertRaises(OkxExecutionError):
+        with self.assertRaises(BybitExecutionError):
             position_quantity(100.0, 100.0, 10.0)
-        with self.assertRaises(OkxExecutionError):
+        with self.assertRaises(BybitExecutionError):
             position_quantity(0.0, 95.0, 10.0)
 
 
 class TestBalance(unittest.TestCase):
     def test_zero_balance_raises(self):
         ex = FakeExchange(free_usdt=0.0)
-        with self.assertRaises(OkxExecutionError):
+        with self.assertRaises(BybitExecutionError):
             fetch_free_balance_usdt(ex)
 
     def test_returns_free_usdt(self):
@@ -151,14 +150,6 @@ class TestExecuteBuy(unittest.TestCase):
         self.assertEqual(report["tp1_order_id"], "order-2")
         self.assertEqual(report["tp2_order_id"], "order-3")
 
-    def test_all_orders_use_cross_td_mode(self):
-        ex = FakeExchange(free_usdt=1000.0)
-        execute_signal(ex, _signal())
-
-        for order in ex.orders:
-            self.assertEqual(order["params"]["tdMode"], "cross")
-        self.assertEqual(OKX_TD_MODE, "cross")
-
 
 class TestExecuteSell(unittest.TestCase):
     def test_sides_reversed_and_sl_above_entry(self):
@@ -177,26 +168,26 @@ class TestExecuteSell(unittest.TestCase):
 
 class TestContractSize(unittest.TestCase):
     def test_amount_converted_to_contracts(self):
-        # OKX BTC-USDT-SWAP contractSize = 0.01 BTC: 2 koin / 0.01 = 200 kontrak
-        ex = FakeExchange(free_usdt=1000.0, contract_size=0.01)
+        # Bybit BTCUSDT contractSize = 0.001 BTC: 2 koin / 0.001 = 2000 kontrak
+        ex = FakeExchange(free_usdt=1000.0, contract_size=0.001)
         report = execute_signal(ex, _signal())
 
         self.assertEqual(len(ex.orders), 3)
         entry = ex.orders[0]
-        self.assertAlmostEqual(entry["amount"], 200.0)
-        self.assertAlmostEqual(report["amount_contracts"], 200.0)
+        self.assertAlmostEqual(entry["amount"], 2000.0)
+        self.assertAlmostEqual(report["amount_contracts"], 2000.0)
 
 
 class TestExecutionFailures(unittest.TestCase):
     def test_unsupported_symbol_raises(self):
         ex = FakeExchange(symbol="BTC/USDT:USDT")
-        with self.assertRaises(OkxExecutionError) as ctx:
+        with self.assertRaises(BybitExecutionError) as ctx:
             execute_signal(ex, _signal(symbol="ZZZ"))
         self.assertIn("ZZZ/USDT:USDT", str(ctx.exception))
 
     def test_neutral_action_rejected(self):
         ex = FakeExchange()
-        with self.assertRaises(OkxExecutionError):
+        with self.assertRaises(BybitExecutionError):
             execute_signal(ex, _signal(action="NEUTRAL"))
 
     def test_entry_order_rejected_wraps_error(self):
@@ -206,7 +197,7 @@ class TestExecutionFailures(unittest.TestCase):
             raise RuntimeError("insufficient margin")
 
         with mock.patch.object(ex, "create_order", side_effect=boom):
-            with self.assertRaises(OkxExecutionError) as ctx:
+            with self.assertRaises(BybitExecutionError) as ctx:
                 execute_signal(ex, _signal())
         self.assertIn("ditolak", str(ctx.exception))
 
@@ -221,35 +212,31 @@ class TestExecutionFailures(unittest.TestCase):
 
     def test_balance_not_fetched_when_zero(self):
         ex = FakeExchange(free_usdt=0.0)
-        with self.assertRaises(OkxExecutionError):
+        with self.assertRaises(BybitExecutionError):
             execute_signal(ex, _signal())
 
 
 class TestBuildExchange(unittest.TestCase):
     def test_missing_credentials_raise(self):
-        with mock.patch("execution.okx_executor.OKX_API_KEY", ""), mock.patch(
-            "execution.okx_executor.OKX_SECRET_KEY", ""
-        ), mock.patch("execution.okx_executor.OKX_PASSPHRASE", ""):
-            with self.assertRaises(OkxExecutionError) as ctx:
+        with mock.patch("execution.bybit_executor.BYBIT_API_KEY", ""), mock.patch(
+            "execution.bybit_executor.BYBIT_SECRET_KEY", ""
+        ):
+            with self.assertRaises(BybitExecutionError) as ctx:
                 build_exchange()
         self.assertIn(".env", str(ctx.exception))
 
-    def test_creates_swap_exchange(self):
-        with mock.patch("execution.okx_executor.ccxt.okx") as okx_cls, mock.patch(
-            "execution.okx_executor.OKX_API_KEY", "k"
-        ), mock.patch(
-            "execution.okx_executor.OKX_SECRET_KEY", "s"
-        ), mock.patch(
-            "execution.okx_executor.OKX_PASSPHRASE", "p"
-        ):
-            okx_cls.return_value.load_markets = mock.Mock()
+    def test_creates_linear_exchange_without_passphrase(self):
+        with mock.patch("execution.bybit_executor.ccxt.bybit") as bybit_cls, mock.patch(
+            "execution.bybit_executor.BYBIT_API_KEY", "k"
+        ), mock.patch("execution.bybit_executor.BYBIT_SECRET_KEY", "s"):
+            bybit_cls.return_value.load_markets = mock.Mock()
             exchange = build_exchange()
-            config = okx_cls.call_args[0][0]
-            self.assertEqual(config["options"]["defaultType"], "swap")
+            config = bybit_cls.call_args[0][0]
+            self.assertEqual(config["options"]["defaultType"], "linear")
             self.assertEqual(config["options"]["adjustForTimeDifference"], True)
-            self.assertEqual(config["password"], "p")
-            self.assertEqual(exchange, okx_cls.return_value)
-            okx_cls.return_value.load_markets.assert_called_once()
+            self.assertNotIn("password", config)
+            self.assertEqual(exchange, bybit_cls.return_value)
+            bybit_cls.return_value.load_markets.assert_called_once()
 
 
 if __name__ == "__main__":

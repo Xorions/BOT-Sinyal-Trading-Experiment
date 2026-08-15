@@ -22,7 +22,7 @@ def _env_int(name: str, default: int) -> int:
 
 TELEGRAM_BOT_TOKEN: str = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID: str = os.getenv("TELEGRAM_CHAT_ID", "")
-# Chat ID khusus admin untuk laporan private eksekusi order OKX
+# Chat ID khusus admin untuk laporan private eksekusi order Bybit
 # (tidak meneruskan ke TELEGRAM_CHAT_ID publik).
 TELEGRAM_ADMIN_CHAT_ID: str = os.getenv("TELEGRAM_ADMIN_CHAT_ID", "")
 
@@ -38,7 +38,7 @@ CONFLUENCE_MIN: int = _env_int("CONFLUENCE_MIN", 2)
 # Minimal cek selaras WAJIB dari kategori inti (S&D/S&R + MACD/RSI) agar sinyal
 # BUY/SELL valid. 0 = nonaktif (perilaku lama). Mencegah sinyal yang hanya
 # bermodal SMC/OB (contoh: SMC/OB 2/2, tapi S&D/S&R 0/2 & MACD/RSI 0/2) lolos —
-# penting ganda bila autotrade OKX diaktifkan.
+# penting ganda bila autotrade Bybit diaktifkan.
 REQUIRE_CONFLUENCE_CORE: int = _env_int("REQUIRE_CONFLUENCE_CORE", 1)
 # SL/TP berbasis ATR (timeframe 1H). TP1 = 2x ATR, TP2 = 3x ATR.
 # ATR_SL_MULT dinaikkan dari 1.5x ke 2.0x karena 1.5x ATR terlalu rapat di
@@ -60,16 +60,16 @@ COINGECKO_API_KEY: str = os.getenv("COINGECKO_API_KEY", "")
 BUY_THRESHOLD: float = _env_float("BUY_THRESHOLD", 3.0)
 SELL_THRESHOLD: float = _env_float("SELL_THRESHOLD", -3.0)
 
-# --- Automated Trading OKX Futures (opsional, default NONAKTIF) ---
-# Buat API key di OKX: https://www.okx.com/account/my-api → Create API Key →
-# aktifkan izin "Trade" → salin PASS PHRASE (dibuat saat membuat key, bukan
-# sandi akun). Simpan ketiganya di .env, TIDAK pernah di-hardcode.
-OKX_API_KEY: str = os.getenv("OKX_API_KEY", "")
-OKX_SECRET_KEY: str = os.getenv("OKX_SECRET_KEY", "")
-OKX_PASSPHRASE: str = os.getenv("OKX_PASSPHRASE", "")
-# Sakelar utama autotrade: "true" mengeksekusi order NYATA di OKX Futures.
-ENABLE_OKX_AUTOTRADE: bool = (
-    os.getenv("ENABLE_OKX_AUTOTRADE", "false").strip().lower()
+# --- Automated Trading Bybit Futures (opsional, default NONAKTIF) ---
+# Buat API key di Bybit: https://www.bybit.com/app/user/api-management →
+# buat key (Unified Trading Account) → aktifkan izin "Order" (trade) saja.
+# Bybit API v5 hanya butuh API Key + Secret (TIDAK ada passphrase).
+# Simpan keduanya di .env, TIDAK pernah di-hardcode.
+BYBIT_API_KEY: str = os.getenv("BYBIT_API_KEY", "")
+BYBIT_SECRET_KEY: str = os.getenv("BYBIT_SECRET_KEY", "")
+# Sakelar utama autotrade: "true" mengeksekusi order NYATA di Bybit Futures.
+ENABLE_BYBIT_AUTOTRADE: bool = (
+    os.getenv("ENABLE_BYBIT_AUTOTRADE", "false").strip().lower()
     in ("1", "true", "yes", "on")
 )
 # Risiko per trade dalam persen dari free balance USDT (default 1.0%).

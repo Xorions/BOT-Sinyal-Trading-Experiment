@@ -2,8 +2,8 @@
 
 Tanggal audit: 14 Agu 2026
 Scope: `signals/engine.py`, `signals/indicators.py`, `config.py`, evaluasi `data/history.json`
-Catatan khusus: proyek ini memuat **Automated Trading OKX** (`execution/okx_executor.py`)
-— filter kualitas sinyal adalah pengaman utama terhadap order NYATA di OKX Futures.
+Catatan khusus: proyek ini memuat **Automated Trading Bybit** (`execution/bybit_executor.py`)
+— filter kualitas sinyal adalah pengaman utama terhadap order NYATA di Bybit Futures.
 
 ---
 
@@ -30,7 +30,7 @@ SMC/OB 2/2 sendirian sudah menghasilkan `aligned_total = 2` dan lolos gerbang
 
 Pola ini persis terlihat pada sinyal #PUMP (confidence 76), #BEAT, #KAG, #HOLO,
 #VELVET, dll di history: checklist didominasi SMC/OB saja. Berbahaya ganda di
-proyek ini karena sinyal yang lolos **bisa dieksekusi otomatis ke OKX**.
+proyek ini karena sinyal yang lolos **bisa dieksekusi otomatis ke Bybit**.
 
 ### Root cause #2 — Ambang skor terlalu mudah dilampaui oleh quick scan
 
@@ -79,13 +79,13 @@ menggelembungkan angka 1/2 yang seharusnya 0/2.
 | 5 | Konfigurasi baru ditambahkan ke `.env.example` & workflow GitHub Actions | `.env.example`, `.github/workflows/daily.yml` |
 | 6 | Test unit baru: demosi SMC-only, promosi dengan 1 cek inti, SL di luar swing low/high, cap SL | `tests/test_engine.py` |
 
-### Dampak pada alur (termasuk autotrade OKX)
+### Dampak pada alur (termasuk autotrade Bybit)
 - Koin dengan SMC/OB 2/2 saja → **WATCHLIST (NEUTRAL)** → tidak dikirim sebagai
-  BUY/SELL **dan tidak dieksekusi** oleh `execution/okx_executor.py`
+  BUY/SELL **dan tidak dieksekusi** oleh `execution/bybit_executor.py`
   (`bot.py::run_autotrade` sudah melewatkan action selain BUY/SELL).
 - Koin dengan SMC/OB 2/2 + minimal 1 cek S&D/S&R **atau** MACD/RSI → tetap TRADE.
 - SL lebih lebar secara default (2×ATR) dan diposisikan di luar level kunci bila
-  memungkinkan (maks 2.5×ATR). Position sizing OKX otomatis menyesuaikan:
+  memungkinkan (maks 2.5×ATR). Position sizing Bybit otomatis menyesuaikan:
   stop lebih lebar → ukuran posisi lebih kecil, risiko per trade tetap 1%.
 
 ---
@@ -99,7 +99,7 @@ menggelembungkan angka 1/2 yang seharusnya 0/2.
    `REQUIRE_CONFLUENCE_CORE = 2` bila tingkat HIT SL masih tinggi.
 3. **Backtest historis**: jalankan evaluasi ulang `data/history.json` dengan filter
    baru (simulasi) untuk mengukur berapa sinyal HIT SL yang akan tersaring.
-4. **Autotrade**: jangan nyalakan `ENABLE_OKX_AUTOTRADE=true` sebelum bot berjalan
+4. **Autotrade**: jangan nyalakan `ENABLE_BYBIT_AUTOTRADE=true` sebelum bot berjalan
    beberapa sesi dengan filter baru dan hasil evaluasi menunjukkan win-rate sehat.
 
 ---
