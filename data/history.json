@@ -624,6 +624,46 @@
           "confidence": 63
         }
       ]
+    },
+    {
+      "date": "2026-08-15",
+      "session": "PAGI",
+      "saved_at": "2026-08-15T10:39:59+07:00",
+      "signals": [
+        {
+          "coin_id": "doublezero",
+          "symbol": "2Z",
+          "name": "DoubleZero",
+          "action": "SELL",
+          "entry": 0.050133,
+          "sl": 0.05141929457311385,
+          "tp1": 0.04841794056918152,
+          "tp2": 0.04756041085377228,
+          "confidence": 63
+        },
+        {
+          "coin_id": "velvet",
+          "symbol": "VELVET",
+          "name": "Velvet",
+          "action": "BUY",
+          "entry": 1.059,
+          "sl": 1.011394322824879,
+          "tp1": 1.1224742362334947,
+          "tp2": 1.1542113543502421,
+          "confidence": 63
+        },
+        {
+          "coin_id": "pieverse",
+          "symbol": "PIEVERSE",
+          "name": "Pieverse",
+          "action": "BUY",
+          "entry": 0.829833,
+          "sl": 0.8148754422189769,
+          "tp1": 0.8497764103746975,
+          "tp2": 0.8597481155620463,
+          "confidence": 63
+        }
+      ]
     }
   ]
 }
