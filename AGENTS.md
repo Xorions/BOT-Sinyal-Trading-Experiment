@@ -129,7 +129,8 @@ Modul **opsional** untuk melampirkan gambar chart TradingView pada notifikasi si
 
 1. `bot.py::main` memanggil `generate_chart_url(symbol, direction, entry, sl, tp1, tp2, timeframe)` untuk sinyal BUY/SELL terkuat **sebelum** `send_telegram`.
 2. Fungsi membangun payload POST `https://api.chart-img.com/v2/tradingview/advanced-chart/storage` (header `x-api-key`):
-   - `symbol` = `BINANCE:<SYMBOL>USDT`, `interval` = timeframe sinyal (LTF 1H/15M), theme dark, PNG 800×450.
+   - `symbol` = `<EXCHANGE>:<SYMBOL>USDT`, `interval` = timeframe sinyal (LTF 1H/15M), theme dark, PNG 800×450.
+   - Bursa dicoba berurutan (`CHART_IMG_EXCHANGES`): BINANCE, BYBIT, OKX, KUCOIN, GATEIO, BITGET, MEXC, HTX, POLONIEX, COINBASE, CRYPTO — karena top koin CoinGecko tidak selalu terdaftar di Binance; 422 "Invalid Symbol" melompat ke bursa berikutnya.
    - `range` otomatis menyesuaikan ≤ ~700 bar dari sekarang (agar tetap dalam batas 1000 bar ChartImg).
    - `drawings` (total 2, muat di plan BASIC): **Long/Short Position** (entry + SL + TP1 dengan zona profit/stop berwarna) + **Horizontal Line** berlabel "TP2".
 3. Respons JSON berisi `url` publik gambar PNG → diteruskan ke `send_telegram(..., image_url=...)`.
@@ -139,8 +140,9 @@ Modul **opsional** untuk melampirkan gambar chart TradingView pada notifikasi si
 
 ### Kontrak tes (tests/test_chart_visualizer.py)
 - Mock `execution.chart_visualizer.requests.post` (tanpa network, tidak memakan kuota API).
-- Memverifikasi payload: simbol `BINANCE:BTCUSDT`, interval, `Long Position` untuk BUY / `Short Position` untuk SELL, harga entry/sl/tp1/tp2 pada drawings, header `x-api-key`.
+- Memverifikasi payload: simbol `BINANCE:BTCUSDT` (bursa pertama), interval, `Long Position` untuk BUY / `Short Position` untuk SELL, harga entry/sl/tp1/tp2 pada drawings, header `x-api-key`.
 - Skenario fallback: key kosong, level invalid, HTTP error, network error, respons tanpa `url`, JSON rusak → semuanya `None` tanpa request terkirim bila validasi gagal.
+- Skenario multi-bursa: 422 "Invalid Symbol" di bursa pertama → lanjut ke bursa berikutnya hingga sukses; semua bursa gagal → `None`.
 
 ## 5. Aturan Skoring Quick Scan (shortlist)
 

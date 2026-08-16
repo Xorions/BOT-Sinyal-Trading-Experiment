@@ -3,6 +3,7 @@
 Semua request HTTP di-mock agar tidak memakan kuota API ChartImg.
 """
 
+import copy
 import unittest
 from unittest import mock
 
@@ -112,6 +113,30 @@ class TestGenerateChartUrl(unittest.TestCase):
             )
             url = generate_chart_url("BTC", "BUY", 100.0, 95.0, 105.0, 110.0)
         self.assertIsNone(url)
+
+    def test_invalid_symbol_tries_next_exchange(self):
+        responses = [_fake_response(status=422), _fake_response()]
+        sent_symbols = []
+
+        def _recording_post(*args, **kwargs):
+            sent_symbols.append(copy.deepcopy(kwargs["json"]["symbol"]))
+            return responses.pop(0)
+
+        with mock.patch("execution.chart_visualizer.requests.post") as post:
+            post.side_effect = _recording_post
+            url = generate_chart_url("CASHCAT", "BUY", 0.1, 0.09, 0.11, 0.12)
+        self.assertEqual(url, STORAGE_URL)
+        self.assertEqual(post.call_count, 2)
+        self.assertEqual(sent_symbols, ["BINANCE:CASHCATUSDT", "BYBIT:CASHCATUSDT"])
+
+    def test_invalid_symbol_all_exchanges_returns_none(self):
+        from execution.chart_visualizer import CHART_IMG_EXCHANGES
+
+        with mock.patch("execution.chart_visualizer.requests.post") as post:
+            post.return_value = _fake_response(status=422)
+            url = generate_chart_url("ZZZZ", "BUY", 100.0, 95.0, 105.0, 110.0)
+        self.assertIsNone(url)
+        self.assertEqual(post.call_count, len(CHART_IMG_EXCHANGES))
 
     def test_network_error_returns_none(self):
         with mock.patch("execution.chart_visualizer.requests.post") as post:

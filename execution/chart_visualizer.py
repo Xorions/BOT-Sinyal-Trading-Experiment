@@ -26,8 +26,22 @@ from config import CHART_IMG_API_KEY, REQUEST_TIMEOUT
 log = logging.getLogger("signal-bot.chart")
 
 CHART_IMG_API_URL = "https://api.chart-img.com/v2/tradingview/advanced-chart/storage"
-# Bursa default untuk simbol crypto (semua sinyal berasal dari USDT pairs).
-CHART_IMG_EXCHANGE = "BINANCE"
+# Bursa crypto yang dicoba secara berurutan untuk simbol sinyal (USDT pairs).
+# Sinyal berasal dari top koin CoinGecko yang tidak selalu terdaftar di
+# Binance, jadi coba bursa mayor dulu, lalu fallback ke bursa lain.
+CHART_IMG_EXCHANGES = [
+    "BINANCE",
+    "BYBIT",
+    "OKX",
+    "KUCOIN",
+    "GATEIO",
+    "BITGET",
+    "MEXC",
+    "HTX",
+    "POLONIEX",
+    "COINBASE",
+    "CRYPTO",
+]
 
 # Konversi timeframe -> jam per bar (dipakai menghitung rentang visible chart).
 _INTERVAL_HOURS = {
@@ -166,7 +180,6 @@ def generate_chart_url(
     to_dt = now.strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
     payload = {
-        "symbol": f"{CHART_IMG_EXCHANGE}:{symbol}USDT",
         "interval": _chartimg_interval(timeframe),
         "theme": "dark",
         "width": 800,
@@ -179,22 +192,47 @@ def generate_chart_url(
         ],
     }
 
-    try:
-        resp = requests.post(
-            CHART_IMG_API_URL,
-            headers={"x-api-key": api_key, "content-type": "application/json"},
-            json=payload,
-            timeout=REQUEST_TIMEOUT,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        url = (data or {}).get("url")
-        if not url:
-            log.warning("ChartImg merespons tanpa URL untuk %s — fallback teks.", symbol)
+    for exchange in CHART_IMG_EXCHANGES:
+        payload["symbol"] = f"{exchange}:{symbol}USDT"
+        try:
+            resp = requests.post(
+                CHART_IMG_API_URL,
+                headers={"x-api-key": api_key, "content-type": "application/json"},
+                json=payload,
+                timeout=REQUEST_TIMEOUT,
+            )
+            if resp.status_code == 422:
+                log.warning(
+                    "Simbol %s tidak ada di %s — coba bursa berikutnya.",
+                    symbol,
+                    exchange,
+                )
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            url = (data or {}).get("url")
+            if not url:
+                log.warning(
+                    "ChartImg merespons tanpa URL untuk %s di %s — fallback teks.",
+                    symbol,
+                    exchange,
+                )
+                return None
+            if exchange != CHART_IMG_EXCHANGES[0]:
+                log.info("Chart %s dibuat di bursa %s.", symbol, exchange)
+            return str(url)
+        except (requests.RequestException, ValueError) as exc:
+            log.warning(
+                "Gagal membuat chart %s via ChartImg di %s (%s) — fallback teks.",
+                symbol,
+                exchange,
+                exc,
+            )
             return None
-        return str(url)
-    except (requests.RequestException, ValueError) as exc:
-        log.warning(
-            "Gagal membuat chart %s via ChartImg (%s) — fallback teks.", symbol, exc
-        )
-        return None
+
+    log.warning(
+        "Simbol %s tidak ditemukan di bursa mana pun (%s) — fallback teks.",
+        symbol,
+        ", ".join(CHART_IMG_EXCHANGES),
+    )
+    return None
