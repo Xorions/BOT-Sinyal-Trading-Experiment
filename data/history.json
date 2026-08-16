@@ -744,6 +744,35 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-16",
+      "session": "MALAM",
+      "saved_at": "2026-08-16T16:28:11+07:00",
+      "signals": [
+        {
+          "coin_id": "cash-cat",
+          "symbol": "CASHCAT",
+          "name": "Cash Cat",
+          "action": "BUY",
+          "entry": 0.122456,
+          "sl": 0.1181189456300633,
+          "tp1": 0.12679305436993668,
+          "tp2": 0.12896158155490503,
+          "confidence": 76
+        },
+        {
+          "coin_id": "genius-3",
+          "symbol": "GENIUS",
+          "name": "Genius",
+          "action": "BUY",
+          "entry": 0.375923,
+          "sl": 0.37123341845204944,
+          "tp1": 0.3806125815479506,
+          "tp2": 0.38295737232192584,
+          "confidence": 63
+        }
+      ]
     }
   ]
 }
