@@ -10,7 +10,8 @@ Bot Telegram **Day Trading Lanjutan** yang mengirim sinyal trading crypto **2x s
   - Pendukung: MACD crossover, RSI divergence, deteksi Volume/Whale Spike.
 - **Confluence Checklist** di setiap sinyal: SMC/OB, S&D/S&R, MACD/RSI, Whale/Vol.
 - **Evaluasi sinyal sesi sebelumnya** di bagian atas pesan (HIT TP1/TP2/SL, FLOATING) — Sesi Malam mengevaluasi Sesi Pagi, Sesi Pagi mengevaluasi Sesi Malam.
-- **SL/TP berbasis ATR** (default SL 1.5× ATR, TP1 2×, TP2 3×).
+- **SL/TP berbasis ATR** (default SL 2× ATR, TP1 2×, TP2 3×).
+- **Gambar chart TradingView di notifikasi (opsional)**: sinyal BUY/SELL terbaik dilengkapi screenshot chart dengan level Entry, SL, TP1, TP2 tergambar jelas (via [CHART-IMG API](https://chart-img.com)). Tanpa API key, bot tetap mengirim teks biasa.
 - **Automated Trading Bybit (opsional)**: eksekusi market order + SL + TP1 50%/TP2 50% otomatis di Bybit Futures USDT-M, position size berbasis risk (1% saldo), sakelar ON/OFF di `.env`, laporan live 🚀/⚠️ ke chat admin. Modul terpisah (`execution/`) sehingga tidak mengganggu bot sinyal harian.
 
 ## Cara Kerja
@@ -20,7 +21,7 @@ Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
 2. **Quick scan** semua koin → shortlist kandidat momentum terkuat (`MTF_SCAN_LIMIT`, default 6).
 3. **Deep scan MTF** per kandidat: chart 30 hari (1H/4H/1D) + 2 hari (15M). Hitung konfluensi SMC/OB, S&D/S&R, MACD/RSI, Whale/Volume.
 4. **Evaluasi sesi sebelumnya**: membaca `data/history.json` (per kunci tanggal+sesi), membandingkan Entry/SL/TP dengan harga terkini → hasil HIT TP1/TP2/SL atau FLOATING, ditampilkan paling atas.
-5. Pilih **TOP 5 sinyal terbaik** (BUY/LONG & SELL/SHORT paling solid), kirim ke Telegram, simpan sinyal sesi ini ke history (di-commit kembali agar terseusur antar sesi).
+5. Pilih **TOP 5 sinyal terbaik** (BUY/LONG & SELL/SHORT paling solid), kirim ke Telegram (lampirkan gambar chart TradingView dengan level Entry/SL/TP bila `CHART_IMG_API_KEY` diisi), simpan sinyal sesi ini ke history (di-commit kembali agar terseusur antar sesi).
 
 ## Setup
 
@@ -31,10 +32,16 @@ Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
    TELEGRAM_BOT_TOKEN=<token bot>
    TELEGRAM_CHAT_ID=<id chat kamu>
    ```
-4. Uji lokal: `venv\Scripts\python.exe bot.py`
-5. Push ke GitHub, lalu tambahkan **repository secrets**:
+4. **(Opsional) Gambar chart di notifikasi** — daftar gratis di [chart-img.com](https://chart-img.com), salin API key, lalu isi di `.env`:
+   ```
+   CHART_IMG_API_KEY=<api key chart-img>
+   ```
+   Plan gratis cukup untuk 2 sesi × 5 sinyal per hari (limit 50 gambar/hari). Tanpa key, notifikasi tetap terkirim sebagai teks biasa.
+5. Uji lokal: `venv\Scripts\python.exe bot.py`
+6. Push ke GitHub, lalu tambahkan **repository secrets**:
    - `TELEGRAM_BOT_TOKEN`
    - `TELEGRAM_CHAT_ID`
+   - Opsional: `CHART_IMG_API_KEY` (gambar chart), `COINGECKO_API_KEY`.
    - Opsional: `vars` `MTF_SCAN_LIMIT`, `CONFLUENCE_MIN`.
 
 ## Setup Automated Trading Bybit (Opsional)
@@ -72,6 +79,7 @@ Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
 | `ATR_TP1_MULT` | 2.0 | TP1 = ATR × pengali |
 | `ATR_TP2_MULT` | 3.0 | TP2 = ATR × pengali |
 | `WHALE_VOLUME_MULT` | 2.5 | Ambang deteksi Whale Spike volume |
+| `CHART_IMG_API_KEY` | kosong | API key CHART-IMG untuk gambar chart TradingView di notifikasi (opsional) |
 | `BUY_THRESHOLD` | 3.0 | Skor minimum untuk BUY |
 | `SELL_THRESHOLD` | -3.0 | Skor minimum untuk SELL |
 | `ENABLE_BYBIT_AUTOTRADE` | `false` | `true` = eksekusi order NYATA di Bybit Futures |
@@ -85,7 +93,8 @@ Setiap sesi (10:00 & 16:00 WIB), GitHub Actions menjalankan `bot.py`:
 ```
 bot.py                        # Entry point: quick scan → deep MTF scan → evaluasi → kirim → autotrade (opsional)
 config.py                     # Konfigurasi & kredensial dari .env
-telegram_sender.py            # Kirim pesan ke Telegram + laporan admin eksekusi (ORDER EXECUTED / FAILED)
+telegram_sender.py            # Kirim pesan/foto ke Telegram + laporan admin eksekusi (ORDER EXECUTED / FAILED)
+execution/chart_visualizer.py # Visualisasi chart TradingView (CHART-IMG API): URL gambar + level Entry/SL/TP
 execution/bybit_executor.py     # Eksekusi terpisah: Bybit Futures via CCXT (sizing, SL, TP1 50%/TP2 50%)
 data/market.py                # CoinGecko (top coins, sparkline 7d, market_chart OHLC MTF)
 data/history.py               # Simpan & evaluasi performa sinyal per sesi

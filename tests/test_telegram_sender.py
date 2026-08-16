@@ -4,9 +4,12 @@ import unittest
 from unittest import mock
 
 from telegram_sender import (
+    PHOTO_CAPTION_MAX,
     TelegramSendError,
     notify_execution_failed,
     notify_order_executed,
+    send_telegram,
+    send_telegram_photo,
 )
 
 REPORT = {
@@ -70,6 +73,90 @@ class TestAdminNotifications(unittest.TestCase):
             with self.assertRaises(TelegramSendError):
                 notify_execution_failed("BTC", "gagal")
         self.fake_send.assert_not_called()
+
+
+class TestPhotoNotifications(unittest.TestCase):
+    """Pengiriman foto chart (sendPhoto) beserta fallback ke sendMessage."""
+
+    IMAGE_URL = "https://r2.chart-img.com/tradingview/advanced-chart/snapshot/abc.png"
+
+    def setUp(self):
+        self._token = mock.patch("telegram_sender.TELEGRAM_BOT_TOKEN", "token")
+        self._chat = mock.patch("telegram_sender.TELEGRAM_CHAT_ID", "123456")
+        self._token.start()
+        self._chat.start()
+
+    def tearDown(self):
+        self._chat.stop()
+        self._token.stop()
+
+    def _mock_post(self, status=200):
+        resp = mock.Mock()
+        resp.status_code = status
+        resp.text = "error"
+        return resp
+
+    def test_image_url_uses_sendphoto_with_caption(self):
+        with mock.patch("telegram_sender.requests.post") as post:
+            post.return_value = self._mock_post()
+            send_telegram("<b>Sinyal BTC</b>", image_url=self.IMAGE_URL)
+
+        self.assertEqual(post.call_count, 1)
+        url = post.call_args.args[0]
+        self.assertIn("/sendPhoto", url)
+        payload = post.call_args.kwargs["json"]
+        self.assertEqual(payload["chat_id"], "123456")
+        self.assertEqual(payload["photo"], self.IMAGE_URL)
+        self.assertEqual(payload["caption"], "<b>Sinyal BTC</b>")
+        self.assertEqual(payload["parse_mode"], "HTML")
+
+    def test_long_caption_truncated_and_full_text_sent_via_message(self):
+        long_text = "<b>X</b>" * 500
+        with mock.patch("telegram_sender.requests.post") as post:
+            post.return_value = self._mock_post()
+            send_telegram(long_text, image_url=self.IMAGE_URL)
+
+        urls = [call.args[0] for call in post.call_args_list]
+        self.assertEqual(len(urls), 2)
+        photo_payload = post.call_args_list[0].kwargs["json"]
+        self.assertIn("/sendPhoto", urls[0])
+        self.assertLessEqual(len(photo_payload["caption"]), PHOTO_CAPTION_MAX)
+        message_payload = post.call_args_list[1].kwargs["json"]
+        self.assertIn("/sendMessage", urls[1])
+        self.assertEqual(message_payload["text"], long_text)
+
+    def test_photo_failure_falls_back_to_full_text_message(self):
+        with mock.patch("telegram_sender.requests.post") as post:
+            post.side_effect = [self._mock_post(status=400), self._mock_post()]
+            send_telegram("teks sinyal penting", image_url=self.IMAGE_URL)
+
+        urls = [call.args[0] for call in post.call_args_list]
+        self.assertEqual(len(urls), 2)
+        self.assertIn("/sendPhoto", urls[0])
+        self.assertIn("/sendMessage", urls[1])
+        message_payload = post.call_args_list[1].kwargs["json"]
+        self.assertEqual(message_payload["text"], "teks sinyal penting")
+
+    def test_no_image_uses_sendmessage(self):
+        with mock.patch("telegram_sender.requests.post") as post:
+            post.return_value = self._mock_post()
+            send_telegram("<b>tanpa gambar</b>")
+        self.assertEqual(post.call_count, 1)
+        self.assertIn("/sendMessage", post.call_args.args[0])
+        self.assertEqual(post.call_args.kwargs["json"]["text"], "<b>tanpa gambar</b>")
+
+    def test_send_telegram_photo_direct(self):
+        with mock.patch("telegram_sender.requests.post") as post:
+            post.return_value = self._mock_post()
+            send_telegram_photo(self.IMAGE_URL, "caption pendek")
+        self.assertIn("/sendPhoto", post.call_args.args[0])
+
+    def test_photo_without_chat_id_raises(self):
+        with mock.patch("telegram_sender.TELEGRAM_CHAT_ID", ""):
+            with mock.patch("telegram_sender.requests.post") as post:
+                with self.assertRaises(TelegramSendError):
+                    send_telegram("teks", image_url=self.IMAGE_URL)
+        post.assert_not_called()
 
 
 if __name__ == "__main__":

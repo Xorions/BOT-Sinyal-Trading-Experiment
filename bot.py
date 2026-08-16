@@ -6,7 +6,9 @@ Alur per eksekusi:
    LTF 1H/15M (entry/SL/TP) + konfluensi SMC, S&D/S&R, MACD/RSI, Whale/Volume.
 3. Evaluasi sinyal dari sesi sebelumnya (performance tracking).
 4. Kirim pesan ke Telegram (evaluasi di atas, lalu daftar sinyal dengan
-   "Confluence Checklist"), simpan sinyal sesi ini ke history.
+   "Confluence Checklist"), lampirkan gambar chart TradingView (level
+   Entry/SL/TP) bila CHART_IMG_API_KEY tersedia, simpan sinyal sesi ini
+   ke history.
 5. Bila ENABLE_BYBIT_AUTOTRADE=true, sinyal BUY/SELL yang lolos filter
    dieksekusi ke Bybit Futures oleh modul terpisah execution/bybit_executor.py
    (laporan live ke TELEGRAM_ADMIN_CHAT_ID).
@@ -41,6 +43,8 @@ from data.history import (
 from data.market import coin_price_map, get_prices_for_ids, get_top_coins
 from signals.engine import ACTION_BUY, ACTION_SELL, format_message, rank_signals
 from telegram_sender import TelegramSendError, send_telegram
+
+from execution.chart_visualizer import generate_chart_url
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("signal-bot")
@@ -160,7 +164,21 @@ def main() -> int:
         return 0
 
     try:
-        send_telegram(message)
+        image_url = ""
+        top_signal = next(
+            (s for s in signals if s.action in (ACTION_BUY, ACTION_SELL)), None
+        )
+        if top_signal is not None:
+            image_url = generate_chart_url(
+                top_signal.symbol,
+                top_signal.action,
+                top_signal.price,
+                top_signal.sl,
+                top_signal.tp1,
+                top_signal.tp2,
+                timeframe=top_signal.ltf,
+            ) or ""
+        send_telegram(message, image_url=image_url)
         append_signals(signals, session=session)
         log.info("Pesan terkirim ke Telegram & history sinyal (%s) tersimpan.", session)
         run_autotrade(signals)

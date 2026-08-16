@@ -14,7 +14,8 @@ Alur per eksekusi: quick scan top koin (satu panggilan CoinGecko) → shortlist 
 ```
 bot.py                        # Entry point: quick scan → deep MTF scan → evaluasi → kirim → autotrade (opsional)
 config.py                     # Memuat konfigurasi & kredensial dari .env
-telegram_sender.py            # Kirim pesan ke Telegram (HTTP Bot API) + laporan admin eksekusi
+telegram_sender.py            # Kirim pesan & foto (sendPhoto) ke Telegram (HTTP Bot API) + laporan admin eksekusi
+execution/chart_visualizer.py  # Visualisasi chart TradingView via CHART-IMG API (URL gambar + level Entry/SL/TP)
 execution/bybit_executor.py    # EKSEKUSI TERPISAH: Bybit Futures via CCXT (sizing, SL/TP, hanya bila aktif)
 data/market.py                # CoinGecko: top koin + sparkline 7d + market_chart (OHLC MTF)
 data/history.py               # Simpan & evaluasi performa sinyal per sesi (HIT TP1/TP2/SL, FLOATING)
@@ -114,7 +115,34 @@ Modul **terpisah** dari mesin sinyal. Hanya berfungsi bila `ENABLE_BYBIT_AUTOTRA
 - Gunakan `FakeExchange` (tanpa network): memverifikasi urutan 3 order, side buy/sell, `stopLossPrice` pada order entry, amount TP = 50% entry, `reduceOnly: true`.
 - Skenario gagal: saldo 0, simbol tidak tersedia, action NEUTRAL, kredensial kosong, order entry ditolak → semuanya `BybitExecutionError`.
 
-## 4. Aturan Skoring Quick Scan (shortlist)
+## 4. Visualisasi Chart TradingView (execution/chart_visualizer.py)
+
+Modul **opsional** untuk melampirkan gambar chart TradingView pada notifikasi sinyal via [CHART-IMG API v2](https://chart-img.com). Tanpa `CHART_IMG_API_KEY`, bot tetap mengirim sinyal berupa teks biasa (fallback, tidak pernah crash).
+
+### Variabel `.env` baru
+
+| Variabel | Default | Keterangan |
+|---|---|---|
+| `CHART_IMG_API_KEY` | kosong | API key dari https://chart-img.com (plan gratis 50 gambar/hari, ≤3 parameter studies+drawings per request) |
+
+### Alur (`generate_chart_url`)
+
+1. `bot.py::main` memanggil `generate_chart_url(symbol, direction, entry, sl, tp1, tp2, timeframe)` untuk sinyal BUY/SELL terkuat **sebelum** `send_telegram`.
+2. Fungsi membangun payload POST `https://api.chart-img.com/v2/tradingview/advanced-chart/storage` (header `x-api-key`):
+   - `symbol` = `BINANCE:<SYMBOL>USDT`, `interval` = timeframe sinyal (LTF 1H/15M), theme dark, PNG 800×450.
+   - `range` otomatis menyesuaikan ≤ ~700 bar dari sekarang (agar tetap dalam batas 1000 bar ChartImg).
+   - `drawings` (total 2, muat di plan BASIC): **Long/Short Position** (entry + SL + TP1 dengan zona profit/stop berwarna) + **Horizontal Line** berlabel "TP2".
+3. Respons JSON berisi `url` publik gambar PNG → diteruskan ke `send_telegram(..., image_url=...)`.
+4. **Fallback handling** — semua kondisi berikut mengembalikan `None` (log warning, tanpa exception keluar):
+   - `CHART_IMG_API_KEY` kosong, simbol kosong, atau level harga tidak valid (0/None — mis. sinyal NEUTRAL tanpa level).
+   - Request gagal (`requests.RequestException`) atau respons tanpa field `url` / bukan JSON.
+
+### Kontrak tes (tests/test_chart_visualizer.py)
+- Mock `execution.chart_visualizer.requests.post` (tanpa network, tidak memakan kuota API).
+- Memverifikasi payload: simbol `BINANCE:BTCUSDT`, interval, `Long Position` untuk BUY / `Short Position` untuk SELL, harga entry/sl/tp1/tp2 pada drawings, header `x-api-key`.
+- Skenario fallback: key kosong, level invalid, HTTP error, network error, respons tanpa `url`, JSON rusak → semuanya `None` tanpa request terkirim bila validasi gagal.
+
+## 5. Aturan Skoring Quick Scan (shortlist)
 
 Skor quick (dari sparkline + turnover, satu panggilan `markets`):
 
@@ -138,7 +166,7 @@ Skor quick (dari sparkline + turnover, satu panggilan `markets`):
 4. Ranking `|skor|` → TOP-`TOP_SIGNALS` (default 5). Jika deep scan gagal total (kuota API), fallback ke hasil quick scan.
 5. Kirim pesan via `format_message` (termasuk **Confluence Checklist**), simpan history.
 
-## 5. Panduan Pengembangan
+## 6. Panduan Pengembangan
 
 ### Menambah indikator / konfirmasi baru
 1. Tambahkan fungsi murni (list angka → angka/None) di `signals/indicators.py`.
@@ -153,6 +181,8 @@ Skor quick (dari sparkline + turnover, satu panggilan `markets`):
 ### Mengubah cara pengiriman pesan
 - Format pesan di `signals/engine.py` → `format_message()`. Saat ini memakai **HTML parse mode**.
 - `signal_levels()` mengembalikan (SL, TP1, TP2) dari atribut `Signal` — dipakai evaluasi history.
+- Pengiriman di `telegram_sender.py`: `send_telegram(text, chat_id="", image_url="")`. Bila `image_url` diisi → `sendPhoto` dengan caption (maks 1024 karakter, dipotong rapi tanpa tag HTML terputus; teks lengkap tetap dikirim via `sendMessage` setelah foto). Bila `sendPhoto` gagal → fallback `sendMessage` teks penuh.
+- Gambar chart dibuat oleh `execution/chart_visualizer.py` → `generate_chart_url(...)` (kembalikan `None` = kirim teks saja).
 
 ### Menjalankan & menguji
 ```powershell
@@ -161,8 +191,8 @@ venv\Scripts\python.exe bot.py                 # scan + evaluasi + kirim ke Tele
 venv\Scripts\python.exe -m unittest discover -s tests -v   # tes unit (tanpa network)
 ```
 
-## 6. Keamanan Kredensial
-- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TELEGRAM_ADMIN_CHAT_ID`, `BYBIT_API_KEY`, `BYBIT_SECRET_KEY` disimpan di `.env` — sudah masuk `.gitignore`, tidak boleh di-commit.
+## 7. Keamanan Kredensial
+- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TELEGRAM_ADMIN_CHAT_ID`, `BYBIT_API_KEY`, `BYBIT_SECRET_KEY`, `CHART_IMG_API_KEY` disimpan di `.env` — sudah masuk `.gitignore`, tidak boleh di-commit.
 - Jangan pernah hardcode token/chat ID/API key di kode.
 - `.env.example` adalah template publik dan harus tetap berisi placeholder.
 - Di GitHub Actions, kredensial disuntikkan lewat secrets; `MTF_SCAN_LIMIT`/`CONFLUENCE_MIN`/`ENABLE_BYBIT_AUTOTRADE` opsional lewat `vars`.

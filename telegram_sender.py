@@ -1,4 +1,6 @@
-"""Mengirim pesan ke Telegram via Bot API (HTTP langsung, tanpa library besar)."""
+"""Mengirim pesan & foto ke Telegram via Bot API (HTTP langsung, tanpa library besar)."""
+
+import logging
 
 import requests
 
@@ -9,27 +11,96 @@ from config import (
     TELEGRAM_CHAT_ID,
 )
 
+log = logging.getLogger("signal-bot.telegram")
+
+TELEGRAM_API = "https://api.telegram.org"
+# Batas caption foto di Telegram Bot API (karakter).
+PHOTO_CAPTION_MAX = 1024
+
 
 class TelegramSendError(Exception):
     """Gagal mengirim pesan ke Telegram."""
 
 
-def send_telegram(text: str, chat_id: str = "") -> None:
-    token = TELEGRAM_BOT_TOKEN.strip()
-    chat = (chat_id or TELEGRAM_CHAT_ID).strip()
-    if not token or not chat:
-        raise TelegramSendError("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID belum diisi di .env")
+def _api_url(token: str, method: str) -> str:
+    return f"{TELEGRAM_API}/bot{token}/{method}"
 
-    url = f"https://api.telegram.org/bot{token}/sendMessage"
+
+def _post(payload: dict, method: str) -> None:
+    token = TELEGRAM_BOT_TOKEN.strip()
+    if not token:
+        raise TelegramSendError("TELEGRAM_BOT_TOKEN belum diisi di .env")
+    resp = requests.post(_api_url(token, method), json=payload, timeout=REQUEST_TIMEOUT)
+    if resp.status_code != 200:
+        raise TelegramSendError(f"Telegram API error {resp.status_code}: {resp.text[:200]}")
+
+
+def _truncate_caption(text: str) -> str:
+    """Potong caption ke maksimum Telegram tanpa menyisakan tag HTML terputus."""
+    if len(text) <= PHOTO_CAPTION_MAX:
+        return text
+    cut = text[:PHOTO_CAPTION_MAX]
+    last_tag = cut.rfind("<")
+    last_gt = cut.rfind(">")
+    if last_tag > last_gt:
+        cut = cut[:last_tag]
+    return cut
+
+
+def _send_message(text: str, chat: str) -> None:
     payload = {
         "chat_id": chat,
         "text": text,
         "parse_mode": "HTML",
         "disable_web_page_preview": True,
     }
-    resp = requests.post(url, json=payload, timeout=REQUEST_TIMEOUT)
-    if resp.status_code != 200:
-        raise TelegramSendError(f"Telegram API error {resp.status_code}: {resp.text[:200]}")
+    _post(payload, "sendMessage")
+
+
+def _send_photo(image_url: str, caption: str, chat: str) -> None:
+    payload = {
+        "chat_id": chat,
+        "photo": image_url,
+        "caption": _truncate_caption(caption),
+        "parse_mode": "HTML",
+    }
+    _post(payload, "sendPhoto")
+
+
+def send_telegram_photo(image_url: str, caption: str, chat_id: str = "") -> None:
+    """Kirim foto via endpoint sendPhoto (caption dibatasi 1024 karakter)."""
+    chat = (chat_id or TELEGRAM_CHAT_ID).strip()
+    if not chat:
+        raise TelegramSendError("TELEGRAM_CHAT_ID belum diisi di .env")
+    _send_photo(image_url, caption, chat)
+
+
+def send_telegram(text: str, chat_id: str = "", image_url: str = "") -> None:
+    """Kirim notifikasi ke Telegram.
+
+    Bila `image_url` diisi, kirim via endpoint sendPhoto dengan teks sinyal
+    sebagai caption (maks 1024 karakter; bila teks lebih panjang, caption
+    dipotong rapi dan teks lengkap tetap dikirim via sendMessage setelahnya).
+    Bila pengiriman foto gagal, fallback ke sendMessage teks penuh agar
+    sinyal tidak pernah hilang. Tanpa `image_url`, perilaku lama: sendMessage.
+    """
+    chat = (chat_id or TELEGRAM_CHAT_ID).strip()
+    if not chat:
+        raise TelegramSendError("TELEGRAM_CHAT_ID belum diisi di .env")
+
+    if not image_url:
+        _send_message(text, chat)
+        return
+
+    try:
+        send_telegram_photo(image_url, text, chat_id=chat)
+    except TelegramSendError as exc:
+        log.warning("sendPhoto gagal (%s) — fallback ke sendMessage teks penuh.", exc)
+        _send_message(text, chat)
+        return
+
+    if len(text) > PHOTO_CAPTION_MAX:
+        _send_message(text, chat)
 
 
 # ---------------------------------------------------------------------------

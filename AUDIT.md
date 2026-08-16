@@ -113,3 +113,57 @@ menggelembungkan angka 1/2 yang seharusnya 0/2.
 5. **RSI "mendekati oversold" (35) dihitung sebagai konfirmasi** → angka konfluensi MACD/RSI terinflasi.
 
 Semua poin 1–5 sudah ditangani pada bagian 2.
+
+---
+
+# AUDIT — Visualisasi Chart TradingView di Notifikasi Telegram
+
+Tanggal audit: 16 Agu 2026
+Scope: `execution/chart_visualizer.py`, `telegram_sender.py`, `bot.py`, `config.py`
+Status: ✅ Implemented (fallback-safe)
+
+## 1. Ringkasan
+
+Notifikasi sinyal kini menyertakan gambar chart TradingView dinamis (level
+**Entry / SL / TP1 / TP2** tergambar) melalui **CHART-IMG API v2**
+(`POST /v2/tradingview/advanced-chart/storage`, header `x-api-key`).
+
+## 2. Keputusan Desain
+
+| Aspek | Keputusan | Alasan |
+|---|---|---|
+| Endpoint | `/storage` (bukan `/advanced-chart`) | Mengembalikan JSON berisi `url` publik (tanpa perlu menyimpan base64/biner), bisa langsung dipakai `sendPhoto` Telegram |
+| Simbol | `BINANCE:<SYMBOL>USDT` | Semua sinyal berasal dari USDT pairs CoinGecko; Binance selalu tersedia di ChartImg |
+| Drawing | `Long/Short Position` (entry+SL+TP1) + `Horizontal Line` "TP2" | Total **2 parameter** — tetap muat di plan BASIC (maks 3 studies+drawings, gratis 50 gambar/hari) |
+| Range chart | ≤ ~700 bar dari sekarang | Batas ChartImg ~1000 bar; timeframe dinormalisasi (`1H`→`1h`, `1D`→`1D`) |
+| Sinyal yang digambar | Hanya BUY/SELL terkuat | NEUTRAL tidak punya level SL/TP yang valid; 1 gambar per sesi cukup untuk notifikasi |
+| Pengiriman | `sendPhoto` caption ≤ 1024 karakter; teks lengkap menyusul via `sendMessage` bila caption terpotong | Caption foto Telegram dibatasi 1024 karakter, sedangkan briefing lengkap biasanya > 1024 |
+
+## 3. Fallback Handling (tidak pernah crash)
+
+`generate_chart_url()` mengembalikan `None` (bukan exception) bila:
+
+1. `CHART_IMG_API_KEY` kosong → notifikasi teks biasa (perilaku lama).
+2. Simbol kosong / level harga tidak valid (0 atau None).
+3. Request gagal (network/timeout/HTTP error) atau respons tanpa field `url` / JSON rusak.
+
+`send_telegram(..., image_url="")` juga menangkap kegagalan `sendPhoto`
+(termasuk caption HTML terpotong) dan **fallback ke `sendMessage` teks penuh** —
+sinyal tidak pernah hilang walaupun layanan chart atau Telegram photo error.
+
+## 4. Setup untuk Developer / CI
+
+1. Daftar gratis di https://chart-img.com → salin API key.
+2. `.env`: `CHART_IMG_API_KEY=<key>` (template di `.env.example`).
+3. GitHub Actions: tambahkan **repository secret** `CHART_IMG_API_KEY`
+   (sudah ditambahkan ke `daily.yml`).
+4. Plan gratis (50 gambar/hari) cukup untuk 2 sesi × 5 sinyal.
+
+## 5. Verifikasi
+
+- `tests/test_chart_visualizer.py` (13 kasus): payload drawings/level/arah,
+  normalisasi interval, dan semua skenario fallback — request HTTP di-mock,
+  tidak memakan kuota API.
+- `tests/test_telegram_sender.py` (9 kasus, ditambah 6 untuk foto): endpoint
+  `sendPhoto`, caption 1024, fallback `sendMessage`.
+- Hasil: **71/71 tes lulus** (`python -m pytest`).

@@ -57,6 +57,11 @@ WHALE_VOLUME_MULT: float = _env_float("WHALE_VOLUME_MULT", 2.5)
 # Opsional: free API key dari CoinGecko (https://www.coingecko.com/en/api)
 # Tanpa key pakai kuota publik kecil, dengan key 30 req/menit.
 COINGECKO_API_KEY: str = os.getenv("COINGECKO_API_KEY", "")
+
+# Opsional: API key CHART-IMG (https://chart-img.com) untuk gambar chart
+# TradingView pada notifikasi sinyal (level Entry/SL/TP tergambar di chart).
+# Tanpa key, bot tetap mengirim sinyal berupa teks biasa (chart dilewati).
+CHART_IMG_API_KEY: str = os.getenv("CHART_IMG_API_KEY", "")
 BUY_THRESHOLD: float = _env_float("BUY_THRESHOLD", 3.0)
 SELL_THRESHOLD: float = _env_float("SELL_THRESHOLD", -3.0)
 
