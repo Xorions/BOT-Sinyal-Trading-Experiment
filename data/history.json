@@ -715,6 +715,35 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-16",
+      "session": "PAGI",
+      "saved_at": "2026-08-16T10:49:31+07:00",
+      "signals": [
+        {
+          "coin_id": "ether-fi",
+          "symbol": "ETHFI",
+          "name": "Ether.fi",
+          "action": "BUY",
+          "entry": 0.478233,
+          "sl": 0.47109721180355923,
+          "tp1": 0.4853687881964408,
+          "tp2": 0.48893668229466114,
+          "confidence": 69
+        },
+        {
+          "coin_id": "doublezero",
+          "symbol": "2Z",
+          "name": "DoubleZero",
+          "action": "SELL",
+          "entry": 0.04811133,
+          "sl": 0.04935869968876175,
+          "tp1": 0.046863960311238254,
+          "tp2": 0.046240275466857376,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
