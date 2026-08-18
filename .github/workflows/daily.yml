@@ -1,13 +1,21 @@
 name: Crypto Day Trading Signals
 
-# 2x sehari: 03:00 UTC = 10:00 WIB (Sesi Pagi) & 09:00 UTC = 16:00 WIB (Sesi Malam)
+# Scan tiap 15 menit (96x/hari). Syarat: repo PUBLIK (menit gratis tak
+# terbatas; repo private cuma 2000 menit/bulan). Cadence efektif ~15-20 menit
+# karena schedule GH Actions bisa antri/telat. Untuk real-time (detik-an)
+# jalankan `python bot.py --loop` di PC/VPS. Minimal cron GitHub = 5 menit.
 on:
   schedule:
-    - cron: "0 3,9 * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
-# Butuh akses tulis untuk meng-commit data/history.json (history sinyal)
-# supaya bisa dievaluasi pada eksekusi berikutnya.
+# Cegah run menumpuk: bila ada run berjalan, run baru menggantikannya.
+concurrency:
+  group: signal-scan
+  cancel-in-progress: true
+
+# Butuh akses tulis untuk meng-commit data/history.json & data/cooldown.json
+# supaya cooldown & evaluasi tetap konsisten antar eksekusi.
 permissions:
   contents: write
 
@@ -31,12 +39,18 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_SIGNAL_CHAT_ID: ${{ secrets.TELEGRAM_SIGNAL_CHAT_ID }}
+          TELEGRAM_EVAL_CHAT_ID: ${{ secrets.TELEGRAM_EVAL_CHAT_ID }}
           COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
           CHART_IMG_API_KEY: ${{ secrets.CHART_IMG_API_KEY }}
           MTF_SCAN_LIMIT: ${{ vars.MTF_SCAN_LIMIT }}
           CONFLUENCE_MIN: ${{ vars.CONFLUENCE_MIN }}
           REQUIRE_CONFLUENCE_CORE: ${{ vars.REQUIRE_CONFLUENCE_CORE }}
           ATR_SL_MULT: ${{ vars.ATR_SL_MULT }}
+          SIGNAL_MIN_CONFIDENCE: ${{ vars.SIGNAL_MIN_CONFIDENCE }}
+          SIGNAL_COOLDOWN_HOURS: ${{ vars.SIGNAL_COOLDOWN_HOURS }}
+          EVAL_MIN_AGE_HOURS: ${{ vars.EVAL_MIN_AGE_HOURS }}
+          EVAL_LOOKBACK_HOURS: ${{ vars.EVAL_LOOKBACK_HOURS }}
           # --- Automated Trading Bybit (opsional) ---
           # Biarkan secrets kosong / jangan set vars ENABLE_BYBIT_AUTOTRADE
           # jika belum ingin eksekusi order nyata.
@@ -47,16 +61,16 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
         run: python bot.py
 
-      - name: Commit & push history sinyal
+      - name: Commit & push history & cooldown
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/history.json
+          git add data/history.json data/cooldown.json
           if git diff --cached --quiet; then
-            echo "Tidak ada perubahan history."
+            echo "Tidak ada perubahan."
           else
-            git commit -m "Update history sinyal harian [skip ci]"
+            git commit -m "Update history & cooldown sinyal [skip ci]"
             git push
           fi

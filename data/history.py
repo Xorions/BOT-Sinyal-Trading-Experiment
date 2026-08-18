@@ -18,12 +18,14 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
 
+from config import EVAL_LOOKBACK_HOURS, EVAL_MIN_AGE_HOURS
 from signals.engine import ACTION_BUY, ACTION_SELL, Signal, signal_levels
 
 HISTORY_FILE = "data/history.json"
 
 SESSION_PAGI = "PAGI"
 SESSION_MALAM = "MALAM"
+SESSION_SCAN = "SCAN"  # mode 24/7: satu entri per sinyal
 SESSION_ORDER = {SESSION_PAGI: 0, SESSION_MALAM: 1}
 DEFAULT_SESSION = SESSION_PAGI
 WIB_OFFSET = timedelta(hours=7)
@@ -147,6 +149,131 @@ def _entry_key(entry: Dict[str, Any]) -> tuple:
     )
 
 
+# ---------------------------------------------------------------------------
+# Mode 24/7: satu entri per sinyal (bukan per sesi) + antrian evaluasi
+# ---------------------------------------------------------------------------
+
+
+def _record_from_signal(sig: Signal) -> Dict[str, Any]:
+    sl, tp1, tp2 = signal_levels(sig)
+    return {
+        "coin_id": sig.coin_id,
+        "symbol": sig.symbol,
+        "name": sig.name,
+        "action": sig.action,
+        "entry": sig.price,
+        "sl": sl,
+        "tp1": tp1,
+        "tp2": tp2,
+        "confidence": sig.confidence,
+    }
+
+
+def append_scan_signal(sig: Signal) -> None:
+    """Simpan satu sinyal BUY/SELL sebagai entri independen (mode 24/7).
+
+    Setiap entri punya `key` unik dan dievaluasi satu kali (`evaluated_at`),
+    lalu hasilnya dikirim ke group publik.
+    """
+    now = _now_wib()
+    entries = load_entries()
+    entries.append(
+        {
+            "date": now.strftime("%Y-%m-%d"),
+            "session": SESSION_SCAN,
+            "key": f"{now.strftime('%Y%m%d%H%M%S')}:{sig.coin_id}:{sig.action}",
+            "saved_at": now.isoformat(timespec="seconds"),
+            "evaluated_at": None,
+            "signals": [_record_from_signal(sig)],
+        }
+    )
+    _save_entries(entries)
+
+
+def load_pending_entries(
+    min_age_hours: Optional[float] = None,
+    max_age_hours: Optional[float] = None,
+) -> List[Dict[str, Any]]:
+    """Entri sinyal yang menunggu evaluasi (umur antara min & max jam).
+
+    Hanya entri mode SCAN yang belum dievaluasi; sesi PAGI/MALAM lama tidak
+    ikut (tetap dievaluasi lewat `load_last_session_entry`).
+    """
+    min_age = EVAL_MIN_AGE_HOURS if min_age_hours is None else min_age_hours
+    max_age = EVAL_LOOKBACK_HOURS if max_age_hours is None else max_age_hours
+    now = _now_wib()
+    pending: List[Dict[str, Any]] = []
+    for entry in load_entries():
+        if entry.get("session") != SESSION_SCAN or entry.get("evaluated_at"):
+            continue
+        saved = entry.get("saved_at")
+        if not saved:
+            continue
+        try:
+            saved_ts = datetime.fromisoformat(saved)
+        except (TypeError, ValueError):
+            continue
+        age_hours = (now - saved_ts).total_seconds() / 3600
+        if age_hours < min_age or age_hours > max_age:
+            continue
+        pending.append(entry)
+    pending.sort(key=lambda e: str(e.get("saved_at", "")))
+    return pending
+
+
+def mark_entry_evaluated(entry: Dict[str, Any]) -> None:
+    """Tandai entri sudah dievaluasi (tidak dikirim ulang ke group publik)."""
+    if not entry:
+        return
+    key = entry.get("key")
+    saved_at = entry.get("saved_at")
+    entries = load_entries()
+    changed = False
+    for existing in entries:
+        if existing.get("key") == key and existing.get("saved_at") == saved_at:
+            existing["evaluated_at"] = _now_wib().isoformat(timespec="seconds")
+            changed = True
+    if changed:
+        _save_entries(entries)
+
+
+def format_evaluation_pending(
+    entries: List[Dict[str, Any]], price_map: Dict[str, Dict[str, float]]
+) -> List[str]:
+    """Format evaluasi untuk sekumpulan entri 24/7 -> satu pesan per entri."""
+    messages: List[str] = []
+    for entry in entries:
+        date_display = str(entry.get("date", ""))
+        try:
+            date_display = datetime.strptime(date_display, "%Y-%m-%d").strftime(
+                "%d %b %Y"
+            )
+        except ValueError:
+            pass
+        saved_at = str(entry.get("saved_at", ""))[11:16] or ""
+        evals = evaluate_entry(entry, price_map)
+        counts = {result: 0 for result in RESULTS_ORDER}
+        for ev in evals:
+            counts[ev.result] = counts.get(ev.result, 0) + 1
+
+        lines = [
+            "<b>📊 EVALUASI SINYAL (24/7)</b>",
+            f"🗓️ {date_display} · {saved_at} WIB",
+            (
+                f"🎯 HIT TP2: {counts[RESULT_TP2]} · ✅ HIT TP1: {counts[RESULT_TP1]} · "
+                f"❌ HIT SL: {counts[RESULT_SL]} · ⏳ FLOATING: {counts[RESULT_FLOATING]}"
+            ),
+        ]
+        if not evals:
+            lines.append("Tidak ada sinyal BUY/SELL untuk dievaluasi.")
+        else:
+            lines.append("━━━━━━━━━━━━")
+            for index, ev in enumerate(evals, start=1):
+                lines.append(f"{index}. #{ev.symbol} ({ev.action}) → {_result_label(ev)}")
+        messages.append("\n".join(lines))
+    return messages
+
+
 def load_last_entry(session: Optional[str] = None) -> Optional[Dict[str, Any]]:
     """Entri sesi terakhir yang BUKAN sesi berjalan (untuk dievaluasi)."""
     session = session or current_session()
@@ -155,6 +282,28 @@ def load_last_entry(session: Optional[str] = None) -> Optional[Dict[str, Any]]:
         e
         for e in load_entries()
         if not (e.get("date") == today and e.get("session", DEFAULT_SESSION) == session)
+    ]
+    if not candidates:
+        return None
+    candidates.sort(key=_entry_key, reverse=True)
+    return candidates[0]
+
+
+def load_last_session_entry(session: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Entri sesi PAGI/MALAM terakhir (legacy, mode non-24/7).
+
+    Entri mode SCAN (24/7) dilewati — evaluasinya ditangani oleh
+    `load_pending_entries` supaya tidak terkirim berulang tiap run.
+    """
+    session = session or current_session()
+    today = _now_wib().strftime("%Y-%m-%d")
+    candidates = [
+        e
+        for e in load_entries()
+        if e.get("session") in (SESSION_PAGI, SESSION_MALAM)
+        and not (
+            e.get("date") == today and e.get("session", DEFAULT_SESSION) == session
+        )
     ]
     if not candidates:
         return None

@@ -77,5 +77,65 @@ class TestSessions(SessionTestCase):
         self.assertEqual(entry.get("session", history.DEFAULT_SESSION), history.DEFAULT_SESSION)
 
 
+class TestScan24x7History(SessionTestCase):
+    """Mode 24/7: satu entri per sinyal + antrian evaluasi ke group publik."""
+
+    def test_append_scan_signal_creates_independent_entry(self):
+        history.append_scan_signal(_signal("BTC", "bitcoin", price=100.0))
+        history.append_scan_signal(_signal("ETH", "ethereum", price=50.0))
+        entries = history.load_entries()
+        self.assertEqual(len(entries), 2)
+        self.assertTrue(all(e["session"] == history.SESSION_SCAN for e in entries))
+        self.assertTrue(all(e["evaluated_at"] is None for e in entries))
+
+    def test_pending_entries_skip_fresh_and_evaluated(self):
+        history.append_scan_signal(_signal("BTC", "bitcoin"))
+        pending = history.load_pending_entries(min_age_hours=0, max_age_hours=24)
+        self.assertEqual(len(pending), 1)
+        history.mark_entry_evaluated(pending[0])
+        self.assertEqual(history.load_pending_entries(min_age_hours=0, max_age_hours=24), [])
+
+    def test_pending_entries_age_filter(self):
+        history.append_scan_signal(_signal("BTC", "bitcoin"))
+        self.assertEqual(history.load_pending_entries(min_age_hours=10, max_age_hours=24), [])
+
+    def test_mark_evaluated_only_touches_matching_entry(self):
+        history.append_scan_signal(_signal("BTC", "bitcoin"))
+        history.append_scan_signal(_signal("ETH", "ethereum"))
+        entries = history.load_entries()
+        history.mark_entry_evaluated(entries[0])
+        remaining = history.load_entries()
+        evaluated = [e for e in remaining if e["evaluated_at"]]
+        self.assertEqual(len(evaluated), 1)
+        self.assertEqual(evaluated[0]["signals"][0]["symbol"], "BTC")
+
+    def test_format_evaluation_pending_mentions_result(self):
+        history.append_scan_signal(_signal("BTC", "bitcoin", price=100.0))
+        pending = history.load_pending_entries(min_age_hours=0, max_age_hours=24)
+        price_map = {
+            "bitcoin": {"current_price": 112.0, "high_24h": 115.0, "low_24h": 99.0}
+        }
+        messages = history.format_evaluation_pending(pending, price_map)
+        self.assertEqual(len(messages), 1)
+        self.assertIn("HIT TP2", messages[0])
+        self.assertIn("#BTC", messages[0])
+
+    def test_session_entries_not_in_pending(self):
+        history.append_signals([_signal("BTC", "bitcoin")], session=history.SESSION_PAGI)
+        self.assertEqual(history.load_pending_entries(min_age_hours=0, max_age_hours=24), [])
+
+    def test_last_session_entry_skips_scan_entries(self):
+        history.append_scan_signal(_signal("BTC", "bitcoin", price=100.0))
+        history.append_signals([_signal("ETH", "ethereum")], session=history.SESSION_PAGI)
+        entry = history.load_last_session_entry(session=history.SESSION_MALAM)
+        self.assertIsNotNone(entry)
+        self.assertEqual(entry["session"], history.SESSION_PAGI)
+        self.assertEqual(entry["signals"][0]["symbol"], "ETH")
+
+    def test_last_session_entry_none_when_only_scan(self):
+        history.append_scan_signal(_signal("BTC", "bitcoin", price=100.0))
+        self.assertIsNone(history.load_last_session_entry(session=history.SESSION_MALAM))
+
+
 if __name__ == "__main__":
     unittest.main()

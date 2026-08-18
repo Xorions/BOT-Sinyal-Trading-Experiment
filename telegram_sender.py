@@ -9,6 +9,8 @@ from config import (
     TELEGRAM_ADMIN_CHAT_ID,
     TELEGRAM_BOT_TOKEN,
     TELEGRAM_CHAT_ID,
+    TELEGRAM_EVAL_CHAT_ID,
+    TELEGRAM_SIGNAL_CHAT_ID,
 )
 
 log = logging.getLogger("signal-bot.telegram")
@@ -20,6 +22,16 @@ PHOTO_CAPTION_MAX = 1024
 
 class TelegramSendError(Exception):
     """Gagal mengirim pesan ke Telegram."""
+
+
+def signal_chat_id() -> str:
+    """Chat private untuk sinyal (fallback TELEGRAM_CHAT_ID)."""
+    return (TELEGRAM_SIGNAL_CHAT_ID or TELEGRAM_CHAT_ID).strip()
+
+
+def eval_chat_id() -> str:
+    """Group publik untuk hasil evaluasi (fallback TELEGRAM_CHAT_ID)."""
+    return (TELEGRAM_EVAL_CHAT_ID or TELEGRAM_CHAT_ID).strip()
 
 
 def _api_url(token: str, method: str) -> str:

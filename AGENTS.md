@@ -5,25 +5,32 @@ Panduan untuk AI agent dan developer yang bekerja di project **BOT-Sinyal-Tradin
 ## 1. Overview Arsitektur & Tech Stack
 
 ### Arsitektur
-Bot sinyal **Day Trading Lanjutan** Telegram yang dijalankan **2x sehari** (10:00 WIB Sesi Pagi & 16:00 WIB Sesi Malam) melalui GitHub Actions (cron). Setiap sesi **diawali evaluasi sinyal dari sesi sebelumnya** (Sesi Malam mengevaluasi Sesi Pagi hari yang sama; Sesi Pagi mengevaluasi Sesi Malam hari sebelumnya).
+Bot sinyal **Day Trading Lanjutan** Telegram dengan **mode 24/7** (`python bot.py --loop`): scan berulang tiap `SCAN_INTERVAL_MINUTES` (default 30 menit) sepanjang hari, non-stop. Per siklus: quick scan top koin (satu panggilan CoinGecko) → shortlist kandidat momentum → **deep scan Multi-Timeframe (MTF)** per kandidat (chart 30 hari → LTF 1H/15M, HTF 4H/1D) → gabung skor + konfluensi (SMC/OB, S&D/S&R, MACD/RSI, Whale/Volume) → pilih **HANYA 1 koin terbaik** (BUY/SELL) → kirim ke chat **private** bila **confidence ≥ 65%** dan tidak dalam **cooldown** (6 jam per symbol+arah) → **evaluasi** sinyal berumur 4–24 jam dikirim ke **group publik** (1 pesan per sinyal, lengkap gambar chart) → simpan history & cooldown → tidur → ulangi.
 
-Alur per eksekusi: quick scan top koin (satu panggilan CoinGecko) → shortlist kandidat momentum → **deep scan Multi-Timeframe (MTF)** per kandidat (chart 30 hari → LTF 1H/15M, HTF 4H/1D) → gabung skor + konfluensi (SMC/OB, S&D/S&R, MACD/RSI, Whale/Volume) → pilih TOP-5 sinyal → evaluasi sesi sebelumnya dari `data/history.json` → kirim pesan ke Telegram → simpan sinyal sesi ini ke history.
+**Dua channel Telegram terpisah**:
+- Sinyal → `TELEGRAM_SIGNAL_CHAT_ID` (private, fallback `TELEGRAM_CHAT_ID`).
+- Evaluasi → `TELEGRAM_EVAL_CHAT_ID` (group publik, fallback `TELEGRAM_CHAT_ID`).
+Keduanya melampirkan **gambar chart TradingView** (Entry/SL/TP1/TP2) bila `CHART_IMG_API_KEY` diisi.
+
+Mode satu siklus (`python bot.py`, dipakai GitHub Actions daily.yml) = scan + evaluasi 24/7 + sinyal private + evaluasi sesi PAGI/MALAM lama (perilaku lama) ke group publik.
 
 **Opsional — Automated Trading Bybit (modul terpisah, default NONAKTIF)**: bila `ENABLE_BYBIT_AUTOTRADE=true`, sinyal BUY/SELL yang lolos filter dieksekusi oleh `execution/bybit_executor.py` (market order + SL + TP1 50%/TP2 50% di Bybit Futures USDT-M via CCXT), dengan laporan live 🚀/⚠️ ke `TELEGRAM_ADMIN_CHAT_ID`. Modul ini sepenuhnya terpisah — kegagalan eksekusi tidak pernah menggagalkan bot sinyal.
 
 ```
-bot.py                        # Entry point: quick scan → deep MTF scan → evaluasi → kirim → autotrade (opsional)
+bot.py                        # Entry point: scan → pilih 1 koin terbaik (≥65%) → sinyal private → evaluasi publik → autotrade (opsional). Mode --loop = 24/7.
 config.py                     # Memuat konfigurasi & kredensial dari .env
-telegram_sender.py            # Kirim pesan & foto (sendPhoto) ke Telegram (HTTP Bot API) + laporan admin eksekusi
+telegram_sender.py            # Kirim pesan & foto (sendPhoto) ke Telegram + chat signal/eval terpisah + laporan admin eksekusi
 execution/chart_visualizer.py  # Visualisasi chart TradingView via CHART-IMG API (URL gambar + level Entry/SL/TP)
 execution/bybit_executor.py    # EKSEKUSI TERPISAH: Bybit Futures via CCXT (sizing, SL/TP, hanya bila aktif)
 data/market.py                # CoinGecko: top koin + sparkline 7d + market_chart (OHLC MTF)
-data/history.py               # Simpan & evaluasi performa sinyal per sesi (HIT TP1/TP2/SL, FLOATING)
-data/history.json             # History sinyal yang dikirim (auto di-commit tiap sesi)
+data/history.py               # Simpan & evaluasi performa sinyal (mode sesi PAGI/MALAM + mode 24/7 per sinyal)
+data/history.json             # History sinyal yang dikirim (mode 24/7: satu entri per sinyal, punya evaluated_at)
+data/cooldown.py              # Cooldown anti-spam koin yang sama (symbol+arah) — mode 24/7
+data/cooldown.json            # Data cooldown persisten (aman di-restart)
 signals/indicators.py         # RSI, SMA, EMA, MACD, ATR, swing, BOS/CHoCH, OB, S/R, S&D, RSI div, Whale
 signals/engine.py             # Skoring quick + analisis MTF + Confluence Checklist → format pesan
 tests/                        # Tes unit (unittest, tanpa network)
-.github/workflows/daily.yml   # Scheduler 2x sehari (cron 0 3,9 * * * = 10:00 & 16:00 WIB)
+.github/workflows/daily.yml   # Opsional: scheduler 2x sehari (mode satu siklus)
 .env                          # Kredensial (TIDAK di-commit)
 ```
 
@@ -78,14 +85,18 @@ Setiap sinyal final memuat checklist 4 kategori (selaras dengan arah BUY/SELL):
 - `build_candles(raw, interval_minutes)` → bucket `[ts_ms, value]` menjadi list `Candle` OHLCV.
 - Free API CoinGecko ~10–30 req/menit; `MTF_SCAN_LIMIT` mengontrol jumlah kandidat deep scan untuk menjaga kuota.
 
-### 2d. Performance Tracking per Sesi (data/history.py)
+### 2d. Performance Tracking (data/history.py)
 
-- Setelah pesan terkirim, `bot.py` memanggil `data.history.append_signals(signals, session)` — satu entri per kunci **(tanggal, sesi)** di `data/history.json` (`{"entries": [{"date": ..., "session": "PAGI"|"MALAM", "signals": [...]}]}`).
-- Sebelum mengirim, `bot.py` memanggil `data.history.load_last_entry()` (entri terakhir yang bukan sesi berjalan) lalu `format_evaluation()` → ditampilkan di **bagian paling atas** pesan.
-- Evaluasi membandingkan Entry/SL/TP dengan harga terkini / high-low 24j (via `data.market.coin_price_map`; koin yang hilang di-backfill `get_prices_for_ids`).
-- Hasil: **HIT TP2** > **HIT TP1** > **HIT SL** > **FLOATING**.
-- Agar history terseusur antar sesi di GitHub Actions, workflow meng-commit & push `data/history.json` (butuh `permissions: contents: write`).
-- Entri lama tanpa field `session` diperlakukan sebagai `PAGI` (migrasi otomatis via `.get`).
+**Mode 24/7 (default)**: setiap sinyal terkirim disimpan sebagai **satu entri independen** via `append_scan_signal(sig)` — key unik `YYYYMMDDHHMMSS:coin_id:action`, session `SCAN`, plus `evaluated_at` (None). Evaluasi: `load_pending_entries(min_age, max_age)` mengembalikan entri SCAN yang belum dievaluasi dengan umur antara `EVAL_MIN_AGE_HOURS` (4) dan `EVAL_LOOKBACK_HOURS` (24); hasil diformat `format_evaluation_pending` (1 pesan per entri) → dikirim ke group publik dengan gambar chart → `mark_entry_evaluated(entry)` (tidak pernah dikirim ulang).
+
+**Mode sesi (legacy, `python bot.py`/GitHub Actions)**: `append_signals(signals, session)` — satu entri per kunci **(tanggal, sesi)**; `load_last_entry()` lalu `format_evaluation()` → dikirim ke group publik via `send_previous_session_evaluation`.
+
+Evaluasi membandingkan Entry/SL/TP dengan harga terkini / high-low 24j (via `data.market.coin_price_map`; koin yang hilang di-backfill `get_prices_for_ids`). Hasil: **HIT TP2** > **HIT TP1** > **HIT SL** > **FLOATING**.
+
+### 2e. Cooldown anti-spam (data/cooldown.py)
+
+- `is_blocked(symbol, action, cooldown_hours)` / `record_sent(symbol, action)` — persist di `data/cooldown.json` (berlaku walau restart).
+- Key = `SYMBOL:ACTION` (di-normalisasi uppercase). `SIGNAL_COOLDOWN_HOURS=0` menonaktifkan cooldown.
 
 ## 3. Automated Trading Bybit (execution/bybit_executor.py)
 
@@ -184,17 +195,26 @@ Skor quick (dari sparkline + turnover, satu panggilan `markets`):
 - Format pesan di `signals/engine.py` → `format_message()`. Saat ini memakai **HTML parse mode**.
 - `signal_levels()` mengembalikan (SL, TP1, TP2) dari atribut `Signal` — dipakai evaluasi history.
 - Pengiriman di `telegram_sender.py`: `send_telegram(text, chat_id="", image_url="")`. Bila `image_url` diisi → `sendPhoto` dengan caption (maks 1024 karakter, dipotong rapi tanpa tag HTML terputus; teks lengkap tetap dikirim via `sendMessage` setelah foto). Bila `sendPhoto` gagal → fallback `sendMessage` teks penuh.
-- Gambar chart dibuat oleh `execution/chart_visualizer.py` → `generate_chart_url(...)` (kembalikan `None` = kirim teks saja).
+- Chat tujuan: `signal_chat_id()` = `TELEGRAM_SIGNAL_CHAT_ID` (fallback `TELEGRAM_CHAT_ID`); `eval_chat_id()` = `TELEGRAM_EVAL_CHAT_ID` (fallback `TELEGRAM_CHAT_ID`). Sinyal → private, evaluasi → group publik.
+- Gambar chart dibuat oleh `execution/chart_visualizer.py` → `generate_chart_url(...)` (kembalikan `None` = kirim teks saja). Sinyal memakai timeframe sinyal (LTF 1H/15M); evaluasi memakai `1h` dengan level dari record tersimpan.
+
+### Mengubah perilaku 24/7
+- Logika siklus ada di `bot.py`: `run_one_cycle` (satu scan) dan `run_loop` (while True + sleep `SCAN_INTERVAL_MINUTES`). Error per siklus hanya di-log, bot tidak mati.
+- Filter kirim: `pick_best_signal` (1 koin BUY/SELL terkuat) + `SIGNAL_MIN_CONFIDENCE` (65%) + cooldown `SIGNAL_COOLDOWN_HOURS` (6 jam).
+- Evaluasi publik: `send_pending_evaluations` (mode 24/7) dan `send_previous_session_evaluation` (mode satu siklus).
+- Tambah variabel baru di `config.py` (default) + `.env.example` + tabel README + (bila relevan) workflow.
 
 ### Menjalankan & menguji
 ```powershell
 # Dari root project
-venv\Scripts\python.exe bot.py                 # scan + evaluasi + kirim ke Telegram
+venv\Scripts\python.exe bot.py                 # satu siklus scan + kirim
+venv\Scripts\python.exe bot.py --loop          # scan 24/7 non-stop
+venv\Scripts\python.exe bot.py --loop --interval 60   # 24/7 dengan jeda 60 menit
 venv\Scripts\python.exe -m unittest discover -s tests -v   # tes unit (tanpa network)
 ```
 
 ## 7. Keamanan Kredensial
-- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TELEGRAM_ADMIN_CHAT_ID`, `BYBIT_API_KEY`, `BYBIT_SECRET_KEY`, `CHART_IMG_API_KEY` disimpan di `.env` — sudah masuk `.gitignore`, tidak boleh di-commit.
+- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TELEGRAM_SIGNAL_CHAT_ID`, `TELEGRAM_EVAL_CHAT_ID`, `TELEGRAM_ADMIN_CHAT_ID`, `BYBIT_API_KEY`, `BYBIT_SECRET_KEY`, `CHART_IMG_API_KEY` disimpan di `.env` — sudah masuk `.gitignore`, tidak boleh di-commit.
 - Jangan pernah hardcode token/chat ID/API key di kode.
 - `.env.example` adalah template publik dan harus tetap berisi placeholder.
 - Di GitHub Actions, kredensial disuntikkan lewat secrets; `MTF_SCAN_LIMIT`/`CONFLUENCE_MIN`/`ENABLE_BYBIT_AUTOTRADE` opsional lewat `vars`.

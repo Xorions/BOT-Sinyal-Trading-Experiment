@@ -22,12 +22,28 @@ def _env_int(name: str, default: int) -> int:
 
 TELEGRAM_BOT_TOKEN: str = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID: str = os.getenv("TELEGRAM_CHAT_ID", "")
+# Mode 24/7: sinyal dikirim ke chat PRIVATE, hasil evaluasi ke group PUBLIK.
+# Bila kosong, fallback ke TELEGRAM_CHAT_ID.
+TELEGRAM_SIGNAL_CHAT_ID: str = os.getenv("TELEGRAM_SIGNAL_CHAT_ID", "")
+TELEGRAM_EVAL_CHAT_ID: str = os.getenv("TELEGRAM_EVAL_CHAT_ID", "")
 # Chat ID khusus admin untuk laporan private eksekusi order Bybit
 # (tidak meneruskan ke TELEGRAM_CHAT_ID publik).
 TELEGRAM_ADMIN_CHAT_ID: str = os.getenv("TELEGRAM_ADMIN_CHAT_ID", "")
 
 TOP_COINS: int = _env_int("TOP_COINS", 250)
-TOP_SIGNALS: int = _env_int("TOP_SIGNALS", 5)
+TOP_SIGNALS: int = _env_int("TOP_SIGNALS", 3)
+
+# --- Mode 24/7 (scan non-stop) ---
+# Interval antar scan (menit). 30 = scan tiap 30 menit sepanjang hari.
+SCAN_INTERVAL_MINUTES: float = _env_float("SCAN_INTERVAL_MINUTES", 30.0)
+# Hanya kirim sinyal bila confidence sinyal terbaik >= nilai ini (persen).
+SIGNAL_MIN_CONFIDENCE: float = _env_float("SIGNAL_MIN_CONFIDENCE", 65.0)
+# Jeda minimum sebelum koin yang sama (symbol + arah) boleh disinyalkan lagi (jam).
+SIGNAL_COOLDOWN_HOURS: float = _env_float("SIGNAL_COOLDOWN_HOURS", 6.0)
+# Umur minimum sinyal tersimpan sebelum boleh dievaluasi & dikirim ke group publik (jam).
+EVAL_MIN_AGE_HOURS: float = _env_float("EVAL_MIN_AGE_HOURS", 4.0)
+# Batas umur sinyal yang masih dievaluasi (jam). Lebih tua = dilewati.
+EVAL_LOOKBACK_HOURS: float = _env_float("EVAL_LOOKBACK_HOURS", 24.0)
 
 # Day Trading Lanjutan — Analisis Multi-Timeframe (MTF)
 # Jumlah kandidat yang dianalisis mendalam (ambil chart 2x per koin dari CoinGecko).
