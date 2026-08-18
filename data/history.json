@@ -793,6 +793,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819053119:pump-fun:BUY",
+      "saved_at": "2026-08-19T05:31:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pump-fun",
+          "symbol": "PUMP",
+          "name": "Pump.fun",
+          "action": "BUY",
+          "entry": 0.00300992,
+          "sl": 0.0029334497546452385,
+          "tp1": 0.0030710961962838097,
+          "tp2": 0.0031016842944257142,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
