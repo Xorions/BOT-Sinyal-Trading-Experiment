@@ -839,7 +839,7 @@
       "session": "SCAN",
       "key": "20260819112221:akedo:BUY",
       "saved_at": "2026-08-19T11:22:21+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T15:54:49+07:00",
       "signals": [
         {
           "coin_id": "akedo",
