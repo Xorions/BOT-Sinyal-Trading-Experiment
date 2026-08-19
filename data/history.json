@@ -913,6 +913,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819174623:gnosis:BUY",
+      "saved_at": "2026-08-19T17:46:23+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "gnosis",
+          "symbol": "GNO",
+          "name": "Gnosis",
+          "action": "BUY",
+          "entry": 113.74,
+          "sl": 110.82682914464048,
+          "tp1": 116.6531708553595,
+          "tp2": 118.10975628303927,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
