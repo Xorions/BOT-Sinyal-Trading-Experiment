@@ -1039,7 +1039,7 @@
       "session": "SCAN",
       "key": "20260820005941:worldcoin-wld:BUY",
       "saved_at": "2026-08-20T00:59:41+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T05:23:52+07:00",
       "signals": [
         {
           "coin_id": "worldcoin-wld",
