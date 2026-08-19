@@ -979,7 +979,7 @@
       "session": "SCAN",
       "key": "20260819211812:ether-fi:BUY",
       "saved_at": "2026-08-19T21:18:12+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T01:47:52+07:00",
       "signals": [
         {
           "coin_id": "ether-fi",
@@ -1050,6 +1050,26 @@
           "sl": 0.34235047387160034,
           "tp1": 0.3555915261283996,
           "tp2": 0.3589017891925994,
+          "confidence": 82
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820014754:grass:SELL",
+      "saved_at": "2026-08-20T01:47:54+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "grass",
+          "symbol": "GRASS",
+          "name": "Grass",
+          "action": "SELL",
+          "entry": 0.303318,
+          "sl": 0.3085736461422033,
+          "tp1": 0.29806235385779667,
+          "tp2": 0.295434530786695,
           "confidence": 82
         }
       ]
