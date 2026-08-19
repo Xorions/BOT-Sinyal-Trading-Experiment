@@ -1073,6 +1073,26 @@
           "confidence": 82
         }
       ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820025016:meteora:BUY",
+      "saved_at": "2026-08-20T02:50:16+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "meteora",
+          "symbol": "MET",
+          "name": "Meteora",
+          "action": "BUY",
+          "entry": 0.181729,
+          "sl": 0.17664457894136756,
+          "tp1": 0.18579653684690597,
+          "tp2": 0.18783030527035893,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
