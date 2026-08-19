@@ -833,6 +833,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819112221:akedo:BUY",
+      "saved_at": "2026-08-19T11:22:21+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "akedo",
+          "symbol": "AKE",
+          "name": "Akedo",
+          "action": "BUY",
+          "entry": 0.00913004,
+          "sl": 0.00879489788723346,
+          "tp1": 0.009465182112766542,
+          "tp2": 0.009632753169149813,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
