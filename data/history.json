@@ -1153,6 +1153,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820062157:official-trump:BUY",
+      "saved_at": "2026-08-20T06:21:57+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "official-trump",
+          "symbol": "TRUMP",
+          "name": "Official Trump",
+          "action": "BUY",
+          "entry": 1.79,
+          "sl": 1.7229201279821684,
+          "tp1": 1.8436638976142652,
+          "tp2": 1.8704958464213979,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
