@@ -953,6 +953,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819203250:tether-gold:BUY",
+      "saved_at": "2026-08-19T20:32:50+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "tether-gold",
+          "symbol": "XAUT",
+          "name": "Tether Gold",
+          "action": "BUY",
+          "entry": 4438.05,
+          "sl": 4408.868915962787,
+          "tp1": 4461.394867229771,
+          "tp2": 4473.0673008446565,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
