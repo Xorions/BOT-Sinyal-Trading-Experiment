@@ -819,7 +819,7 @@
       "session": "SCAN",
       "key": "20260819094516:optimism:SELL",
       "saved_at": "2026-08-19T09:45:16+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T14:25:45+07:00",
       "signals": [
         {
           "coin_id": "optimism",
