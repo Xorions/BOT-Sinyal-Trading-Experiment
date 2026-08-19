@@ -999,7 +999,7 @@
       "session": "SCAN",
       "key": "20260819233044:pump-fun:BUY",
       "saved_at": "2026-08-19T23:30:44+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T03:55:30+07:00",
       "signals": [
         {
           "coin_id": "pump-fun",
@@ -1090,6 +1090,26 @@
           "sl": 0.17664457894136756,
           "tp1": 0.18579653684690597,
           "tp2": 0.18783030527035893,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820035531:compound-governance-token:BUY",
+      "saved_at": "2026-08-20T03:55:31+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "compound-governance-token",
+          "symbol": "COMP",
+          "name": "Compound",
+          "action": "BUY",
+          "entry": 18.18,
+          "sl": 17.848053407117543,
+          "tp1": 18.445557274305965,
+          "tp2": 18.578335911458947,
           "confidence": 76
         }
       ]
