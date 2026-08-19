@@ -899,7 +899,7 @@
       "session": "SCAN",
       "key": "20260819163327:bitway:BUY",
       "saved_at": "2026-08-19T16:33:27+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T21:18:11+07:00",
       "signals": [
         {
           "coin_id": "bitway",
@@ -971,6 +971,26 @@
           "tp1": 4461.394867229771,
           "tp2": 4473.0673008446565,
           "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819211812:ether-fi:BUY",
+      "saved_at": "2026-08-19T21:18:12+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ether-fi",
+          "symbol": "ETHFI",
+          "name": "Ether.fi",
+          "action": "BUY",
+          "entry": 0.495459,
+          "sl": 0.4893575481889288,
+          "tp1": 0.5015604518110712,
+          "tp2": 0.5046111777166068,
+          "confidence": 69
         }
       ]
     }
