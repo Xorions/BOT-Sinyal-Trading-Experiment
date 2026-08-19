@@ -919,7 +919,7 @@
       "session": "SCAN",
       "key": "20260819174623:gnosis:BUY",
       "saved_at": "2026-08-19T17:46:23+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T22:02:27+07:00",
       "signals": [
         {
           "coin_id": "gnosis",
