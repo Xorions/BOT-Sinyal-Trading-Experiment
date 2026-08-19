@@ -779,7 +779,7 @@
       "session": "SCAN",
       "key": "20260819032102:cash-cat:SELL",
       "saved_at": "2026-08-19T03:21:02+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T08:44:14+07:00",
       "signals": [
         {
           "coin_id": "cash-cat",
