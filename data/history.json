@@ -799,7 +799,7 @@
       "session": "SCAN",
       "key": "20260819053119:pump-fun:BUY",
       "saved_at": "2026-08-19T05:31:19+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T09:45:01+07:00",
       "signals": [
         {
           "coin_id": "pump-fun",
@@ -811,6 +811,26 @@
           "tp1": 0.0030710961962838097,
           "tp2": 0.0031016842944257142,
           "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819094516:optimism:SELL",
+      "saved_at": "2026-08-19T09:45:16+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "optimism",
+          "symbol": "OP",
+          "name": "Optimism",
+          "action": "SELL",
+          "entry": 0.081485,
+          "sl": 0.08233923476029549,
+          "tp1": 0.08080161219176361,
+          "tp2": 0.08045991828764541,
+          "confidence": 76
         }
       ]
     }
