@@ -1019,7 +1019,7 @@
       "session": "SCAN",
       "key": "20260820000314:memecore:BUY",
       "saved_at": "2026-08-20T00:03:14+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T04:25:08+07:00",
       "signals": [
         {
           "coin_id": "memecore",
@@ -1110,6 +1110,26 @@
           "sl": 17.848053407117543,
           "tp1": 18.445557274305965,
           "tp2": 18.578335911458947,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820042510:ether-fi:BUY",
+      "saved_at": "2026-08-20T04:25:10+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ether-fi",
+          "symbol": "ETHFI",
+          "name": "Ether.fi",
+          "action": "BUY",
+          "entry": 0.513748,
+          "sl": 0.5029458399162815,
+          "tp1": 0.5223897280669748,
+          "tp2": 0.5267105921004622,
           "confidence": 76
         }
       ]
