@@ -879,7 +879,7 @@
       "session": "SCAN",
       "key": "20260819150346:pendle:SELL",
       "saved_at": "2026-08-19T15:03:46+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T19:44:37+07:00",
       "signals": [
         {
           "coin_id": "pendle",
@@ -930,6 +930,26 @@
           "sl": 110.82682914464048,
           "tp1": 116.6531708553595,
           "tp2": 118.10975628303927,
+          "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819194439:velvet:BUY",
+      "saved_at": "2026-08-19T19:44:39+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "velvet",
+          "symbol": "VELVET",
+          "name": "Velvet",
+          "action": "BUY",
+          "entry": 0.677183,
+          "sl": 0.641896417489747,
+          "tp1": 0.7124695825102529,
+          "tp2": 0.7301128737653795,
           "confidence": 69
         }
       ]
