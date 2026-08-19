@@ -859,7 +859,7 @@
       "session": "SCAN",
       "key": "20260819120305:meteora:BUY",
       "saved_at": "2026-08-19T12:03:05+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-19T16:33:25+07:00",
       "signals": [
         {
           "coin_id": "meteora",
@@ -891,6 +891,26 @@
           "tp1": 1.2887740465147126,
           "tp2": 1.283161069772069,
           "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "session": "SCAN",
+      "key": "20260819163327:bitway:BUY",
+      "saved_at": "2026-08-19T16:33:27+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bitway",
+          "symbol": "BTW",
+          "name": "Bitway",
+          "action": "BUY",
+          "entry": 0.709622,
+          "sl": 0.650213178275018,
+          "tp1": 0.7571490573799855,
+          "tp2": 0.7809125860699784,
+          "confidence": 76
         }
       ]
     }
