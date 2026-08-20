@@ -1319,7 +1319,7 @@
       "session": "SCAN",
       "key": "20260820215516:meta-2-2:BUY",
       "saved_at": "2026-08-20T21:55:16+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T02:30:36+07:00",
       "signals": [
         {
           "coin_id": "meta-2-2",
