@@ -1299,7 +1299,7 @@
       "session": "SCAN",
       "key": "20260820201116:plasma:BUY",
       "saved_at": "2026-08-20T20:11:16+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T00:28:31+07:00",
       "signals": [
         {
           "coin_id": "plasma",
@@ -1350,6 +1350,26 @@
           "sl": 1.4606533873453547,
           "tp1": 1.5193466126546453,
           "tp2": 1.534019918981968,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821002832:dash:BUY",
+      "saved_at": "2026-08-21T00:28:32+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dash",
+          "symbol": "DASH",
+          "name": "Dash",
+          "action": "BUY",
+          "entry": 33.57,
+          "sl": 33.100247736107804,
+          "tp1": 34.0397522638922,
+          "tp2": 34.27462839583829,
           "confidence": 76
         }
       ]
