@@ -1279,7 +1279,7 @@
       "session": "SCAN",
       "key": "20260820180357:the-black-bull:BUY",
       "saved_at": "2026-08-20T18:03:57+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T22:33:07+07:00",
       "signals": [
         {
           "coin_id": "the-black-bull",
