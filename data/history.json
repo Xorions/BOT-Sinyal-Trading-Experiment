@@ -1179,7 +1179,7 @@
       "session": "SCAN",
       "key": "20260820093147:pump-fun:BUY",
       "saved_at": "2026-08-20T09:31:47+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T13:59:35+07:00",
       "signals": [
         {
           "coin_id": "pump-fun",
@@ -1210,6 +1210,26 @@
           "sl": 2.865961618179055e-06,
           "tp1": 2.954038381820945e-06,
           "tp2": 2.976057572731417e-06,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820135948:plasma:BUY",
+      "saved_at": "2026-08-20T13:59:48+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "plasma",
+          "symbol": "XPL",
+          "name": "Plasma",
+          "action": "BUY",
+          "entry": 0.081863,
+          "sl": 0.08064579657549499,
+          "tp1": 0.08283676273960401,
+          "tp2": 0.08332364410940603,
           "confidence": 76
         }
       ]
