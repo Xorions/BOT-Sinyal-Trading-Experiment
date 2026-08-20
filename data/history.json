@@ -1079,7 +1079,7 @@
       "session": "SCAN",
       "key": "20260820025016:meteora:BUY",
       "saved_at": "2026-08-20T02:50:16+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T09:31:17+07:00",
       "signals": [
         {
           "coin_id": "meteora",
@@ -1099,7 +1099,7 @@
       "session": "SCAN",
       "key": "20260820035531:compound-governance-token:BUY",
       "saved_at": "2026-08-20T03:55:31+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T09:31:22+07:00",
       "signals": [
         {
           "coin_id": "compound-governance-token",
@@ -1119,7 +1119,7 @@
       "session": "SCAN",
       "key": "20260820042510:ether-fi:BUY",
       "saved_at": "2026-08-20T04:25:10+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T09:31:28+07:00",
       "signals": [
         {
           "coin_id": "ether-fi",
@@ -1139,7 +1139,7 @@
       "session": "SCAN",
       "key": "20260820045117:gnosis:BUY",
       "saved_at": "2026-08-20T04:51:17+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T09:31:34+07:00",
       "signals": [
         {
           "coin_id": "gnosis",
@@ -1170,6 +1170,26 @@
           "sl": 1.7229201279821684,
           "tp1": 1.8436638976142652,
           "tp2": 1.8704958464213979,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820093147:pump-fun:BUY",
+      "saved_at": "2026-08-20T09:31:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pump-fun",
+          "symbol": "PUMP",
+          "name": "Pump.fun",
+          "action": "BUY",
+          "entry": 0.00318843,
+          "sl": 0.003077947695340854,
+          "tp1": 0.0032768158437273165,
+          "tp2": 0.0033210087655909746,
           "confidence": 76
         }
       ]
