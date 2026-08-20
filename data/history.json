@@ -1219,7 +1219,7 @@
       "session": "SCAN",
       "key": "20260820135948:plasma:BUY",
       "saved_at": "2026-08-20T13:59:48+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T18:03:55+07:00",
       "signals": [
         {
           "coin_id": "plasma",
@@ -1271,6 +1271,26 @@
           "tp1": 0.09749848547904062,
           "tp2": 0.09839322821856093,
           "confidence": 82
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820180357:the-black-bull:BUY",
+      "saved_at": "2026-08-20T18:03:57+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "the-black-bull",
+          "symbol": "ANSEM",
+          "name": "The Black Bull",
+          "action": "BUY",
+          "entry": 0.258122,
+          "sl": 0.24695656339774735,
+          "tp1": 0.2692874366022527,
+          "tp2": 0.274870154903379,
+          "confidence": 69
         }
       ]
     }
