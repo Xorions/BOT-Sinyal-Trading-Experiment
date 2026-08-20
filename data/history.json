@@ -1339,7 +1339,7 @@
       "session": "SCAN",
       "key": "20260820230504:pendle:BUY",
       "saved_at": "2026-08-20T23:05:04+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T03:46:36+07:00",
       "signals": [
         {
           "coin_id": "pendle",
@@ -1391,6 +1391,26 @@
           "tp1": 0.11159479493846693,
           "tp2": 0.11302969240770039,
           "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821034637:pepe:BUY",
+      "saved_at": "2026-08-21T03:46:37+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pepe",
+          "symbol": "PEPE",
+          "name": "Pepe",
+          "action": "BUY",
+          "entry": 3.18e-06,
+          "sl": 3.068565995397276e-06,
+          "tp1": 3.269147203682179e-06,
+          "tp2": 3.3137208055232687e-06,
+          "confidence": 69
         }
       ]
     }
