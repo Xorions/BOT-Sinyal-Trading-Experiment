@@ -1413,6 +1413,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821052648:unibase:SELL",
+      "saved_at": "2026-08-21T05:26:48+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "unibase",
+          "symbol": "UB",
+          "name": "Unibase",
+          "action": "SELL",
+          "entry": 0.112161,
+          "sl": 0.11478097959973652,
+          "tp1": 0.10954102040026348,
+          "tp2": 0.10823103060039523,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
