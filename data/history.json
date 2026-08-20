@@ -1259,7 +1259,7 @@
       "session": "SCAN",
       "key": "20260820153735:ethena:BUY",
       "saved_at": "2026-08-20T15:37:35+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-20T20:11:15+07:00",
       "signals": [
         {
           "coin_id": "ethena",
@@ -1290,6 +1290,26 @@
           "sl": 0.24695656339774735,
           "tp1": 0.2692874366022527,
           "tp2": 0.274870154903379,
+          "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820201116:plasma:BUY",
+      "saved_at": "2026-08-20T20:11:16+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "plasma",
+          "symbol": "XPL",
+          "name": "Plasma",
+          "action": "BUY",
+          "entry": 0.083041,
+          "sl": 0.08198425003858244,
+          "tp1": 0.08409774996141757,
+          "tp2": 0.08462612494212636,
           "confidence": 69
         }
       ]
