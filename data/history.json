@@ -1333,6 +1333,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820230504:pendle:BUY",
+      "saved_at": "2026-08-20T23:05:04+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pendle",
+          "symbol": "PENDLE",
+          "name": "Pendle",
+          "action": "BUY",
+          "entry": 1.49,
+          "sl": 1.4606533873453547,
+          "tp1": 1.5193466126546453,
+          "tp2": 1.534019918981968,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
