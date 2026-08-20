@@ -1233,6 +1233,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-20",
+      "session": "SCAN",
+      "key": "20260820145026:ether-fi:BUY",
+      "saved_at": "2026-08-20T14:50:26+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ether-fi",
+          "symbol": "ETHFI",
+          "name": "Ether.fi",
+          "action": "BUY",
+          "entry": 0.558956,
+          "sl": 0.5404526733262809,
+          "tp1": 0.5737586613389752,
+          "tp2": 0.5811599920084629,
+          "confidence": 82
+        }
+      ]
     }
   ]
 }
