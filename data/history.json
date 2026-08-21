@@ -1419,7 +1419,7 @@
       "session": "SCAN",
       "key": "20260821052648:unibase:SELL",
       "saved_at": "2026-08-21T05:26:48+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T09:44:52+07:00",
       "signals": [
         {
           "coin_id": "unibase",
@@ -1450,6 +1450,26 @@
           "sl": 0.0037217604900318156,
           "tp1": 0.004019515607974548,
           "tp2": 0.004085683411961821,
+          "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821094511:the-black-bull:BUY",
+      "saved_at": "2026-08-21T09:45:11+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "the-black-bull",
+          "symbol": "ANSEM",
+          "name": "The Black Bull",
+          "action": "BUY",
+          "entry": 0.276552,
+          "sl": 0.2607425540137085,
+          "tp1": 0.28919955678903325,
+          "tp2": 0.2955233351835499,
           "confidence": 69
         }
       ]
