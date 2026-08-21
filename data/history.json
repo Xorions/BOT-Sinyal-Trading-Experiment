@@ -1759,7 +1759,7 @@
       "session": "SCAN",
       "key": "20260821234350:pendle:BUY",
       "saved_at": "2026-08-21T23:43:50+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T04:00:53+07:00",
       "signals": [
         {
           "coin_id": "pendle",
