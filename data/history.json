@@ -1513,6 +1513,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821120542:zebec-network:BUY",
+      "saved_at": "2026-08-21T12:05:42+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zebec-network",
+          "symbol": "ZBCN",
+          "name": "Zebec Network",
+          "action": "BUY",
+          "entry": 0.00190032,
+          "sl": 0.0018441715152412153,
+          "tp1": 0.0019564684847587846,
+          "tp2": 0.001984542727138177,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
