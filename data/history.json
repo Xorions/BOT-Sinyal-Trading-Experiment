@@ -1493,6 +1493,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821112349:humanity:SELL",
+      "saved_at": "2026-08-21T11:23:49+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "humanity",
+          "symbol": "H",
+          "name": "Humanity",
+          "action": "SELL",
+          "entry": 0.076958,
+          "sl": 0.0804484581813649,
+          "tp1": 0.0734675418186351,
+          "tp2": 0.07172231272795265,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
