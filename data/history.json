@@ -1633,6 +1633,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821173001:rain:BUY",
+      "saved_at": "2026-08-21T17:30:01+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "rain",
+          "symbol": "RAIN",
+          "name": "Rain",
+          "action": "BUY",
+          "entry": 0.01463565,
+          "sl": 0.014478332094757454,
+          "tp1": 0.014761504324194038,
+          "tp2": 0.014824431486291057,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
