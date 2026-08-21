@@ -1639,7 +1639,7 @@
       "session": "SCAN",
       "key": "20260821173001:rain:BUY",
       "saved_at": "2026-08-21T17:30:01+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T21:44:01+07:00",
       "signals": [
         {
           "coin_id": "rain",
@@ -1690,6 +1690,26 @@
           "sl": 0.007763682262417903,
           "tp1": 0.008259110190065677,
           "tp2": 0.008369205285098515,
+          "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821214403:lighter:BUY",
+      "saved_at": "2026-08-21T21:44:03+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "lighter",
+          "symbol": "LIT",
+          "name": "Lighter",
+          "action": "BUY",
+          "entry": 2.8,
+          "sl": 2.722886002202765,
+          "tp1": 2.8616911982377875,
+          "tp2": 2.8925367973566813,
           "confidence": 69
         }
       ]
