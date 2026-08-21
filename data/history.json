@@ -1559,7 +1559,7 @@
       "session": "SCAN",
       "key": "20260821143045:monad:BUY",
       "saved_at": "2026-08-21T14:30:45+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T18:34:49+07:00",
       "signals": [
         {
           "coin_id": "monad",
