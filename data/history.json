@@ -1813,6 +1813,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-22",
+      "session": "SCAN",
+      "key": "20260822043835:near:BUY",
+      "saved_at": "2026-08-22T04:38:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "near",
+          "symbol": "NEAR",
+          "name": "NEAR Protocol",
+          "action": "BUY",
+          "entry": 1.95,
+          "sl": 1.9048329762359713,
+          "tp1": 1.9861336190112229,
+          "tp2": 2.0042004285168344,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
