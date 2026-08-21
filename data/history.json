@@ -1773,6 +1773,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-22",
+      "session": "SCAN",
+      "key": "20260822025801:curve-dao-token:BUY",
+      "saved_at": "2026-08-22T02:58:01+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "curve-dao-token",
+          "symbol": "CRV",
+          "name": "Curve DAO",
+          "action": "BUY",
+          "entry": 0.329298,
+          "sl": 0.3190123133853371,
+          "tp1": 0.33752654929173026,
+          "tp2": 0.34164082393759543,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
