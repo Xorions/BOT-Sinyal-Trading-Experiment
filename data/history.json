@@ -1719,7 +1719,7 @@
       "session": "SCAN",
       "key": "20260821221629:pump-fun:BUY",
       "saved_at": "2026-08-21T22:16:29+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T02:41:12+07:00",
       "signals": [
         {
           "coin_id": "pump-fun",
