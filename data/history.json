@@ -1499,7 +1499,7 @@
       "session": "SCAN",
       "key": "20260821112349:humanity:SELL",
       "saved_at": "2026-08-21T11:23:49+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T16:07:45+07:00",
       "signals": [
         {
           "coin_id": "humanity",
@@ -1519,7 +1519,7 @@
       "session": "SCAN",
       "key": "20260821120542:zebec-network:BUY",
       "saved_at": "2026-08-21T12:05:42+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T16:07:46+07:00",
       "signals": [
         {
           "coin_id": "zebec-network",
@@ -1591,6 +1591,26 @@
           "tp1": 0.5742239622092535,
           "tp2": 0.5799299433138803,
           "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821160748:worldcoin-wld:BUY",
+      "saved_at": "2026-08-21T16:07:48+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "worldcoin-wld",
+          "symbol": "WLD",
+          "name": "Worldcoin",
+          "action": "BUY",
+          "entry": 0.382035,
+          "sl": 0.3765757097141824,
+          "tp1": 0.3874942902858176,
+          "tp2": 0.3902239354287264,
+          "confidence": 76
         }
       ]
     }
