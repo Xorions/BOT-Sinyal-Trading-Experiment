@@ -1459,7 +1459,7 @@
       "session": "SCAN",
       "key": "20260821094511:the-black-bull:BUY",
       "saved_at": "2026-08-21T09:45:11+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T14:30:44+07:00",
       "signals": [
         {
           "coin_id": "the-black-bull",
@@ -1551,6 +1551,26 @@
           "tp1": 0.5155625533891124,
           "tp2": 0.5343778300836685,
           "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821143045:monad:BUY",
+      "saved_at": "2026-08-21T14:30:45+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "monad",
+          "symbol": "MON",
+          "name": "Monad",
+          "action": "BUY",
+          "entry": 0.02791972,
+          "sl": 0.026855252155570237,
+          "tp1": 0.028771294275543806,
+          "tp2": 0.02919708141331571,
+          "confidence": 76
         }
       ]
     }
