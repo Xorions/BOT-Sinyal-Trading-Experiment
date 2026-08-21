@@ -1699,7 +1699,7 @@
       "session": "SCAN",
       "key": "20260821214403:lighter:BUY",
       "saved_at": "2026-08-21T21:44:03+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T02:14:22+07:00",
       "signals": [
         {
           "coin_id": "lighter",
