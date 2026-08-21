@@ -1479,7 +1479,7 @@
       "session": "SCAN",
       "key": "20260821103758:plasma:BUY",
       "saved_at": "2026-08-21T10:37:58+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T15:19:58+07:00",
       "signals": [
         {
           "coin_id": "plasma",
@@ -1571,6 +1571,26 @@
           "tp1": 0.028771294275543806,
           "tp2": 0.02919708141331571,
           "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821152000:ether-fi:BUY",
+      "saved_at": "2026-08-21T15:20:00+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ether-fi",
+          "symbol": "ETHFI",
+          "name": "Ether.fi",
+          "action": "BUY",
+          "entry": 0.562812,
+          "sl": 0.5485470472384331,
+          "tp1": 0.5742239622092535,
+          "tp2": 0.5799299433138803,
+          "confidence": 69
         }
       ]
     }
