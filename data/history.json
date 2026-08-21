@@ -1533,6 +1533,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821134502:bitway:BUY",
+      "saved_at": "2026-08-21T13:45:02+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bitway",
+          "symbol": "BTW",
+          "name": "Bitway",
+          "action": "BUY",
+          "entry": 0.477932,
+          "sl": 0.4308938082636096,
+          "tp1": 0.5155625533891124,
+          "tp2": 0.5343778300836685,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
