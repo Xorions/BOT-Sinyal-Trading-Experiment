@@ -1619,7 +1619,7 @@
       "session": "SCAN",
       "key": "20260821165229:world-liberty-financial:BUY",
       "saved_at": "2026-08-21T16:52:29+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T20:58:51+07:00",
       "signals": [
         {
           "coin_id": "world-liberty-financial",
@@ -1671,6 +1671,26 @@
           "tp1": 0.14970555969260618,
           "tp2": 0.15355783953890928,
           "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821205852:pudgy-penguins:BUY",
+      "saved_at": "2026-08-21T20:58:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pudgy-penguins",
+          "symbol": "PENGU",
+          "name": "Pudgy Penguins",
+          "action": "BUY",
+          "entry": 0.00803892,
+          "sl": 0.007763682262417903,
+          "tp1": 0.008259110190065677,
+          "tp2": 0.008369205285098515,
+          "confidence": 69
         }
       ]
     }
