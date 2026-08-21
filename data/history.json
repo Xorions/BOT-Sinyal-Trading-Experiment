@@ -1579,7 +1579,7 @@
       "session": "SCAN",
       "key": "20260821152000:ether-fi:BUY",
       "saved_at": "2026-08-21T15:20:00+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T20:10:51+07:00",
       "signals": [
         {
           "coin_id": "ether-fi",
@@ -1599,7 +1599,7 @@
       "session": "SCAN",
       "key": "20260821160748:worldcoin-wld:BUY",
       "saved_at": "2026-08-21T16:07:48+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T20:10:52+07:00",
       "signals": [
         {
           "coin_id": "worldcoin-wld",
