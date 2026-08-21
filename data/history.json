@@ -1659,7 +1659,7 @@
       "session": "SCAN",
       "key": "20260821190249:cash-cat:BUY",
       "saved_at": "2026-08-21T19:02:49+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-21T23:43:48+07:00",
       "signals": [
         {
           "coin_id": "cash-cat",
@@ -1751,6 +1751,26 @@
           "tp1": 0.6290657506092109,
           "tp2": 0.6345821259138162,
           "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821234350:pendle:BUY",
+      "saved_at": "2026-08-21T23:43:50+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pendle",
+          "symbol": "PENDLE",
+          "name": "Pendle",
+          "action": "BUY",
+          "entry": 1.61,
+          "sl": 1.5824152181629658,
+          "tp1": 1.6375847818370344,
+          "tp2": 1.6513771727555515,
+          "confidence": 69
         }
       ]
     }
