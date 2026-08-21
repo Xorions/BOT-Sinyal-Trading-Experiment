@@ -1779,7 +1779,7 @@
       "session": "SCAN",
       "key": "20260822025801:curve-dao-token:BUY",
       "saved_at": "2026-08-22T02:58:01+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T06:59:54+07:00",
       "signals": [
         {
           "coin_id": "curve-dao-token",
