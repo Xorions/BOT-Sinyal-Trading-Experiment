@@ -1613,6 +1613,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-21",
+      "session": "SCAN",
+      "key": "20260821165229:world-liberty-financial:BUY",
+      "saved_at": "2026-08-21T16:52:29+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "world-liberty-financial",
+          "symbol": "WLFI",
+          "name": "World Liberty Financial",
+          "action": "BUY",
+          "entry": 0.061569,
+          "sl": 0.06056941689927014,
+          "tp1": 0.06256858310072987,
+          "tp2": 0.0630683746510948,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
