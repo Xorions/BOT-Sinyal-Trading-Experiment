@@ -1979,7 +1979,7 @@
       "session": "SCAN",
       "key": "20260823004612:fartcoin:BUY",
       "saved_at": "2026-08-23T00:46:12+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T04:46:31+07:00",
       "signals": [
         {
           "coin_id": "fartcoin",
