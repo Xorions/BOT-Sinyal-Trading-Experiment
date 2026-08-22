@@ -1999,7 +1999,7 @@
       "session": "SCAN",
       "key": "20260823012942:zama:BUY",
       "saved_at": "2026-08-23T01:29:42+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T05:48:41+07:00",
       "signals": [
         {
           "coin_id": "zama",
