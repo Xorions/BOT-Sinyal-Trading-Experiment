@@ -1799,7 +1799,7 @@
       "session": "SCAN",
       "key": "20260822033233:ether-fi:BUY",
       "saved_at": "2026-08-22T03:32:33+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T08:44:02+07:00",
       "signals": [
         {
           "coin_id": "ether-fi",
@@ -1819,7 +1819,7 @@
       "session": "SCAN",
       "key": "20260822043835:near:BUY",
       "saved_at": "2026-08-22T04:38:35+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T08:44:07+07:00",
       "signals": [
         {
           "coin_id": "near",
@@ -1871,6 +1871,26 @@
           "tp1": 0.030361542762936157,
           "tp2": 0.030812254144404236,
           "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-22",
+      "session": "SCAN",
+      "key": "20260822084421:pyth-network:BUY",
+      "saved_at": "2026-08-22T08:44:21+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pyth-network",
+          "symbol": "PYTH",
+          "name": "Pyth Network",
+          "action": "BUY",
+          "entry": 0.051278,
+          "sl": 0.04967259510099429,
+          "tp1": 0.05256232391920456,
+          "tp2": 0.05320448587880684,
+          "confidence": 82
         }
       ]
     }
