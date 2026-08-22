@@ -1919,7 +1919,7 @@
       "session": "SCAN",
       "key": "20260822110654:layerzero:BUY",
       "saved_at": "2026-08-22T11:06:54+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T15:28:57+07:00",
       "signals": [
         {
           "coin_id": "layerzero",
