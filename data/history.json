@@ -1953,6 +1953,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823001956:lighter:BUY",
+      "saved_at": "2026-08-23T00:19:56+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "lighter",
+          "symbol": "LIT",
+          "name": "Lighter",
+          "action": "BUY",
+          "entry": 3.24,
+          "sl": 3.11006973393312,
+          "tp1": 3.3439442128535046,
+          "tp2": 3.3959163192802566,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
