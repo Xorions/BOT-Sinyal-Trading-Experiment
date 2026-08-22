@@ -1959,7 +1959,7 @@
       "session": "SCAN",
       "key": "20260823001956:lighter:BUY",
       "saved_at": "2026-08-23T00:19:56+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T04:21:03+07:00",
       "signals": [
         {
           "coin_id": "lighter",
