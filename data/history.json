@@ -1839,7 +1839,7 @@
       "session": "SCAN",
       "key": "20260822060036:injective-protocol:BUY",
       "saved_at": "2026-08-22T06:00:36+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-22T10:26:21+07:00",
       "signals": [
         {
           "coin_id": "injective-protocol",
@@ -1891,6 +1891,26 @@
           "tp1": 0.05256232391920456,
           "tp2": 0.05320448587880684,
           "confidence": 82
+        }
+      ]
+    },
+    {
+      "date": "2026-08-22",
+      "session": "SCAN",
+      "key": "20260822102634:ethena:BUY",
+      "saved_at": "2026-08-22T10:26:34+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ethena",
+          "symbol": "ENA",
+          "name": "Ethena",
+          "action": "BUY",
+          "entry": 0.157439,
+          "sl": 0.14953893004481528,
+          "tp1": 0.16375905596414778,
+          "tp2": 0.16691908394622168,
+          "confidence": 69
         }
       ]
     }
