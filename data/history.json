@@ -2013,6 +2013,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823020035:dogecoin:BUY",
+      "saved_at": "2026-08-23T02:00:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dogecoin",
+          "symbol": "DOGE",
+          "name": "Dogecoin",
+          "action": "BUY",
+          "entry": 0.09271,
+          "sl": 0.09014421268031914,
+          "tp1": 0.09527578731968087,
+          "tp2": 0.09655868097952129,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
