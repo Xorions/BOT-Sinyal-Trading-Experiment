@@ -2139,7 +2139,7 @@
       "session": "SCAN",
       "key": "20260823131604:unibase:SELL",
       "saved_at": "2026-08-23T13:16:04+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T17:40:50+07:00",
       "signals": [
         {
           "coin_id": "unibase",
@@ -2191,6 +2191,26 @@
           "tp1": 0.17599124553087236,
           "tp2": 0.17911586829630857,
           "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823174051:ether-fi:BUY",
+      "saved_at": "2026-08-23T17:40:51+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ether-fi",
+          "symbol": "ETHFI",
+          "name": "Ether.fi",
+          "action": "BUY",
+          "entry": 0.636693,
+          "sl": 0.6106939642630449,
+          "tp1": 0.657492228589564,
+          "tp2": 0.667891842884346,
+          "confidence": 69
         }
       ]
     }
