@@ -2093,6 +2093,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823120221:zama:SELL",
+      "saved_at": "2026-08-23T12:02:21+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zama",
+          "symbol": "ZAMA",
+          "name": "Zama",
+          "action": "SELL",
+          "entry": 0.051209,
+          "sl": 0.05304654890664744,
+          "tp1": 0.04937145109335256,
+          "tp2": 0.04845267664002884,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
