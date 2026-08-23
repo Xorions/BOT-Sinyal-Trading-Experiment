@@ -2059,7 +2059,7 @@
       "session": "SCAN",
       "key": "20260823103744:jito-governance-token:SELL",
       "saved_at": "2026-08-23T10:37:44+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T14:47:54+07:00",
       "signals": [
         {
           "coin_id": "jito-governance-token",
@@ -2151,6 +2151,26 @@
           "tp1": 0.11154485701575033,
           "tp2": 0.1099132855236255,
           "confidence": 82
+        }
+      ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823144807:layerzero:BUY",
+      "saved_at": "2026-08-23T14:48:07+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "layerzero",
+          "symbol": "ZRO",
+          "name": "LayerZero",
+          "action": "BUY",
+          "entry": 1.22,
+          "sl": 1.1635532397721549,
+          "tp1": 1.265157408182276,
+          "tp2": 1.2877361122734143,
+          "confidence": 69
         }
       ]
     }
