@@ -2253,6 +2253,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823202029:pyth-network:BUY",
+      "saved_at": "2026-08-23T20:20:29+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pyth-network",
+          "symbol": "PYTH",
+          "name": "Pyth Network",
+          "action": "BUY",
+          "entry": 0.053052,
+          "sl": 0.051014294737077956,
+          "tp1": 0.05468216421033764,
+          "tp2": 0.05549724631550646,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
