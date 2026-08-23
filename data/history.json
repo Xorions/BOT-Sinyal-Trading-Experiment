@@ -2319,7 +2319,7 @@
       "session": "SCAN",
       "key": "20260823235201:pudgy-penguins:BUY",
       "saved_at": "2026-08-23T23:52:01+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-24T04:20:53+07:00",
       "signals": [
         {
           "coin_id": "pudgy-penguins",
