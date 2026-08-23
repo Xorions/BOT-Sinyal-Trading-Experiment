@@ -2079,7 +2079,7 @@
       "session": "SCAN",
       "key": "20260823112313:grass:SELL",
       "saved_at": "2026-08-23T11:23:13+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T15:29:10+07:00",
       "signals": [
         {
           "coin_id": "grass",
