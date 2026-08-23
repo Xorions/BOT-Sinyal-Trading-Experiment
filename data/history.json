@@ -2119,7 +2119,7 @@
       "session": "SCAN",
       "key": "20260823124532:falcon-finance-ff:BUY",
       "saved_at": "2026-08-23T12:45:32+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T17:00:38+07:00",
       "signals": [
         {
           "coin_id": "falcon-finance-ff",
