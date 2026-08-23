@@ -2299,7 +2299,7 @@
       "session": "SCAN",
       "key": "20260823222151:cash-cat:BUY",
       "saved_at": "2026-08-23T22:21:51+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-24T02:28:45+07:00",
       "signals": [
         {
           "coin_id": "cash-cat",
@@ -2350,6 +2350,26 @@
           "sl": 0.08582205166995278,
           "tp1": 0.09207515866403777,
           "tp2": 0.09346473799605666,
+          "confidence": 76
+        }
+      ]
+    },
+    {
+      "date": "2026-08-24",
+      "session": "SCAN",
+      "key": "20260824022847:zama:BUY",
+      "saved_at": "2026-08-24T02:28:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zama",
+          "symbol": "ZAMA",
+          "name": "Zama",
+          "action": "BUY",
+          "entry": 0.059894,
+          "sl": 0.057811593702707456,
+          "tp1": 0.06197640629729255,
+          "tp2": 0.06301760944593882,
           "confidence": 76
         }
       ]
