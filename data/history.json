@@ -2233,6 +2233,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823193810:aave:BUY",
+      "saved_at": "2026-08-23T19:38:10+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "aave",
+          "symbol": "AAVE",
+          "name": "Aave",
+          "action": "BUY",
+          "entry": 131.05,
+          "sl": 127.3239463161632,
+          "tp1": 134.03084294706946,
+          "tp2": 135.52126442060418,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
