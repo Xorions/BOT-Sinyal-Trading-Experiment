@@ -2259,7 +2259,7 @@
       "session": "SCAN",
       "key": "20260823202029:pyth-network:BUY",
       "saved_at": "2026-08-23T20:20:29+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-24T00:46:23+07:00",
       "signals": [
         {
           "coin_id": "pyth-network",
