@@ -2099,7 +2099,7 @@
       "session": "SCAN",
       "key": "20260823120221:zama:SELL",
       "saved_at": "2026-08-23T12:02:21+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T16:36:26+07:00",
       "signals": [
         {
           "coin_id": "zama",
@@ -2171,6 +2171,26 @@
           "tp1": 1.265157408182276,
           "tp2": 1.2877361122734143,
           "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823163628:ethena:BUY",
+      "saved_at": "2026-08-23T16:36:28+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ethena",
+          "symbol": "ENA",
+          "name": "Ethena",
+          "action": "BUY",
+          "entry": 0.169742,
+          "sl": 0.16193044308640953,
+          "tp1": 0.17599124553087236,
+          "tp2": 0.17911586829630857,
+          "confidence": 76
         }
       ]
     }
