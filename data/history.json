@@ -2053,6 +2053,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823103744:jito-governance-token:SELL",
+      "saved_at": "2026-08-23T10:37:44+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jito-governance-token",
+          "symbol": "JTO",
+          "name": "Jito",
+          "action": "SELL",
+          "entry": 0.568111,
+          "sl": 0.5850817522284715,
+          "tp1": 0.5511402477715286,
+          "tp2": 0.5426548716572929,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
