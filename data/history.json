@@ -2199,7 +2199,7 @@
       "session": "SCAN",
       "key": "20260823174051:ether-fi:BUY",
       "saved_at": "2026-08-23T17:40:51+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T21:49:42+07:00",
       "signals": [
         {
           "coin_id": "ether-fi",
