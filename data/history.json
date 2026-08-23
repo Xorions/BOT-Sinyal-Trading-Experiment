@@ -2279,7 +2279,7 @@
       "session": "SCAN",
       "key": "20260823212233:dash:BUY",
       "saved_at": "2026-08-23T21:22:33+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-24T01:28:30+07:00",
       "signals": [
         {
           "coin_id": "dash",
