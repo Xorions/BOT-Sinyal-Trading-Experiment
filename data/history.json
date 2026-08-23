@@ -2179,7 +2179,7 @@
       "session": "SCAN",
       "key": "20260823163628:ethena:BUY",
       "saved_at": "2026-08-23T16:36:28+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T20:54:13+07:00",
       "signals": [
         {
           "coin_id": "ethena",
