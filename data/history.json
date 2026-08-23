@@ -2039,7 +2039,7 @@
       "session": "SCAN",
       "key": "20260823052056:pepe:BUY",
       "saved_at": "2026-08-23T05:20:56+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T09:45:14+07:00",
       "signals": [
         {
           "coin_id": "pepe",
