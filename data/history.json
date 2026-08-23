@@ -2219,7 +2219,7 @@
       "session": "SCAN",
       "key": "20260823182924:injective-protocol:BUY",
       "saved_at": "2026-08-23T18:29:24+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-23T22:47:26+07:00",
       "signals": [
         {
           "coin_id": "injective-protocol",
