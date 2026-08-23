@@ -2273,6 +2273,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-23",
+      "session": "SCAN",
+      "key": "20260823212233:dash:BUY",
+      "saved_at": "2026-08-23T21:22:33+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dash",
+          "symbol": "DASH",
+          "name": "Dash",
+          "action": "BUY",
+          "entry": 43.49,
+          "sl": 41.51015236549153,
+          "tp1": 45.07387810760678,
+          "tp2": 45.86581716141017,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
