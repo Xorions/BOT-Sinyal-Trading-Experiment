@@ -2670,6 +2670,26 @@
           "result_at": "2026-08-25T00:31:27+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-25",
+      "session": "SCAN",
+      "key": "20260825010456:monad:BUY",
+      "saved_at": "2026-08-25T01:04:56+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "monad",
+          "symbol": "MON",
+          "name": "Monad",
+          "action": "BUY",
+          "entry": 0.02985553,
+          "sl": 0.028968840041365067,
+          "tp1": 0.0306696017625099,
+          "tp2": 0.031076637643764848,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
