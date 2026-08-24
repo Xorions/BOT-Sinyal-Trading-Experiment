@@ -2393,6 +2393,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-24",
+      "session": "SCAN",
+      "key": "20260824081548:origintrail:BUY",
+      "saved_at": "2026-08-24T08:15:48+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "origintrail",
+          "symbol": "TRAC",
+          "name": "OriginTrail",
+          "action": "BUY",
+          "entry": 0.391368,
+          "sl": 0.3724490398047156,
+          "tp1": 0.4065031681562275,
+          "tp2": 0.41407075223434125,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
