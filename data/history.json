@@ -2399,7 +2399,7 @@
       "session": "SCAN",
       "key": "20260824081548:origintrail:BUY",
       "saved_at": "2026-08-24T08:15:48+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-24T12:25:51+07:00",
       "signals": [
         {
           "coin_id": "origintrail",
