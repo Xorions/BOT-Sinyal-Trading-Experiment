@@ -2739,6 +2739,26 @@
           "result_at": "2026-08-25T05:27:27+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-25",
+      "session": "SCAN",
+      "key": "20260825064646:melania-meme:BUY",
+      "saved_at": "2026-08-25T06:46:46+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "melania-meme",
+          "symbol": "MELANIA",
+          "name": "Melania Meme",
+          "action": "BUY",
+          "entry": 0.110888,
+          "sl": 0.10820769452483604,
+          "tp1": 0.11356830547516396,
+          "tp2": 0.11490845821274592,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
