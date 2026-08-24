@@ -2693,6 +2693,26 @@
           "result_at": "2026-08-25T01:59:47+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-25",
+      "session": "SCAN",
+      "key": "20260825042817:jasmycoin:BUY",
+      "saved_at": "2026-08-25T04:28:17+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jasmycoin",
+          "symbol": "JASMY",
+          "name": "JasmyCoin",
+          "action": "BUY",
+          "entry": 0.00475447,
+          "sl": 0.004606138066190119,
+          "tp1": 0.004873135547047905,
+          "tp2": 0.004932468320571857,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
