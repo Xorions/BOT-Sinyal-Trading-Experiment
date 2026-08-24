@@ -2710,7 +2710,30 @@
           "sl": 0.004606138066190119,
           "tp1": 0.004873135547047905,
           "tp2": 0.004932468320571857,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.00468946,
+          "result_at": "2026-08-25T04:55:54+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "session": "SCAN",
+      "key": "20260825045555:aster-2:BUY",
+      "saved_at": "2026-08-25T04:55:55+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "aster-2",
+          "symbol": "ASTER",
+          "name": "Aster",
+          "action": "BUY",
+          "entry": 0.709413,
+          "sl": 0.6894332196584946,
+          "tp1": 0.7253968242732043,
+          "tp2": 0.7333887364098064,
+          "confidence": 69
         }
       ]
     }
