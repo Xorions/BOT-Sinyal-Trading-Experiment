@@ -2473,6 +2473,26 @@
           "confidence": 82
         }
       ]
+    },
+    {
+      "date": "2026-08-24",
+      "session": "SCAN",
+      "key": "20260824205135:ribbita-by-virtuals:BUY",
+      "saved_at": "2026-08-24T20:51:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ribbita-by-virtuals",
+          "symbol": "TIBBIR",
+          "name": "Ribbita by Virtuals",
+          "action": "BUY",
+          "entry": 0.250793,
+          "sl": 0.24269711824002874,
+          "tp1": 0.25888888175997127,
+          "tp2": 0.2629368226399569,
+          "confidence": 76
+        }
+      ]
     }
   ]
 }
