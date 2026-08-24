@@ -12,8 +12,9 @@ Bot Telegram **Day Trading Lanjutan** yang memindai pasar crypto **24 jam non-st
 - **Analisis Multi-Timeframe**: HTF 4H/1D menentukan **Trend Bias**, LTF 1H/15M menentukan **Entry, SL, TP**.
 - **Konfluensi indikator**: Support/Resistance, Supply/Demand, SMC (BOS/CHoCH), Order Block, MACD crossover, RSI divergence, Volume/Whale Spike — dengan **Confluence Checklist** di setiap sinyal.
 - **Evaluasi terjadwal**: sinyal yang berumur ≥ `EVAL_MIN_AGE_HOURS` (default 4 jam) dievaluasi (HIT TP1/TP2/SL, FLOATING) dan hasilnya dikirim ke group publik satu kali (`evaluated_at`).
+- **Pencatatan hasil & win-rate kumulatif**: setiap siklus, sinyal belum tuntas dalam `RESULT_LOOKBACK_HOURS` (default 72 jam) dicek ulang — hasil final (TP1/TP2/SL) **terkunci** dan tidak pernah diturunkan; FLOATING boleh naik. Ringkasan win-rate 7 hari + ekspektasi R/trade dikirim otomatis sekali sehari ke grup evaluasi (`WINRATE_DIGEST_HOUR`, default 08:00 WIB) — dasar objektif uji kelayakan autotrade.
 - **SL/TP berbasis ATR** (default SL 2× ATR, TP1 2×, TP2 3×).
-- **Automated Trading Bybit (opsional)**: eksekusi market order + SL + TP1 50%/TP2 50% di Bybit Futures USDT-M — sakelar ON/OFF di `.env`, **default NONAKTIF**.
+- **Automated Trading Bybit (opsional)**: eksekusi market order + SL + TP1 50%/TP2 50% di Bybit Futures USDT-M — sakelar ON/OFF di `.env`, **default NONAKTIF**. Bila aktif, HANYA mengeksekusi 1 sinyal terbaik yang benar-benar dipublish ke chat private (bukan semua sinyal hasil scan).
 
 ## Cara Kerja (Mode 24/7)
 
@@ -23,7 +24,9 @@ Setiap siklus (`--loop`):
 3. **Deep scan MTF** per kandidat: chart 30 hari (1H/4H/1D) + 2 hari (15M). Hitung konfluensi SMC/OB, S&D/S&R, MACD/RSI, Whale/Volume.
 4. Pilih **1 koin terbaik** (BUY/SELL). Bila confidence ≥ 65% **dan** tidak dalam cooldown → kirim ke chat **private** lengkap dengan gambar chart, simpan ke history (`data/history.json`) & cooldown.
 5. **Evaluasi**: sinyal tersimpan yang berumur 4–24 jam dievaluasi dengan harga terkini → hasil dikirim ke group **publik** (1 pesan per sinyal, lengkap dengan gambar chart), lalu ditandai `evaluated_at` agar tidak terkirim ulang.
-6. Tidur `SCAN_INTERVAL_MINUTES` menit, ulangi.
+6. **Refresh hasil & digest win-rate**: semua sinyal belum tuntas (≤72 jam) dicek ulang dan hasilnya dikunci di history; sekali sehari (≥ `WINRATE_DIGEST_HOUR` WIB) ringkasan win-rate 7 hari + ekspektasi R/trade dikirim ke grup evaluasi.
+7. **Autotrade (opsional)**: bila aktif, HANYA sinyal terbaik yang dipublish tadi dieksekusi ke Bybit Futures.
+8. Tidur `SCAN_INTERVAL_MINUTES` menit, ulangi.
 
 Mode satu siklus (`python bot.py`, dipakai GitHub Actions): scan → evaluasi 24/7 → sinyal private → evaluasi sesi PAGI/MALAM lama ke group publik → autotrade (opsional).
 
@@ -87,6 +90,10 @@ Mode satu siklus (`python bot.py`, dipakai GitHub Actions): scan → evaluasi 24
 | `SIGNAL_COOLDOWN_HOURS` | 6 | Jeda minimum koin yang sama (symbol+arah) boleh disinyalkan lagi (jam) |
 | `EVAL_MIN_AGE_HOURS` | 4 | Umur minimum sinyal sebelum dievaluasi ke group publik (jam) |
 | `EVAL_LOOKBACK_HOURS` | 24 | Batas umur sinyal yang masih dievaluasi (jam) |
+| `SESSION_EVAL_MAX_AGE_DAYS` | 3 | Batas umur entri sesi PAGI/MALAM legacy yang masih dievaluasi (hari) |
+| `RESULT_LOOKBACK_HOURS` | 72 | Sinyal belum tuntas terus dicek ulang sampai TP/SL dalam jendela ini (jam) |
+| `WINRATE_WINDOW_DAYS` | 7 | Jendela hari ringkasan win-rate harian (digest) |
+| `WINRATE_DIGEST_HOUR` | 8 | Jam WIB minimum pengiriman digest win-rate harian |
 | `MTF_SCAN_LIMIT` | 6 | Kandidat deep-scan MTF |
 | `CONFLUENCE_MIN` | 2 | Minimal kategori Confluence untuk BUY/SELL |
 | `ATR_SL_MULT` | 2.0 | SL = ATR × pengali |

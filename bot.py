@@ -11,7 +11,11 @@ Alur per siklus scan:
    PUBLIK, juga dengan gambar chart per sinyal. Evaluasi sesi PAGI/MALAM
    (legacy) hanya dikirim bila masih ada sinyal mengambang — kalau semua
    sudah tuntas/kedaluwarsa, bot diam agar tidak mengulang evaluasi lama.
-5. Autotrade Bybit tetap opsional & default nonaktif (ENABLE_BYBIT_AUTOTRADE=false).
+5. Hasil semua sinyal belum tuntas dicek ulang tiap siklus (upgrade-only,
+   RESULT_LOOKBACK_HOURS) + digest win-rate 7 hari sekali sehari ke grup
+   evaluasi — dasar objektif uji kelayakan autotrade.
+6. Autotrade Bybit opsional & default nonaktif (ENABLE_BYBIT_AUTOTRADE=false);
+   bila aktif HANYA mengeksekusi sinyal terbaik yang dipublish ke chat private.
 
 Mode:
 - `python bot.py`            : satu siklus scan (untuk tes / CI).
@@ -46,10 +50,14 @@ from data.history import (
     evaluate_entry,
     format_evaluation,
     format_evaluation_pending,
+    format_winrate_summary,
     load_recent_session_entries,
     mark_entry_evaluated,
+    mark_winrate_digest_sent,
     RESULT_FLOATING,
     session_label,
+    should_send_winrate_digest,
+    update_results,
 )
 from data.market import coin_price_map, get_prices_for_ids, get_top_coins
 from signals.engine import ACTION_BUY, ACTION_SELL, Signal, format_message, rank_signals
@@ -111,15 +119,17 @@ def chart_url_for_signal(sig: Signal, timeframe: str = "") -> str:
     )
 
 
-def send_best_signal(signals: List[Signal], total_scanned: int, session: str) -> bool:
+def send_best_signal(signals: List[Signal], total_scanned: int, session: str) -> Optional[Signal]:
     """Kirim 1 koin terbaik ke chat PRIVATE (confidence >= 65%, cek cooldown).
 
-    Returns True bila sinyal terkirim (history & cooldown dicatat).
+    Returns sinyal yang terkirim (history & cooldown dicatat), atau None bila
+    tidak ada yang dikirim. Sinyal inilah SATU-SATUNYA yang boleh dieksekusi
+    autotrade — konsisten dengan apa yang diumumkan.
     """
     best = pick_best_signal(signals)
     if best is None:
         log.info("Tidak ada koin BUY/SELL pada scan ini — tidak mengirim sinyal.")
-        return False
+        return None
     if best.confidence < SIGNAL_MIN_CONFIDENCE:
         log.info(
             "#%s confidence %d%% < %d%% — tidak memenuhi syarat, tidak dikirim.",
@@ -127,14 +137,14 @@ def send_best_signal(signals: List[Signal], total_scanned: int, session: str) ->
             best.confidence,
             SIGNAL_MIN_CONFIDENCE,
         )
-        return False
+        return None
     if is_blocked(best.symbol, best.action, SIGNAL_COOLDOWN_HOURS):
         log.info(
             "#%s %s masih dalam cooldown — dilewati.",
             best.symbol,
             best.action,
         )
-        return False
+        return None
 
     timestamp = datetime.now().strftime("%A, %d %b %Y, %H:%M WIB")
     message = format_message(
@@ -148,7 +158,7 @@ def send_best_signal(signals: List[Signal], total_scanned: int, session: str) ->
     if not TELEGRAM_BOT_TOKEN or not signal_chat_id():
         log.warning("Kredensial belum diisi di .env - hasil hanya ditampilkan di konsol.")
         print("\n" + message + "\n")
-        return False
+        return None
 
     try:
         send_telegram(message, chat_id=signal_chat_id(), image_url=image_url)
@@ -160,10 +170,60 @@ def send_best_signal(signals: List[Signal], total_scanned: int, session: str) ->
             best.action,
             best.confidence,
         )
-        return True
+        return best
     except TelegramSendError as exc:
         log.error("Gagal mengirim sinyal: %s", exc)
+        return None
+
+
+def refresh_signal_results(coins: list) -> bool:
+    """Cek ulang semua sinyal belum tuntas dalam jendela RESULT_LOOKBACK_HOURS.
+
+    Hasil ditulis ke history (upgrade-only: TP2>TP1>SL terkunci; FLOATING boleh
+    naik) sebagai bahan statistik win-rate. Kegagalan tidak menggagalkan siklus.
+    """
+    price_map = coin_price_map(coins)
+    missing_ids = sorted(
+        {
+            record.get("coin_id")
+            for entry in load_recent_session_entries()
+            for record in entry.get("signals", [])
+            if record.get("coin_id") and record.get("coin_id") not in price_map
+        }
+    )
+    if missing_ids:
+        try:
+            price_map.update(get_prices_for_ids(missing_ids))
+        except Exception as exc:  # noqa: BLE001 - pelaporan tidak boleh menggagalkan scan
+            log.warning("Gagal mengambil harga untuk refresh hasil: %s", exc)
+    try:
+        changed = update_results(price_map)
+        if changed:
+            log.info("Hasil sinyal diperbarui di history.")
+        return changed
+    except Exception as exc:  # noqa: BLE001
+        log.warning("Gagal memperbarui hasil sinyal: %s", exc)
         return False
+
+
+def send_daily_winrate_digest() -> None:
+    """Sekali sehari (>= WINRATE_DIGEST_HOUR WIB) kirim ringkasan win-rate
+    7 hari terakhir ke grup evaluasi — dasar objektif uji kelayakan sinyal."""
+    if not TELEGRAM_BOT_TOKEN or not eval_chat_id():
+        return
+    if not should_send_winrate_digest():
+        return
+    try:
+        summary = format_winrate_summary()
+    except Exception as exc:  # noqa: BLE001 - digest tidak boleh menggagalkan siklus
+        log.warning("Gagal membuat ringkasan win-rate: %s", exc)
+        return
+    try:
+        send_telegram(summary, chat_id=eval_chat_id())
+        mark_winrate_digest_sent()
+        log.info("Digest win-rate harian terkirim ke grup evaluasi.")
+    except TelegramSendError as exc:
+        log.error("Gagal mengirim digest win-rate: %s", exc)
 
 
 def send_pending_evaluations(coins: list) -> None:
@@ -361,19 +421,32 @@ def run_one_cycle(legacy_eval: bool = False) -> None:
     except Exception as exc:  # noqa: BLE001
         log.error("Gagal mengirim evaluasi 24/7: %s", exc)
 
+    try:
+        refresh_signal_results(coins)
+    except Exception as exc:  # noqa: BLE001
+        log.error("Gagal refresh hasil sinyal: %s", exc)
+
+    try:
+        send_daily_winrate_digest()
+    except Exception as exc:  # noqa: BLE001
+        log.error("Gagal mengirim digest win-rate: %s", exc)
+
     if legacy_eval:
         try:
             send_previous_session_evaluation(coins)
         except Exception as exc:  # noqa: BLE001
             log.error("Gagal mengirim evaluasi sesi sebelumnya: %s", exc)
 
+    best_signal = None
     try:
-        send_best_signal(signals, len(coins), session)
+        best_signal = send_best_signal(signals, len(coins), session)
     except Exception as exc:  # noqa: BLE001
         log.error("Gagal mengirim sinyal terbaik: %s", exc)
 
+    # Autotrade HANYA mengeksekusi sinyal terbaik yang benar-benar dipublish —
+    # bukan semua sinyal hasil scan (konsistensi pengumuman vs eksekusi).
     try:
-        run_autotrade(signals)
+        run_autotrade([best_signal] if best_signal is not None else [])
     except Exception as exc:  # noqa: BLE001
         log.error("Autotrade gagal: %s", exc)
 

@@ -1,5 +1,6 @@
 """Tes unit untuk data/history.py: penyimpanan & evaluasi per sesi (PAGI/MALAM)."""
 
+import json
 import os
 import tempfile
 import unittest
@@ -145,36 +146,44 @@ def _days_ago_wib(days: int) -> str:
     return (datetime.now(_WIB_TZ) - timedelta(days=days)).strftime("%Y-%m-%d")
 
 
+# "Now" tetap untuk tes yang bergantung waktu — deterministik lintas tengah malam.
+_FIXED_NOW = datetime(2026, 8, 24, 12, 0, tzinfo=_WIB_TZ)
+
+
+def _iso_hours_before_now(hours: float) -> str:
+    return (_FIXED_NOW - timedelta(hours=hours)).isoformat(timespec="seconds")
+
+
 class TestRecentSessionEntries(SessionTestCase):
     def _seed(self):
         history._save_entries(
             [
                 {  # entri mode SCAN (24/7) → dilewati
-                    "date": _days_ago_wib(1),
+                    "date": "2026-08-23",
                     "session": history.SESSION_SCAN,
                     "saved_at": "a",
                     "signals": [{"coin_id": "s", "symbol": "S"}],
                 },
-                {  # sesi berjalan hari ini → dikecualikan
-                    "date": _days_ago_wib(0),
-                    "session": history.SESSION_MALAM,
+                {  # sesi berjalan (hari ini, PAGI @ now 12:00 WIB) → dikecualikan
+                    "date": "2026-08-24",
+                    "session": history.SESSION_PAGI,
                     "saved_at": "b",
                     "signals": [{"coin_id": "cur", "symbol": "CUR"}],
                 },
                 {  # terlalu tua → dilewati
-                    "date": _days_ago_wib(10),
+                    "date": "2026-08-14",
                     "session": history.SESSION_PAGI,
                     "saved_at": "c",
                     "signals": [{"coin_id": "old", "symbol": "OLD"}],
                 },
                 {  # segar 2 hari lalu → masuk (paling lama)
-                    "date": _days_ago_wib(2),
+                    "date": "2026-08-22",
                     "session": history.SESSION_PAGI,
                     "saved_at": "d",
                     "signals": [{"coin_id": "r1", "symbol": "R1"}],
                 },
                 {  # segar 1 hari lalu → masuk (terbaru)
-                    "date": _days_ago_wib(1),
+                    "date": "2026-08-23",
                     "session": history.SESSION_MALAM,
                     "saved_at": "e",
                     "signals": [{"coin_id": "r2", "symbol": "R2"}],
@@ -184,15 +193,149 @@ class TestRecentSessionEntries(SessionTestCase):
 
     def test_only_recent_pagi_malam_entries_sorted(self):
         self._seed()
-        recent = history.load_recent_session_entries()
+        recent = history.load_recent_session_entries(now=_FIXED_NOW)
         self.assertEqual([e["saved_at"] for e in recent], ["d", "e"])
 
     def test_custom_age_window_excludes_old(self):
         self._seed()
-        # Umur dihitung dari tengah malam tanggal entri, jadi entri "1 hari
-        # lalu" berumur 24-48 jam: lolos jendela 2 hari, gugur di jendela <2.
-        recent = history.load_recent_session_entries(max_age_days=2)
+        recent = history.load_recent_session_entries(max_age_days=2, now=_FIXED_NOW)
         self.assertEqual([e["saved_at"] for e in recent], ["e"])
+
+
+def _record(symbol, coin_id, action=ACTION_BUY, entry=100.0, sl=90.0, tp1=120.0, tp2=130.0, result=None):
+    record = {
+        "coin_id": coin_id,
+        "symbol": symbol,
+        "name": symbol,
+        "action": action,
+        "entry": entry,
+        "sl": sl,
+        "tp1": tp1,
+        "tp2": tp2,
+    }
+    if result:
+        record["result"] = result
+    return record
+
+
+class TestResultsTracking(SessionTestCase):
+    def _scan_entry(self, saved_iso):
+        return {
+            "date": saved_iso[:10],
+            "session": history.SESSION_SCAN,
+            "key": f"test:{saved_iso}",
+            "saved_at": saved_iso,
+            "evaluated_at": None,
+            "signals": [_record("BTC", "bitcoin")],
+        }
+
+    _PM_TP2 = {"bitcoin": {"current_price": 131.0, "high_24h": 132.0, "low_24h": 95.0}}
+    _PM_MID = {"bitcoin": {"current_price": 105.0, "high_24h": 106.0, "low_24h": 99.0}}
+    _PM_SL = {"bitcoin": {"current_price": 88.0, "high_24h": 92.0, "low_24h": 87.0}}
+
+    def test_results_locked_never_downgraded(self):
+        history._save_entries([self._scan_entry(_iso_hours_before_now(5))])
+        self.assertTrue(history.update_results(self._PM_TP2, now=_FIXED_NOW))
+        with open(history.HISTORY_FILE, encoding="utf-8") as fh:
+            stored = json.load(fh)
+        signal = stored["entries"][0]["signals"][0]
+        self.assertEqual(signal["result"], history.RESULT_TP2)
+        self.assertEqual(signal["result_price"], 131.0)
+        # Cek berikutnya harga jatuh ke bawah SL → hasil TP2 TIDAK boleh turun.
+        self.assertFalse(history.update_results(self._PM_SL, now=_FIXED_NOW))
+        self.assertEqual(history.load_entries()[0]["signals"][0]["result"], history.RESULT_TP2)
+
+    def test_floating_upgrades_later(self):
+        history._save_entries([self._scan_entry(_iso_hours_before_now(5))])
+        self.assertTrue(history.update_results(self._PM_MID, now=_FIXED_NOW))
+        self.assertEqual(history.load_entries()[0]["signals"][0]["result"], history.RESULT_FLOATING)
+        self.assertTrue(history.update_results(self._PM_TP2, now=_FIXED_NOW))
+        self.assertEqual(history.load_entries()[0]["signals"][0]["result"], history.RESULT_TP2)
+
+    def test_entries_beyond_lookback_skipped(self):
+        history._save_entries([self._scan_entry(_iso_hours_before_now(100.0))])
+        self.assertFalse(history.update_results(self._PM_SL, now=_FIXED_NOW))
+        self.assertIsNone(history.load_entries()[0]["signals"][0].get("result"))
+
+
+class TestWinrate(SessionTestCase):
+    def _seed(self):
+        history._save_entries(
+            [
+                {
+                    "date": "2026-08-20",
+                    "session": history.SESSION_SCAN,
+                    "saved_at": "x1",
+                    "signals": [
+                        _record("TP2", "tp2", result=history.RESULT_TP2),
+                        _record("SL", "sl", result=history.RESULT_SL),
+                        _record("FLOAT", "float"),
+                    ],
+                },
+                {
+                    "date": "2026-08-21",
+                    "session": history.SESSION_SCAN,
+                    "saved_at": "x2",
+                    "signals": [
+                        _record(
+                            "SELLTP1",
+                            "selltp1",
+                            action=ACTION_SELL,
+                            entry=100.0,
+                            sl=110.0,
+                            tp1=80.0,
+                            tp2=70.0,
+                            result=history.RESULT_TP1,
+                        )
+                    ],
+                },
+                {
+                    "date": "2026-08-01",
+                    "session": history.SESSION_PAGI,
+                    "saved_at": "x3",
+                    "signals": [_record("OLD", "old", result=history.RESULT_TP2)],  # luar jendela 7 hari
+                },
+            ]
+        )
+
+    def test_winrate_stats_math_and_window(self):
+        self._seed()
+        stats = history.winrate_stats(now=_FIXED_NOW)
+        self.assertEqual(stats["total"], 4)
+        self.assertEqual(stats["closed"], 3)
+        self.assertEqual(stats["floating"], 1)
+        self.assertEqual(stats["tp2"], 1)
+        self.assertEqual(stats["tp1"], 1)
+        self.assertEqual(stats["sl"], 1)
+        self.assertAlmostEqual(stats["win_rate"], 2 / 3 * 100.0)
+        # TP2 BUY: 0.5*(2R)+0.5*(3R)=2.5 · SL: -1.0 · TP1 SELL: +2.0 → rata-rata 1.1667
+        self.assertAlmostEqual(stats["expectancy"], (2.5 - 1.0 + 2.0) / 3.0)
+
+    def test_format_winrate_summary_contains_numbers(self):
+        self._seed()
+        text = history.format_winrate_summary(now=_FIXED_NOW)
+        self.assertIn("PERFORMA SINYAL 7 HARI TERAKHIR", text)
+        self.assertIn("Win rate: 67%", text)
+        self.assertIn("Ekspektasi: +1.17R/trade", text)
+
+    def test_format_winrate_summary_empty(self):
+        text = history.format_winrate_summary(entries=[])
+        self.assertIn("Belum ada sinyal", text)
+
+
+class TestWinrateDigest(SessionTestCase):
+    def test_digest_once_per_day_after_min_hour(self):
+        self.assertFalse(history.should_send_winrate_digest(now=_FIXED_NOW.replace(hour=7)))
+        self.assertTrue(history.should_send_winrate_digest(now=_FIXED_NOW))
+        history.mark_winrate_digest_sent(_FIXED_NOW)
+        self.assertFalse(history.should_send_winrate_digest(now=_FIXED_NOW))
+        # Keesokan harinya kirim lagi.
+        tomorrow = _FIXED_NOW + timedelta(days=1)
+        self.assertTrue(history.should_send_winrate_digest(now=tomorrow))
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 
 if __name__ == "__main__":

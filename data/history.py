@@ -21,7 +21,10 @@ from typing import Any, Dict, List, Optional
 from config import (
     EVAL_LOOKBACK_HOURS,
     EVAL_MIN_AGE_HOURS,
+    RESULT_LOOKBACK_HOURS,
     SESSION_EVAL_MAX_AGE_DAYS,
+    WINRATE_DIGEST_HOUR,
+    WINRATE_WINDOW_DAYS,
 )
 from signals.engine import ACTION_BUY, ACTION_SELL, Signal, signal_levels
 
@@ -83,25 +86,37 @@ class Eval:
 
 def load_entries() -> List[Dict[str, Any]]:
     """Seluruh entri history yang tersimpan di HISTORY_FILE."""
+    return _load_doc().get("entries", [])
+
+
+def _load_doc() -> Dict[str, Any]:
+    """Muat dokumen history utuh (entries + meta)."""
     try:
         with open(HISTORY_FILE, encoding="utf-8") as fh:
             data = json.load(fh)
     except (OSError, ValueError):
-        return []
+        return {"entries": []}
     if not isinstance(data, dict):
-        return []
+        return {"entries": []}
     entries = data.get("entries", [])
-    return entries if isinstance(entries, list) else []
+    data["entries"] = entries if isinstance(entries, list) else []
+    return data
 
 
-def _save_entries(entries: List[Dict[str, Any]]) -> None:
+def _save_doc(doc: Dict[str, Any]) -> None:
     parent = os.path.dirname(HISTORY_FILE)
     if parent:
         os.makedirs(parent, exist_ok=True)
     tmp = HISTORY_FILE + ".tmp"
     with open(tmp, "w", encoding="utf-8") as fh:
-        json.dump({"entries": entries}, fh, ensure_ascii=False, indent=2)
+        json.dump(doc, fh, ensure_ascii=False, indent=2)
     os.replace(tmp, HISTORY_FILE)
+
+
+def _save_entries(entries: List[Dict[str, Any]]) -> None:
+    doc = _load_doc()
+    doc["entries"] = entries
+    _save_doc(doc)
 
 
 def append_signals(signals: List[Signal], session: Optional[str] = None) -> None:
@@ -329,6 +344,7 @@ def _entry_date(entry: Dict[str, Any]) -> Optional[datetime]:
 def load_recent_session_entries(
     max_age_days: Optional[int] = None,
     session: Optional[str] = None,
+    now: Optional[datetime] = None,
 ) -> List[Dict[str, Any]]:
     """Entri sesi PAGI/MALAM dalam jendela umur (urut lama -> terbaru).
 
@@ -338,7 +354,7 @@ def load_recent_session_entries(
     """
     max_age = SESSION_EVAL_MAX_AGE_DAYS if max_age_days is None else max_age_days
     session = session or current_session()
-    now = _now_wib()
+    now = now or _now_wib()
     today = now.strftime("%Y-%m-%d")
     out: List[Dict[str, Any]] = []
     for entry in load_entries():
@@ -453,3 +469,231 @@ def format_evaluation(
     for index, ev in enumerate(evals, start=1):
         lines.append(f"{index}. #{ev.symbol} ({ev.action}) → {_result_label(ev)}")
     return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# Pencatatan hasil (win-rate): hasil final terkunci, FLOATING boleh naik
+# ---------------------------------------------------------------------------
+
+
+def _stored_result(record: Dict[str, Any]) -> str:
+    return str(record.get("result") or "")
+
+
+def _result_rank(result: str) -> int:
+    """Semakin kecil semakin baik (TP2 > TP1 > SL > FLOATING > kosong)."""
+    try:
+        return RESULTS_ORDER.index(result)
+    except ValueError:
+        return len(RESULTS_ORDER)
+
+
+_FINAL_RESULTS_SET = set(FINAL_RESULTS)
+
+
+def _apply_results(entry: Dict[str, Any], evals: List[Eval]) -> bool:
+    """Terapkan hasil evaluasi ke record sinyal (hanya upgrade, tak pernah turun).
+
+    Hasil final (TP1/TP2/SL) terkunci; FLOATING boleh ditingkatkan pada
+    pengecekan berikutnya. Return True bila ada perubahan.
+    """
+    changed = False
+    for record, ev in zip(entry.get("signals", []), evals):
+        previous = _stored_result(record)
+        if previous in _FINAL_RESULTS_SET:
+            continue  # sudah final — terkunci
+        if _result_rank(ev.result) < _result_rank(previous):
+            record["result"] = ev.result
+            record["result_price"] = ev.price
+            record["result_at"] = _now_wib().isoformat(timespec="seconds")
+            changed = True
+    return changed
+
+
+def _entry_saved_dt(entry: Dict[str, Any]) -> Optional[datetime]:
+    """Waktu tersimpan entri (dari saved_at, fallback tanggal) dalam tz WIB."""
+    saved = str(entry.get("saved_at") or "")
+    try:
+        ts = datetime.fromisoformat(saved)
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=timezone(WIB_OFFSET))
+        return ts
+    except (TypeError, ValueError):
+        return _entry_date(entry)
+
+
+def update_results(
+    price_map: Dict[str, Dict[str, float]],
+    max_age_hours: Optional[float] = None,
+    now: Optional[datetime] = None,
+) -> bool:
+    """Cek ulang SEMUA sinyal belum tuntas dalam jendela umur & simpan hasil.
+
+    Dipanggil tiap siklus scan: sinyal masih mengambang terus dicek sampai
+    kena TP1/TP2/SL (terkunci) atau lewat `RESULT_LOOKBACK_HOURS`. Return
+    True bila ada hasil baru yang tersimpan.
+    """
+    cutoff = RESULT_LOOKBACK_HOURS if max_age_hours is None else max_age_hours
+    now = now or _now_wib()
+    entries = load_entries()
+    changed = False
+    for entry in entries:
+        ts = _entry_saved_dt(entry)
+        if ts is None or (now - ts).total_seconds() / 3600 > cutoff:
+            continue
+        if all(_stored_result(r) in set(FINAL_RESULTS) for r in entry.get("signals", [])):
+            continue
+        if _apply_results(entry, evaluate_entry(entry, price_map)):
+            changed = True
+    if changed:
+        _save_entries(entries)
+    return changed
+
+
+def _trade_r_multiple(record: Dict[str, Any], result: str) -> float:
+    """Hasil trade dalam satuan R (risiko = |entry − SL|).
+
+    TP1 → full TP1. TP2 → 50% TP1 + 50% TP2 (mencerminkan exit executor).
+    SL → -1R. Nilai tak valid → 0.0 (netral).
+    """
+    try:
+        entry = float(record.get("entry") or 0)
+        sl = float(record.get("sl") or 0)
+        tp1 = float(record.get("tp1") or 0)
+        tp2 = float(record.get("tp2") or 0)
+        action = str(record.get("action") or ACTION_BUY)
+    except (TypeError, ValueError):
+        return 0.0
+    risk = abs(entry - sl)
+    if risk <= 0 or entry <= 0:
+        return 0.0
+    sign = -1.0 if action == ACTION_SELL else 1.0
+
+    def _level_r(level: float) -> Optional[float]:
+        return sign * (level - entry) / risk if level > 0 else None
+
+    if result == RESULT_SL:
+        return -1.0
+    if result == RESULT_TP1:
+        return _level_r(tp1) or 0.0
+    if result == RESULT_TP2:
+        r_tp1, r_tp2 = _level_r(tp1), _level_r(tp2)
+        if r_tp1 is None and r_tp2 is None:
+            return 0.0
+        if r_tp1 is None:
+            return r_tp2 or 0.0
+        if r_tp2 is None:
+            return r_tp1
+        return 0.5 * r_tp1 + 0.5 * r_tp2
+    return 0.0
+
+
+def winrate_stats(
+    entries: Optional[List[Dict[str, Any]]] = None,
+    days: Optional[int] = None,
+    now: Optional[datetime] = None,
+) -> Dict[str, Any]:
+    """Statistik performa sinyal dalam jendela `days` hari terakhir."""
+    window = WINRATE_WINDOW_DAYS if days is None else days
+    now = now or _now_wib()
+    cutoff = now - timedelta(days=window)
+    counts = {RESULT_TP2: 0, RESULT_TP1: 0, RESULT_SL: 0}
+    total = closed = floating = 0
+    r_sum = 0.0
+    dates: List[str] = []
+    for entry in load_entries() if entries is None else entries:
+        entry_dt = _entry_date(entry)
+        if entry_dt is None or entry_dt < cutoff:
+            continue
+        dates.append(str(entry.get("date", "")))
+        for record in entry.get("signals", []):
+            total += 1
+            result = _stored_result(record)
+            if result in counts:
+                counts[result] += 1
+                closed += 1
+                r_sum += _trade_r_multiple(record, result)
+            elif not result or result == RESULT_FLOATING:
+                floating += 1
+    wins = counts[RESULT_TP1] + counts[RESULT_TP2]
+    return {
+        "days": window,
+        "total": total,
+        "closed": closed,
+        "floating": floating,
+        "tp2": counts[RESULT_TP2],
+        "tp1": counts[RESULT_TP1],
+        "sl": counts[RESULT_SL],
+        "win_rate": (wins / closed * 100.0) if closed else None,
+        "expectancy": (r_sum / closed) if closed else None,
+        "first_date": min(dates) if dates else "",
+        "last_date": max(dates) if dates else "",
+    }
+
+
+def format_winrate_summary(
+    days: Optional[int] = None,
+    entries: Optional[List[Dict[str, Any]]] = None,
+    now: Optional[datetime] = None,
+) -> str:
+    """Ringkasan win-rate kumulatif untuk digest harian grup evaluasi."""
+    stats = winrate_stats(entries=entries, days=days, now=now)
+    window = stats["days"]
+    header = f"<b>📈 PERFORMA SINYAL {window} HARI TERAKHIR</b>"
+    if stats["total"] == 0:
+        return f"{header}\n🗓️ Belum ada sinyal dalam {window} hari terakhir."
+
+    lines = [header]
+    try:
+        first = datetime.strptime(stats["first_date"], "%Y-%m-%d").strftime("%d %b")
+        last = datetime.strptime(stats["last_date"], "%Y-%m-%d").strftime("%d %b %Y")
+        if first and last:
+            lines.insert(1, f"🗓️ {first} – {last}")
+    except ValueError:
+        pass
+
+    lines.append(
+        f"Sinyal: {stats['total']} · Tuntas: {stats['closed']} · "
+        f"⏳ Mengambang: {stats['floating']}"
+    )
+    lines.append(
+        f"🎯 TP2: {stats['tp2']} · ✅ TP1: {stats['tp1']} · ❌ SL: {stats['sl']}"
+    )
+
+    if stats["win_rate"] is None:
+        verdict = "⏳ Belum ada sinyal tuntas untuk menghitung win rate."
+    else:
+        verdict = (
+            f"✅ Win rate: {stats['win_rate']:.0f}% ({stats['tp1'] + stats['tp2']}"
+            f"/{stats['closed']} tuntas)"
+        )
+        if stats["expectancy"] is not None:
+            verdict += f" · 📊 Ekspektasi: {stats['expectancy']:+.2f}R/trade"
+    lines.append(verdict)
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# Digest win-rate harian (sekali per hari WIB, state tersimpan di meta)
+# ---------------------------------------------------------------------------
+
+
+def should_send_winrate_digest(
+    min_hour: Optional[int] = None, now: Optional[datetime] = None
+) -> bool:
+    """True bila digest win-rate hari ini belum terkirim dan sudah lewat jamnya."""
+    hour_min = WINRATE_DIGEST_HOUR if min_hour is None else min_hour
+    now = now or _now_wib()
+    doc = _load_doc()
+    sent = str((doc.get("meta") or {}).get("winrate_digest_sent", ""))
+    return now.strftime("%Y-%m-%d") != sent and now.hour >= hour_min
+
+
+def mark_winrate_digest_sent(now: Optional[datetime] = None) -> None:
+    now = now or _now_wib()
+    doc = _load_doc()
+    meta = doc.get("meta") if isinstance(doc.get("meta"), dict) else {}
+    meta["winrate_digest_sent"] = now.strftime("%Y-%m-%d")
+    meta["winrate_digest_at"] = now.isoformat(timespec="seconds")
+    doc["meta"] = meta
+    _save_doc(doc)

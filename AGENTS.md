@@ -89,9 +89,11 @@ Setiap sinyal final memuat checklist 4 kategori (selaras dengan arah BUY/SELL):
 
 **Mode 24/7 (default)**: setiap sinyal terkirim disimpan sebagai **satu entri independen** via `append_scan_signal(sig)` — key unik `YYYYMMDDHHMMSS:coin_id:action`, session `SCAN`, plus `evaluated_at` (None). Evaluasi: `load_pending_entries(min_age, max_age)` mengembalikan entri SCAN yang belum dievaluasi dengan umur antara `EVAL_MIN_AGE_HOURS` (4) dan `EVAL_LOOKBACK_HOURS` (24); hasil diformat `format_evaluation_pending` (1 pesan per entri) → dikirim ke group publik dengan gambar chart → `mark_entry_evaluated(entry)` (tidak pernah dikirim ulang).
 
-**Mode sesi (legacy, `python bot.py`/GitHub Actions)**: `append_signals(signals, session)` — satu entri per kunci **(tanggal, sesi)**; `load_last_entry()` lalu `format_evaluation()` → dikirim ke group publik via `send_previous_session_evaluation`.
+**Mode sesi (legacy, `python bot.py`/GitHub Actions)**: `append_signals(signals, session)` — satu entri per kunci **(tanggal, sesi)**; `load_recent_session_entries(max_age_days=SESSION_EVAL_MAX_AGE_DAYS)` → entri terbaru yang masih punya sinyal FLOATING diformat `format_evaluation()` dan dikirim via `send_previous_session_evaluation`. Bila semua sudah final/kedaluwarsa → string kosong, pengiriman DILEWATI (tidak ada evaluasi basi berulang).
 
 Evaluasi membandingkan Entry/SL/TP dengan harga terkini / high-low 24j (via `data.market.coin_price_map`; koin yang hilang di-backfill `get_prices_for_ids`). Hasil: **HIT TP2** > **HIT TP1** > **HIT SL** > **FLOATING**.
+
+**Pencatatan hasil & win-rate (uji kelayakan autotrade)**: tiap siklus `bot.refresh_signal_results` → `update_results(price_map)` mengecek ulang SEMUA sinyal belum tuntas dalam `RESULT_LOOKBACK_HOURS` (72 jam) dan menulis field `result`/`result_price`/`result_at` per sinyal — aturan kunci: hasil final TIDAK pernah diturunkan; FLOATING boleh naik. Dari field itu `winrate_stats()` menghitung total/tuntas/mengambang + win rate `(TP1+TP2)/tuntas` + ekspektasi R per trade (`_trade_r_multiple`: TP1 full, TP2 = 50%×R_TP1 + 50%×R_TP2, SL = −1R) dalam jendela `WINRATE_WINDOW_DAYS`; `send_daily_winrate_digest` mengirim ringkasannya sekali sehari ke grup evaluasi pada jam ≥ `WINRATE_DIGEST_HOUR` WIB (state sekali-per-hari disimpan di `meta.winrate_digest_sent` dalam history.json). Semua fungsi waktu menerima parameter `now` opsional agar tes deterministik.
 
 ### 2e. Cooldown anti-spam (data/cooldown.py)
 
@@ -100,7 +102,7 @@ Evaluasi membandingkan Entry/SL/TP dengan harga terkini / high-low 24j (via `dat
 
 ## 3. Automated Trading Bybit (execution/bybit_executor.py)
 
-Modul **terpisah** dari mesin sinyal. Hanya berfungsi bila `ENABLE_BYBIT_AUTOTRADE=true`; bila false, `bot.py` melewati eksekusi tanpa efek samping.
+Modul **terpisah** dari mesin sinyal. Hanya berfungsi bila `ENABLE_BYBIT_AUTOTRADE=true`; bila false, `bot.py` melewati eksekusi tanpa efek samping. **Wiring**: `run_one_cycle` memanggil `send_best_signal` (return `Optional[Signal]` — sinyal yang benar-benar dipublish ke chat private) lalu `run_autotrade([best_signal])` — autotrade TIDAK PERNAH mengeksekusi sinyal yang tidak diumumkan, dan tidak lagi memproses semua sinyal hasil scan.
 
 ### Variabel `.env` baru
 
@@ -202,6 +204,8 @@ Skor quick (dari sparkline + turnover, satu panggilan `markets`):
 - Logika siklus ada di `bot.py`: `run_one_cycle` (satu scan) dan `run_loop` (while True + sleep `SCAN_INTERVAL_MINUTES`). Error per siklus hanya di-log, bot tidak mati.
 - Filter kirim: `pick_best_signal` (1 koin BUY/SELL terkuat) + `SIGNAL_MIN_CONFIDENCE` (65%) + cooldown `SIGNAL_COOLDOWN_HOURS` (6 jam).
 - Evaluasi publik: `send_pending_evaluations` (mode 24/7) dan `send_previous_session_evaluation` (mode satu siklus).
+- Win-rate: `refresh_signal_results` (tiap siklus, upgrade-only) + `send_daily_winrate_digest` (sekali sehari); state digest di `meta.winrate_digest_sent`.
+- Autotrade wiring: `run_autotrade([best_signal])` — hanya sinyal yang dipublish.
 - Tambah variabel baru di `config.py` (default) + `.env.example` + tabel README + (bila relevan) workflow.
 
 ### Menjalankan & menguji

@@ -48,6 +48,13 @@ EVAL_LOOKBACK_HOURS: float = _env_float("EVAL_LOOKBACK_HOURS", 24.0)
 # Entri lebih tua ATAU yang seluruh sinyalnya sudah final TIDAK ditampilkan
 # ulang — mencegah evaluasi lama mengulang terus di atas pesan.
 SESSION_EVAL_MAX_AGE_DAYS: int = _env_int("SESSION_EVAL_MAX_AGE_DAYS", 3)
+# Pencatatan hasil (win-rate): sinyal belum tuntas terus dicek ulang tiap
+# siklus sampai kena TP/SL. Lebih tua dari ini dihitung selesai apa adanya.
+RESULT_LOOKBACK_HOURS: float = _env_float("RESULT_LOOKBACK_HOURS", 72.0)
+# Jendela hari ringkasan win-rate harian (digest) ke grup evaluasi.
+WINRATE_WINDOW_DAYS: int = _env_int("WINRATE_WINDOW_DAYS", 7)
+# Jam WIB minimal untuk mengirim digest win-rate harian (sekali per hari).
+WINRATE_DIGEST_HOUR: int = _env_int("WINRATE_DIGEST_HOUR", 8)
 
 # Day Trading Lanjutan — Analisis Multi-Timeframe (MTF)
 # Jumlah kandidat yang dianalisis mendalam (ambil chart 2x per koin dari CoinGecko).
