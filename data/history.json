@@ -2419,7 +2419,7 @@
       "session": "SCAN",
       "key": "20260824114347:grass:BUY",
       "saved_at": "2026-08-24T11:43:47+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-24T16:05:32+07:00",
       "signals": [
         {
           "coin_id": "grass",
