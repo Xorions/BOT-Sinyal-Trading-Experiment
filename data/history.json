@@ -2413,6 +2413,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-24",
+      "session": "SCAN",
+      "key": "20260824114347:grass:BUY",
+      "saved_at": "2026-08-24T11:43:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "grass",
+          "symbol": "GRASS",
+          "name": "Grass",
+          "action": "BUY",
+          "entry": 0.361498,
+          "sl": 0.34659396700594364,
+          "tp1": 0.373698786968363,
+          "tp2": 0.37979918045254457,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
