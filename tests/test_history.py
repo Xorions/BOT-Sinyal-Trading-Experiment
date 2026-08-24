@@ -3,6 +3,7 @@
 import os
 import tempfile
 import unittest
+from datetime import datetime, timedelta, timezone
 
 import data.history as history
 from signals.engine import ACTION_BUY, ACTION_SELL, Signal
@@ -135,6 +136,63 @@ class TestScan24x7History(SessionTestCase):
     def test_last_session_entry_none_when_only_scan(self):
         history.append_scan_signal(_signal("BTC", "bitcoin", price=100.0))
         self.assertIsNone(history.load_last_session_entry(session=history.SESSION_MALAM))
+
+
+_WIB_TZ = timezone(timedelta(hours=7))
+
+
+def _days_ago_wib(days: int) -> str:
+    return (datetime.now(_WIB_TZ) - timedelta(days=days)).strftime("%Y-%m-%d")
+
+
+class TestRecentSessionEntries(SessionTestCase):
+    def _seed(self):
+        history._save_entries(
+            [
+                {  # entri mode SCAN (24/7) → dilewati
+                    "date": _days_ago_wib(1),
+                    "session": history.SESSION_SCAN,
+                    "saved_at": "a",
+                    "signals": [{"coin_id": "s", "symbol": "S"}],
+                },
+                {  # sesi berjalan hari ini → dikecualikan
+                    "date": _days_ago_wib(0),
+                    "session": history.SESSION_MALAM,
+                    "saved_at": "b",
+                    "signals": [{"coin_id": "cur", "symbol": "CUR"}],
+                },
+                {  # terlalu tua → dilewati
+                    "date": _days_ago_wib(10),
+                    "session": history.SESSION_PAGI,
+                    "saved_at": "c",
+                    "signals": [{"coin_id": "old", "symbol": "OLD"}],
+                },
+                {  # segar 2 hari lalu → masuk (paling lama)
+                    "date": _days_ago_wib(2),
+                    "session": history.SESSION_PAGI,
+                    "saved_at": "d",
+                    "signals": [{"coin_id": "r1", "symbol": "R1"}],
+                },
+                {  # segar 1 hari lalu → masuk (terbaru)
+                    "date": _days_ago_wib(1),
+                    "session": history.SESSION_MALAM,
+                    "saved_at": "e",
+                    "signals": [{"coin_id": "r2", "symbol": "R2"}],
+                },
+            ]
+        )
+
+    def test_only_recent_pagi_malam_entries_sorted(self):
+        self._seed()
+        recent = history.load_recent_session_entries()
+        self.assertEqual([e["saved_at"] for e in recent], ["d", "e"])
+
+    def test_custom_age_window_excludes_old(self):
+        self._seed()
+        # Umur dihitung dari tengah malam tanggal entri, jadi entri "1 hari
+        # lalu" berumur 24-48 jam: lolos jendela 2 hari, gugur di jendela <2.
+        recent = history.load_recent_session_entries(max_age_days=2)
+        self.assertEqual([e["saved_at"] for e in recent], ["e"])
 
 
 if __name__ == "__main__":

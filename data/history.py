@@ -18,7 +18,11 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
 
-from config import EVAL_LOOKBACK_HOURS, EVAL_MIN_AGE_HOURS
+from config import (
+    EVAL_LOOKBACK_HOURS,
+    EVAL_MIN_AGE_HOURS,
+    SESSION_EVAL_MAX_AGE_DAYS,
+)
 from signals.engine import ACTION_BUY, ACTION_SELL, Signal, signal_levels
 
 HISTORY_FILE = "data/history.json"
@@ -36,6 +40,9 @@ RESULT_SL = "HIT SL"
 RESULT_FLOATING = "FLOATING"
 
 RESULTS_ORDER = (RESULT_TP2, RESULT_TP1, RESULT_SL, RESULT_FLOATING)
+
+# Hasil yang dianggap tuntas (trade selesai).
+FINAL_RESULTS = (RESULT_TP2, RESULT_TP1, RESULT_SL)
 
 _RESULT_BADGE = {
     RESULT_TP2: "🎯",
@@ -309,6 +316,42 @@ def load_last_session_entry(session: Optional[str] = None) -> Optional[Dict[str,
         return None
     candidates.sort(key=_entry_key, reverse=True)
     return candidates[0]
+
+
+def _entry_date(entry: Dict[str, Any]) -> Optional[datetime]:
+    try:
+        naive = datetime.strptime(str(entry.get("date", "")), "%Y-%m-%d")
+    except ValueError:
+        return None
+    return naive.replace(tzinfo=timezone(WIB_OFFSET))
+
+
+def load_recent_session_entries(
+    max_age_days: Optional[int] = None,
+    session: Optional[str] = None,
+) -> List[Dict[str, Any]]:
+    """Entri sesi PAGI/MALAM dalam jendela umur (urut lama -> terbaru).
+
+    Dipakai evaluasi legacy (`evaluate_previous_session`): entri mode SCAN
+    (24/7) dilewati, entri sesi berjalan hari ini dikecualikan, dan entri
+    lebih tua dari `max_age_days` tidak layak ditampilkan ulang.
+    """
+    max_age = SESSION_EVAL_MAX_AGE_DAYS if max_age_days is None else max_age_days
+    session = session or current_session()
+    now = _now_wib()
+    today = now.strftime("%Y-%m-%d")
+    out: List[Dict[str, Any]] = []
+    for entry in load_entries():
+        if entry.get("session") not in (SESSION_PAGI, SESSION_MALAM):
+            continue
+        if entry.get("date") == today and entry.get("session", DEFAULT_SESSION) == session:
+            continue
+        entry_dt = _entry_date(entry)
+        if entry_dt is None or (now - entry_dt) >= timedelta(days=max_age):
+            continue
+        out.append(entry)
+    out.sort(key=_entry_key)
+    return out
 
 
 def _evaluate_one(record: Dict[str, Any], price_info: Dict[str, float]) -> Eval:

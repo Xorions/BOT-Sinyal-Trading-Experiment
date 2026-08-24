@@ -44,6 +44,10 @@ SIGNAL_COOLDOWN_HOURS: float = _env_float("SIGNAL_COOLDOWN_HOURS", 6.0)
 EVAL_MIN_AGE_HOURS: float = _env_float("EVAL_MIN_AGE_HOURS", 4.0)
 # Batas umur sinyal yang masih dievaluasi (jam). Lebih tua = dilewati.
 EVAL_LOOKBACK_HOURS: float = _env_float("EVAL_LOOKBACK_HOURS", 24.0)
+# Batas umur (hari) entri sesi PAGI/MALAM yang masih dievaluasi jalur legacy.
+# Entri lebih tua ATAU yang seluruh sinyalnya sudah final TIDAK ditampilkan
+# ulang — mencegah evaluasi lama mengulang terus di atas pesan.
+SESSION_EVAL_MAX_AGE_DAYS: int = _env_int("SESSION_EVAL_MAX_AGE_DAYS", 3)
 
 # Day Trading Lanjutan — Analisis Multi-Timeframe (MTF)
 # Jumlah kandidat yang dianalisis mendalam (ambil chart 2x per koin dari CoinGecko).

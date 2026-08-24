@@ -8,7 +8,9 @@ Alur per siklus scan:
    confidence >= SIGNAL_MIN_CONFIDENCE (default 65%), dengan gambar chart.
    Koin yang sama (symbol+arah) tidak dikirim ulang dalam masa cooldown.
 4. Evaluasi sinyal sebelumnya (umur >= EVAL_MIN_AGE_HOURS) dikirim ke GROUP
-   PUBLIK, juga dengan gambar chart per sinyal.
+   PUBLIK, juga dengan gambar chart per sinyal. Evaluasi sesi PAGI/MALAM
+   (legacy) hanya dikirim bila masih ada sinyal mengambang — kalau semua
+   sudah tuntas/kedaluwarsa, bot diam agar tidak mengulang evaluasi lama.
 5. Autotrade Bybit tetap opsional & default nonaktif (ENABLE_BYBIT_AUTOTRADE=false).
 
 Mode:
@@ -41,11 +43,12 @@ from data.cooldown import is_blocked, record_sent
 from data.history import (
     append_scan_signal,
     current_session,
+    evaluate_entry,
     format_evaluation,
     format_evaluation_pending,
-    load_last_session_entry,
-    load_pending_entries,
+    load_recent_session_entries,
     mark_entry_evaluated,
+    RESULT_FLOATING,
     session_label,
 )
 from data.market import coin_price_map, get_prices_for_ids, get_top_coins
@@ -220,28 +223,40 @@ def send_pending_evaluations(coins: list) -> None:
 
 
 def evaluate_previous_session(coins: list) -> str:
-    """Evaluasi sinyal sesi sebelumnya dengan harga saat ini (mode non-24/7)."""
-    prev_entry = load_last_session_entry()
+    """Evaluasi sesi PAGI/MALAM terakhir yang MASIH punya sinyal mengambang.
+
+    Hanya entri terbaru dalam jendela `SESSION_EVAL_MAX_AGE_DAYS` hari yang
+    memiliki minimal satu sinyal belum tuntas (FLOATING) yang ditampilkan.
+    Bila semua sudah final (TP/SL) atau kedaluwarsa → string kosong, dan
+    pemanggil melewatkan pengiriman — evaluasi lama tidak diulang terus
+    di atas pesan sehingga evaluasi yang benar-benar aktif terbaca.
+    """
     price_map = coin_price_map(coins)
-    missing_ids = [
-        record.get("coin_id")
-        for record in (prev_entry or {}).get("signals", [])
-        if record.get("coin_id") and record.get("coin_id") not in price_map
-    ]
+    candidates = list(reversed(load_recent_session_entries()))
+    missing_ids = sorted(
+        {
+            record.get("coin_id")
+            for entry in candidates
+            for record in entry.get("signals", [])
+            if record.get("coin_id") and record.get("coin_id") not in price_map
+        }
+    )
     if missing_ids:
         try:
             price_map.update(get_prices_for_ids(missing_ids))
         except Exception as exc:  # noqa: BLE001 - evaluasi tidak boleh menggagalkan briefing
             log.warning("Gagal mengambil harga evaluasi sesi sebelumnya: %s", exc)
-    return format_evaluation(prev_entry, price_map)
+
+    for entry in candidates:
+        evals = evaluate_entry(entry, price_map)
+        if any(ev.result == RESULT_FLOATING for ev in evals):
+            return format_evaluation(entry, price_map)
+    return ""
 
 
 def send_previous_session_evaluation(coins: list) -> None:
-    """Kirim evaluasi sesi PAGI/MALAM sebelumnya ke group publik (mode non-24/7).
-
-    Dipakai saat `python bot.py` / GitHub Actions (daily.yml). Evaluasi 24/7
-    ditangani terpisah oleh `send_pending_evaluations`.
-    """
+    """Kirim evaluasi sesi PAGI/MALAM ke group publik — HANYA bila ada sinyal
+    yang masih mengambang. Semua tuntas/kedaluwarsa = diam (tanpa pesan)."""
     if not TELEGRAM_BOT_TOKEN or not eval_chat_id():
         return
     try:
@@ -252,10 +267,16 @@ def send_previous_session_evaluation(coins: list) -> None:
             "<b>📊 EVALUASI SINYAL SESI SEBELUMNYA</b>\n🗓️ Gagal memuat data evaluasi."
         )
 
+    if not evaluation.strip():
+        log.info(
+            "Semua sinyal sesi sudah tuntas/kedaluwarsa — evaluasi legacy dilewati."
+        )
+        return
+
     image_url = ""
-    prev_entry = load_last_session_entry()
-    if prev_entry:
-        record = (prev_entry.get("signals") or [{}])[0]
+    recent = list(reversed(load_recent_session_entries()))
+    if recent:
+        record = (recent[-1].get("signals") or [{}])[0]
         try:
             image_url = (
                 generate_chart_url(
