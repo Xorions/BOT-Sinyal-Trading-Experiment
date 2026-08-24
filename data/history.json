@@ -2513,6 +2513,26 @@
           "confidence": 69
         }
       ]
+    },
+    {
+      "date": "2026-08-24",
+      "session": "SCAN",
+      "key": "20260824222317:the-graph:BUY",
+      "saved_at": "2026-08-24T22:23:17+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "the-graph",
+          "symbol": "GRT",
+          "name": "The Graph",
+          "action": "BUY",
+          "entry": 0.01782257,
+          "sl": 0.017291116060135833,
+          "tp1": 0.018247733151891335,
+          "tp2": 0.018460314727837,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
