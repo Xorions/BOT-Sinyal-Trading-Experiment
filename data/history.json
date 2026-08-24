@@ -2493,6 +2493,26 @@
           "confidence": 76
         }
       ]
+    },
+    {
+      "date": "2026-08-24",
+      "session": "SCAN",
+      "key": "20260824214110:fetch-ai:BUY",
+      "saved_at": "2026-08-24T21:41:10+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "fetch-ai",
+          "symbol": "FET",
+          "name": "Artificial Superintelligence Alliance",
+          "action": "BUY",
+          "entry": 0.177068,
+          "sl": 0.17130288703780938,
+          "tp1": 0.1816800903697525,
+          "tp2": 0.18398613555462875,
+          "confidence": 69
+        }
+      ]
     }
   ]
 }
