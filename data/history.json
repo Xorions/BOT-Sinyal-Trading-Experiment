@@ -2439,7 +2439,7 @@
       "session": "SCAN",
       "key": "20260824182812:zama:BUY",
       "saved_at": "2026-08-24T18:28:12+07:00",
-      "evaluated_at": null,
+      "evaluated_at": "2026-08-24T23:04:46+07:00",
       "signals": [
         {
           "coin_id": "zama",
@@ -2531,6 +2531,26 @@
           "tp1": 0.018247733151891335,
           "tp2": 0.018460314727837,
           "confidence": 69
+        }
+      ]
+    },
+    {
+      "date": "2026-08-24",
+      "session": "SCAN",
+      "key": "20260824230447:telcoin:BUY",
+      "saved_at": "2026-08-24T23:04:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "telcoin",
+          "symbol": "TEL",
+          "name": "Telcoin",
+          "action": "BUY",
+          "entry": 0.00184526,
+          "sl": 0.0018117140531521327,
+          "tp1": 0.0018788059468478674,
+          "tp2": 0.001895578920271801,
+          "confidence": 76
         }
       ]
     }
