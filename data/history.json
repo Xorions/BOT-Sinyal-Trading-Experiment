@@ -2831,6 +2831,26 @@
           "result_at": "2026-08-25T13:45:36+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-25",
+      "session": "SCAN",
+      "key": "20260825173218:trust-wallet-token:BUY",
+      "saved_at": "2026-08-25T17:32:18+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "trust-wallet-token",
+          "symbol": "TWT",
+          "name": "Trust Wallet",
+          "action": "BUY",
+          "entry": 0.441602,
+          "sl": 0.4335998790484227,
+          "tp1": 0.44800369676126184,
+          "tp2": 0.45120454514189273,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
