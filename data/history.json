@@ -2946,6 +2946,26 @@
           "result_at": "2026-08-26T01:56:49+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-26",
+      "session": "SCAN",
+      "key": "20260826023505:dog-go-to-the-moon-rune:BUY",
+      "saved_at": "2026-08-26T02:35:05+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dog-go-to-the-moon-rune",
+          "symbol": "DOG",
+          "name": "Dog (Bitcoin)",
+          "action": "BUY",
+          "entry": 0.00143922,
+          "sl": 0.0013245184255038578,
+          "tp1": 0.0015309812595969137,
+          "tp2": 0.0015768618893953704,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
