@@ -2963,6 +2963,29 @@
           "sl": 0.0013245184255038578,
           "tp1": 0.0015309812595969137,
           "tp2": 0.0015768618893953704,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.00139117,
+          "result_at": "2026-08-26T03:01:23+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "session": "SCAN",
+      "key": "20260826030129:polygon-ecosystem-token:BUY",
+      "saved_at": "2026-08-26T03:01:29+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "polygon-ecosystem-token",
+          "symbol": "POL",
+          "name": "POL (ex-MATIC)",
+          "action": "BUY",
+          "entry": 0.123589,
+          "sl": 0.1184172443281923,
+          "tp1": 0.12787428231924675,
+          "tp2": 0.1300169234788701,
           "confidence": 69
         }
       ]
