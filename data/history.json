@@ -2871,7 +2871,30 @@
           "sl": 0.09210152759840626,
           "tp1": 0.09743577792127499,
           "tp2": 0.09862116688191248,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.099787,
+          "result_at": "2026-08-25T22:21:51+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "session": "SCAN",
+      "key": "20260825222158:jasmycoin:BUY",
+      "saved_at": "2026-08-25T22:21:58+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jasmycoin",
+          "symbol": "JASMY",
+          "name": "JasmyCoin",
+          "action": "BUY",
+          "entry": 0.00524535,
+          "sl": 0.005048470775620966,
+          "tp1": 0.0054028533795032275,
+          "tp2": 0.005481605069254841,
+          "confidence": 82
         }
       ]
     }
