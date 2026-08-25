@@ -2762,6 +2762,26 @@
           "result_at": "2026-08-25T08:13:15+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-25",
+      "session": "SCAN",
+      "key": "20260825093226:pepe:BUY",
+      "saved_at": "2026-08-25T09:32:26+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pepe",
+          "symbol": "PEPE",
+          "name": "Pepe",
+          "action": "BUY",
+          "entry": 4.18e-06,
+          "sl": 4.073469155322749e-06,
+          "tp1": 4.2652246757418e-06,
+          "tp2": 4.3078370136127e-06,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
