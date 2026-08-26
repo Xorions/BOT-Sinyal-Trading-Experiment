@@ -3153,6 +3153,26 @@
           "result_at": "2026-08-26T16:40:25+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-26",
+      "session": "SCAN",
+      "key": "20260826171852:derive:BUY",
+      "saved_at": "2026-08-26T17:18:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "derive",
+          "symbol": "DRV",
+          "name": "Derive",
+          "action": "BUY",
+          "entry": 0.185096,
+          "sl": 0.17472912092394963,
+          "tp1": 0.1933895032608403,
+          "tp2": 0.19753625489126048,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
