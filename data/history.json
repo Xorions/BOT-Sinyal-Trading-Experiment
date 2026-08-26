@@ -3199,6 +3199,26 @@
           "result_at": "2026-08-26T18:44:53+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-26",
+      "session": "SCAN",
+      "key": "20260826203416:falcon-finance-ff:BUY",
+      "saved_at": "2026-08-26T20:34:16+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "falcon-finance-ff",
+          "symbol": "FF",
+          "name": "Falcon Finance",
+          "action": "BUY",
+          "entry": 0.100484,
+          "sl": 0.09610306295983864,
+          "tp1": 0.10486493704016137,
+          "tp2": 0.10705540556024205,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
