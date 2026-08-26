@@ -3032,6 +3032,29 @@
           "sl": 7.610997297963289,
           "tp1": 8.347202161629367,
           "tp2": 8.510803242444052,
+          "confidence": 82,
+          "result": "HIT SL",
+          "result_price": 6.73,
+          "result_at": "2026-08-26T09:47:20+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "session": "SCAN",
+      "key": "20260826094726:blockstack:BUY",
+      "saved_at": "2026-08-26T09:47:26+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "blockstack",
+          "symbol": "STX",
+          "name": "Stacks",
+          "action": "BUY",
+          "entry": 0.283787,
+          "sl": 0.2716839988595229,
+          "tp1": 0.2934694009123817,
+          "tp2": 0.29831060136857257,
           "confidence": 82
         }
       ]
