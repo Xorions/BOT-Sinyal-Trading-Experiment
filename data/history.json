@@ -3245,6 +3245,26 @@
           "result_at": "2026-08-26T23:00:59+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-26",
+      "session": "SCAN",
+      "key": "20260826235923:cysic:BUY",
+      "saved_at": "2026-08-26T23:59:23+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "cysic",
+          "symbol": "CYS",
+          "name": "Cysic",
+          "action": "BUY",
+          "entry": 0.753767,
+          "sl": 0.7297696603053406,
+          "tp1": 0.7777643396946593,
+          "tp2": 0.7897630095419889,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
