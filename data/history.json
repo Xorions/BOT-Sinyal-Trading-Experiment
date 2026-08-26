@@ -3170,6 +3170,29 @@
           "sl": 0.17472912092394963,
           "tp1": 0.1933895032608403,
           "tp2": 0.19753625489126048,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.174411,
+          "result_at": "2026-08-26T18:01:35+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "session": "SCAN",
+      "key": "20260826180142:humanity:SELL",
+      "saved_at": "2026-08-26T18:01:42+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "humanity",
+          "symbol": "H",
+          "name": "Humanity",
+          "action": "SELL",
+          "entry": 0.070874,
+          "sl": 0.07342710495817222,
+          "tp1": 0.0683208950418278,
+          "tp2": 0.06704434256274168,
           "confidence": 76
         }
       ]
