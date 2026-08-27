@@ -325,13 +325,69 @@ class TestWinrate(SessionTestCase):
 
 class TestWinrateDigest(SessionTestCase):
     def test_digest_once_per_day_after_min_hour(self):
-        self.assertFalse(history.should_send_winrate_digest(now=_FIXED_NOW.replace(hour=7)))
+        self.assertFalse(history.should_send_winrate_digest(now=_FIXED_NOW.replace(hour=6)))
         self.assertTrue(history.should_send_winrate_digest(now=_FIXED_NOW))
         history.mark_winrate_digest_sent(_FIXED_NOW)
         self.assertFalse(history.should_send_winrate_digest(now=_FIXED_NOW))
         # Keesokan harinya kirim lagi.
         tomorrow = _FIXED_NOW + timedelta(days=1)
         self.assertTrue(history.should_send_winrate_digest(now=tomorrow))
+
+
+class TestDailyEvaluation(SessionTestCase):
+    def _seed_day(self, date_str, results):
+        """Buat entri SCAN dengan 1 sinyal per hasil tertentu.
+
+        Setiap tuple: (symbol, coin_id, action, entry, sl, tp1, tp2).
+        """
+        for symbol, coin_id, action, entry, sl, tp1, tp2 in results:
+            history.append_scan_signal(
+                Signal(
+                    coin_id=coin_id,
+                    symbol=symbol,
+                    name=symbol,
+                    price=entry,
+                    price_change_24h=0.0,
+                    score=4.0,
+                    action=action,
+                    confidence=80,
+                    sl=sl,
+                    tp1=tp1,
+                    tp2=tp2,
+                )
+            )
+            # Timpa tanggal entri terbaru agar sesuai date_str.
+            entries = history.load_entries()
+            entries[-1]["date"] = date_str
+            history._save_entries(entries)
+
+    def test_format_daily_evaluation_contains_breakdown(self):
+        self._seed_day(
+            "2026-08-16",
+            [
+                ("BTC", "bitcoin", ACTION_BUY, 100.0, 95.0, 105.0, 110.0),
+                ("ETH", "ethereum", ACTION_BUY, 50.0, 52.0, 48.0, 46.0),
+            ],
+        )
+        entries = history.load_entries_by_date("2026-08-16")
+        price_map = {
+            "bitcoin": {"current_price": 110.0, "high_24h": 111.0, "low_24h": 99.0},
+            "ethereum": {"current_price": 48.0, "high_24h": 51.0, "low_24h": 47.0},
+        }
+        text = history.format_daily_evaluation(entries, price_map, "2026-08-16")
+        self.assertIn("EVALUASI SINYAL HARI SEBELUMNYA", text)
+        self.assertIn("Terdapat (2 Coin)", text)
+        self.assertIn("HIT TP2: 2", text)
+        self.assertIn("#BTC (BUY) →", text)
+
+    def test_daily_eval_once_per_day_after_min_hour(self):
+        now = _FIXED_NOW.replace(hour=6)
+        self.assertFalse(history.should_send_daily_evaluation(now=now))
+        self.assertTrue(history.should_send_daily_evaluation(now=_FIXED_NOW))
+        history.mark_daily_evaluation_sent(_FIXED_NOW)
+        self.assertFalse(history.should_send_daily_evaluation(now=_FIXED_NOW))
+        tomorrow = _FIXED_NOW + timedelta(days=1)
+        self.assertTrue(history.should_send_daily_evaluation(now=tomorrow))
 
 
 if __name__ == "__main__":

@@ -19,6 +19,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
 
 from config import (
+    DAILY_EVAL_HOUR,
     EVAL_LOOKBACK_HOURS,
     EVAL_MIN_AGE_HOURS,
     RESULT_LOOKBACK_HOURS,
@@ -87,6 +88,11 @@ class Eval:
 def load_entries() -> List[Dict[str, Any]]:
     """Seluruh entri history yang tersimpan di HISTORY_FILE."""
     return _load_doc().get("entries", [])
+
+
+def load_entries_by_date(date_str: str) -> List[Dict[str, Any]]:
+    """Entri history pada tanggal tertentu (semua sesi, termasuk SCAN 24/7)."""
+    return [e for e in load_entries() if str(e.get("date", "")) == date_str]
 
 
 def _load_doc() -> Dict[str, Any]:
@@ -471,6 +477,51 @@ def format_evaluation(
     return "\n".join(lines)
 
 
+def format_daily_evaluation(
+    entries: List[Dict[str, Any]],
+    price_map: Dict[str, Dict[str, float]],
+    eval_date: str,
+    now: Optional[datetime] = None,
+) -> str:
+    """Ringkasan evaluasi seluruh sinyal pada `eval_date` (daily close 07:00 WIB).
+
+    Menggabungkan semua sinyal dari entri di tanggal tersebut (termasuk mode
+    SCAN 24/7, satu entri per sinyal) lalu menampilkan hasil per-koin.
+    """
+    try:
+        date_display = datetime.strptime(eval_date, "%Y-%m-%d").strftime("%d %b %Y")
+    except ValueError:
+        date_display = eval_date
+
+    evals: List[Eval] = []
+    for entry in entries:
+        evals.extend(evaluate_entry(entry, price_map))
+
+    if not evals:
+        return (
+            "<b>📊 EVALUASI SINYAL HARI SEBELUMNYA</b>\n"
+            f"🗓️ {date_display} · Terdapat (0 Coin)\n"
+            "Tidak ada sinyal untuk dievaluasi."
+        )
+
+    counts = {result: 0 for result in RESULTS_ORDER}
+    for ev in evals:
+        counts[ev.result] = counts.get(ev.result, 0) + 1
+
+    lines = [
+        "<b>📊 EVALUASI SINYAL HARI SEBELUMNYA</b>",
+        f"🗓️ {date_display} · Terdapat ({len(evals)} Coin)",
+        (
+            f"🎯 HIT TP2: {counts[RESULT_TP2]} · ✅ HIT TP1: {counts[RESULT_TP1]} · "
+            f"❌ HIT SL: {counts[RESULT_SL]} · ⏳ FLOATING: {counts[RESULT_FLOATING]}"
+        ),
+        "━━━━━━━━━━━━",
+    ]
+    for index, ev in enumerate(evals, start=1):
+        lines.append(f"{index}. #{ev.symbol} ({ev.action}) → {_result_label(ev)}")
+    return "\n".join(lines)
+
+
 # ---------------------------------------------------------------------------
 # Pencatatan hasil (win-rate): hasil final terkunci, FLOATING boleh naik
 # ---------------------------------------------------------------------------
@@ -695,5 +746,32 @@ def mark_winrate_digest_sent(now: Optional[datetime] = None) -> None:
     meta = doc.get("meta") if isinstance(doc.get("meta"), dict) else {}
     meta["winrate_digest_sent"] = now.strftime("%Y-%m-%d")
     meta["winrate_digest_at"] = now.isoformat(timespec="seconds")
+    doc["meta"] = meta
+    _save_doc(doc)
+
+
+# ---------------------------------------------------------------------------
+# Evaluasi harian (setiap hari 07:00 WIB, termasuk weekend): sinyal hari
+# sebelumnya dievaluasi terhadap daily close 07:00 WIB.
+# ---------------------------------------------------------------------------
+
+
+def should_send_daily_evaluation(
+    min_hour: Optional[int] = None, now: Optional[datetime] = None
+) -> bool:
+    """True bila evaluasi harian hari ini belum terkirim dan sudah lewat jamnya."""
+    hour_min = DAILY_EVAL_HOUR if min_hour is None else min_hour
+    now = now or _now_wib()
+    doc = _load_doc()
+    sent = str((doc.get("meta") or {}).get("daily_eval_sent", ""))
+    return now.strftime("%Y-%m-%d") != sent and now.hour >= hour_min
+
+
+def mark_daily_evaluation_sent(now: Optional[datetime] = None) -> None:
+    now = now or _now_wib()
+    doc = _load_doc()
+    meta = doc.get("meta") if isinstance(doc.get("meta"), dict) else {}
+    meta["daily_eval_sent"] = now.strftime("%Y-%m-%d")
+    meta["daily_eval_sent_at"] = now.isoformat(timespec="seconds")
     doc["meta"] = meta
     _save_doc(doc)

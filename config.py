@@ -53,8 +53,13 @@ SESSION_EVAL_MAX_AGE_DAYS: int = _env_int("SESSION_EVAL_MAX_AGE_DAYS", 3)
 RESULT_LOOKBACK_HOURS: float = _env_float("RESULT_LOOKBACK_HOURS", 72.0)
 # Jendela hari ringkasan win-rate harian (digest) ke grup evaluasi.
 WINRATE_WINDOW_DAYS: int = _env_int("WINRATE_WINDOW_DAYS", 7)
-# Jam WIB minimal untuk mengirim digest win-rate harian (sekali per hari).
-WINRATE_DIGEST_HOUR: int = _env_int("WINRATE_DIGEST_HOUR", 8)
+# Jam WIB minimal untuk mengirim digest win-rate (sekali per hari).
+WINRATE_DIGEST_HOUR: int = _env_int("WINRATE_DIGEST_HOUR", 7)
+# Hari pengiriman digest 7 hari (0=Senin .. 6=Minggu). Default: Minggu.
+WINRATE_DIGEST_WEEKDAY: int = _env_int("WINRATE_DIGEST_WEEKDAY", 6)
+# Jam WIB pengiriman evaluasi harian "EVALUASI SINYAL HARI SEBELUMNYA"
+# (setiap hari, termasuk weekend) — referensi daily close 07:00 WIB.
+DAILY_EVAL_HOUR: int = _env_int("DAILY_EVAL_HOUR", 7)
 
 # Day Trading Lanjutan — Analisis Multi-Timeframe (MTF)
 # Jumlah kandidat yang dianalisis mendalam (ambil chart 2x per koin dari CoinGecko).

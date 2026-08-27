@@ -26,7 +26,7 @@ import argparse
 import logging
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List, Optional
 
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -42,20 +42,26 @@ from config import (
     SIGNAL_MIN_CONFIDENCE,
     TELEGRAM_BOT_TOKEN,
     TOP_COINS,
+    WINRATE_DIGEST_WEEKDAY,
 )
 from data.cooldown import is_blocked, record_sent
 from data.history import (
     append_scan_signal,
     current_session,
+    _now_wib,
     evaluate_entry,
+    format_daily_evaluation,
     format_evaluation,
     format_evaluation_pending,
     format_winrate_summary,
+    load_entries_by_date,
     load_recent_session_entries,
+    mark_daily_evaluation_sent,
     mark_entry_evaluated,
     mark_winrate_digest_sent,
     RESULT_FLOATING,
     session_label,
+    should_send_daily_evaluation,
     should_send_winrate_digest,
     update_results,
 )
@@ -207,9 +213,12 @@ def refresh_signal_results(coins: list) -> bool:
 
 
 def send_daily_winrate_digest() -> None:
-    """Sekali sehari (>= WINRATE_DIGEST_HOUR WIB) kirim ringkasan win-rate
-    7 hari terakhir ke grup evaluasi — dasar objektif uji kelayakan sinyal."""
+    """Sekali seminggu (Minggu >= WINRATE_DIGEST_HOUR WIB) kirim ringkasan
+    win-rate 7 hari terakhir ke grup evaluasi — dasar objektif uji kelayakan
+    sinyal. Hari pengiriman diatur WINRATE_DIGEST_WEEKDAY (default: Minggu)."""
     if not TELEGRAM_BOT_TOKEN or not eval_chat_id():
+        return
+    if _now_wib().weekday() != WINRATE_DIGEST_WEEKDAY:
         return
     if not should_send_winrate_digest():
         return
@@ -224,6 +233,63 @@ def send_daily_winrate_digest() -> None:
         log.info("Digest win-rate harian terkirim ke grup evaluasi.")
     except TelegramSendError as exc:
         log.error("Gagal mengirim digest win-rate: %s", exc)
+
+
+def send_daily_evaluation(coins: list) -> None:
+    """Kirim evaluasi sinyal HARI SEBELUMNYA setiap hari (>= DAILY_EVAL_HOUR WIB,
+    termasuk weekend) ke grup evaluasi, dengan referensi daily close 07:00 WIB."""
+    if not TELEGRAM_BOT_TOKEN or not eval_chat_id():
+        return
+    if not should_send_daily_evaluation():
+        return
+
+    now = _now_wib()
+    yesterday = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+    entries = load_entries_by_date(yesterday)
+    # Tandai sudah diproses hari ini agar tidak diulang, walau tidak ada sinyal.
+    mark_daily_evaluation_sent(now)
+    if not entries:
+        return
+
+    coin_ids = sorted(
+        {
+            record.get("coin_id")
+            for entry in entries
+            for record in entry.get("signals", [])
+            if record.get("coin_id")
+        }
+    )
+    price_map = coin_price_map(coins)
+    missing = [cid for cid in coin_ids if cid not in price_map]
+    if missing:
+        try:
+            price_map.update(get_prices_for_ids(missing))
+        except Exception as exc:  # noqa: BLE001 - evaluasi tidak menggagalkan siklus
+            log.warning("Gagal mengambil harga evaluasi harian: %s", exc)
+
+    message = format_daily_evaluation(entries, price_map, yesterday, now)
+    image_url = ""
+    try:
+        record = entries[0].get("signals", [{}])[0]
+        image_url = (
+            generate_chart_url(
+                record.get("symbol", ""),
+                record.get("action", ACTION_BUY),
+                float(record.get("entry") or 0),
+                float(record.get("sl") or 0),
+                float(record.get("tp1") or 0),
+                float(record.get("tp2") or 0),
+                timeframe="1h",
+            )
+            or ""
+        )
+    except (TypeError, ValueError):
+        image_url = ""
+    try:
+        send_telegram(message, chat_id=eval_chat_id(), image_url=image_url)
+        log.info("Evaluasi harian (hari sebelumnya) terkirim ke grup evaluasi.")
+    except TelegramSendError as exc:
+        log.error("Gagal mengirim evaluasi harian: %s", exc)
 
 
 def send_pending_evaluations(coins: list) -> None:
@@ -430,6 +496,11 @@ def run_one_cycle(legacy_eval: bool = False) -> None:
         send_daily_winrate_digest()
     except Exception as exc:  # noqa: BLE001
         log.error("Gagal mengirim digest win-rate: %s", exc)
+
+    try:
+        send_daily_evaluation(coins)
+    except Exception as exc:  # noqa: BLE001
+        log.error("Gagal mengirim evaluasi harian: %s", exc)
 
     if legacy_eval:
         try:
