@@ -3360,6 +3360,26 @@
           "result_at": "2026-08-28T06:53:35+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-29",
+      "session": "SCAN",
+      "key": "20260829040638:filecoin:SELL",
+      "saved_at": "2026-08-29T04:06:38+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "filecoin",
+          "symbol": "FIL",
+          "name": "Filecoin",
+          "action": "SELL",
+          "entry": 0.680056,
+          "sl": 0.6886268374377662,
+          "tp1": 0.6714851625622338,
+          "tp2": 0.6671997438433507,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
