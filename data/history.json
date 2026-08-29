@@ -3423,7 +3423,30 @@
           "sl": 0.34192947000094864,
           "tp1": 0.3727266239992411,
           "tp2": 0.37957043599886164,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.374825,
+          "result_at": "2026-08-30T04:07:32+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-30",
+      "session": "SCAN",
+      "key": "20260830040739:cysic:BUY",
+      "saved_at": "2026-08-30T04:07:39+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "cysic",
+          "symbol": "CYS",
+          "name": "Cysic",
+          "action": "BUY",
+          "entry": 0.698544,
+          "sl": 0.6783027993700187,
+          "tp1": 0.7187852006299814,
+          "tp2": 0.7289058009449721,
+          "confidence": 76
         }
       ]
     }
