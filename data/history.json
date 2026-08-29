@@ -3406,6 +3406,26 @@
           "result_at": "2026-08-29T22:04:16+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-30",
+      "session": "SCAN",
+      "key": "20260830012952:the-black-bull:BUY",
+      "saved_at": "2026-08-30T01:29:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "the-black-bull",
+          "symbol": "ANSEM",
+          "name": "The Black Bull",
+          "action": "BUY",
+          "entry": 0.359039,
+          "sl": 0.34192947000094864,
+          "tp1": 0.3727266239992411,
+          "tp2": 0.37957043599886164,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
