@@ -3452,12 +3452,32 @@
           "result_at": "2026-08-30T06:19:55+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-30",
+      "session": "SCAN",
+      "key": "20260830082808:spx6900:BUY",
+      "saved_at": "2026-08-30T08:28:08+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "spx6900",
+          "symbol": "SPX",
+          "name": "SPX6900",
+          "action": "BUY",
+          "entry": 0.540605,
+          "sl": 0.5278621176842356,
+          "tp1": 0.5507993058526115,
+          "tp2": 0.5558964587789174,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
-    "winrate_digest_sent": "2026-08-27",
-    "winrate_digest_at": "2026-08-27T10:18:34+07:00",
-    "daily_eval_sent": "2026-08-29",
-    "daily_eval_sent_at": "2026-08-29T10:10:13+07:00"
+    "winrate_digest_sent": "2026-08-30",
+    "winrate_digest_at": "2026-08-30T08:27:55+07:00",
+    "daily_eval_sent": "2026-08-30",
+    "daily_eval_sent_at": "2026-08-30T08:27:55+07:00"
   }
 }
