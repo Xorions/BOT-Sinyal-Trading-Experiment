@@ -3469,6 +3469,29 @@
           "sl": 0.5278621176842356,
           "tp1": 0.5507993058526115,
           "tp2": 0.5558964587789174,
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.548063,
+          "result_at": "2026-08-30T14:15:13+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-30",
+      "session": "SCAN",
+      "key": "20260830141519:fetch-ai:BUY",
+      "saved_at": "2026-08-30T14:15:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "fetch-ai",
+          "symbol": "FET",
+          "name": "Artificial Superintelligence Alliance",
+          "action": "BUY",
+          "entry": 0.153527,
+          "sl": 0.15182136399573773,
+          "tp1": 0.15523263600426226,
+          "tp2": 0.1560854540063934,
           "confidence": 69
         }
       ]
