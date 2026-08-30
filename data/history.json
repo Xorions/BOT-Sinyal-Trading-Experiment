@@ -3492,7 +3492,30 @@
           "sl": 0.15182136399573773,
           "tp1": 0.15523263600426226,
           "tp2": 0.1560854540063934,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.155011,
+          "result_at": "2026-08-30T19:58:41+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-30",
+      "session": "SCAN",
+      "key": "20260830195846:uniswap:BUY",
+      "saved_at": "2026-08-30T19:58:46+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "BUY",
+          "entry": 5.22,
+          "sl": 5.059934710684745,
+          "tp1": 5.348052231452204,
+          "tp2": 5.412078347178306,
+          "confidence": 76
         }
       ]
     }
