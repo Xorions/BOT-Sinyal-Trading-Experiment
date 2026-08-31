@@ -3544,12 +3544,32 @@
           "result_at": "2026-08-31T05:35:48+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-08-31",
+      "session": "SCAN",
+      "key": "20260831075101:aptos:SELL",
+      "saved_at": "2026-08-31T07:51:01+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "aptos",
+          "symbol": "APT",
+          "name": "Aptos",
+          "action": "SELL",
+          "entry": 0.522239,
+          "sl": 0.5296289251424792,
+          "tp1": 0.5148490748575208,
+          "tp2": 0.5111541122862813,
+          "confidence": 82
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-08-30",
     "winrate_digest_at": "2026-08-30T08:27:55+07:00",
-    "daily_eval_sent": "2026-08-30",
-    "daily_eval_sent_at": "2026-08-30T08:27:55+07:00"
+    "daily_eval_sent": "2026-08-31",
+    "daily_eval_sent_at": "2026-08-31T07:50:53+07:00"
   }
 }
