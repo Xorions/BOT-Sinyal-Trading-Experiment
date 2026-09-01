@@ -3653,7 +3653,30 @@
           "sl": 0.19896349499067567,
           "tp1": 0.20624650500932434,
           "tp2": 0.20806725751398653,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.198009,
+          "result_at": "2026-09-02T00:57:57+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "session": "SCAN",
+      "key": "20260902005758:monad:SELL",
+      "saved_at": "2026-09-02T00:57:58+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "monad",
+          "symbol": "MON",
+          "name": "Monad",
+          "action": "SELL",
+          "entry": 0.02584256,
+          "sl": 0.02636849817641976,
+          "tp1": 0.025421809458864193,
+          "tp2": 0.02521143418829629,
+          "confidence": 76
         }
       ]
     }
