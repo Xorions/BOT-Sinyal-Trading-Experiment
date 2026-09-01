@@ -3676,7 +3676,30 @@
           "sl": 0.02636849817641976,
           "tp1": 0.025421809458864193,
           "tp2": 0.02521143418829629,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.02601156,
+          "result_at": "2026-09-02T03:54:33+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "session": "SCAN",
+      "key": "20260902035434:injective-protocol:SELL",
+      "saved_at": "2026-09-02T03:54:34+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "injective-protocol",
+          "symbol": "INJ",
+          "name": "Injective",
+          "action": "SELL",
+          "entry": 4.79,
+          "sl": 4.874756953371418,
+          "tp1": 4.722194437302866,
+          "tp2": 4.688291655954298,
+          "confidence": 69
         }
       ]
     }
