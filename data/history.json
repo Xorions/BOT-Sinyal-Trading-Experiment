@@ -3590,12 +3590,32 @@
           "result_at": "2026-09-01T03:17:31+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-01",
+      "session": "SCAN",
+      "key": "20260901115458:pons:BUY",
+      "saved_at": "2026-09-01T11:54:58+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pons",
+          "symbol": "PONS",
+          "name": "Pons",
+          "action": "BUY",
+          "entry": 0.466427,
+          "sl": 0.4159254961362888,
+          "tp1": 0.5068282030909689,
+          "tp2": 0.5270288046364534,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-08-30",
     "winrate_digest_at": "2026-08-30T08:27:55+07:00",
-    "daily_eval_sent": "2026-08-31",
-    "daily_eval_sent_at": "2026-08-31T07:50:53+07:00"
+    "daily_eval_sent": "2026-09-01",
+    "daily_eval_sent_at": "2026-09-01T11:54:44+07:00"
   }
 }
