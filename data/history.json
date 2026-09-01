@@ -3607,6 +3607,29 @@
           "sl": 0.4159254961362888,
           "tp1": 0.5068282030909689,
           "tp2": 0.5270288046364534,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.435467,
+          "result_at": "2026-09-01T16:46:22+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "session": "SCAN",
+      "key": "20260901164622:plasma:SELL",
+      "saved_at": "2026-09-01T16:46:22+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "plasma",
+          "symbol": "XPL",
+          "name": "Plasma",
+          "action": "SELL",
+          "entry": 0.081111,
+          "sl": 0.0824471664677481,
+          "tp1": 0.0797748335322519,
+          "tp2": 0.07910675029837784,
           "confidence": 76
         }
       ]
