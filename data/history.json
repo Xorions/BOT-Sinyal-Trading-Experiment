@@ -3699,7 +3699,30 @@
           "sl": 4.874756953371418,
           "tp1": 4.722194437302866,
           "tp2": 4.688291655954298,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 4.79,
+          "result_at": "2026-09-02T06:03:14+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "session": "SCAN",
+      "key": "20260902060315:cash-cat:BUY",
+      "saved_at": "2026-09-02T06:03:15+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "cash-cat",
+          "symbol": "CASHCAT",
+          "name": "Cash Cat",
+          "action": "BUY",
+          "entry": 0.228493,
+          "sl": 0.2152243902861027,
+          "tp1": 0.2417616097138973,
+          "tp2": 0.24839591457084592,
+          "confidence": 76
         }
       ]
     }
