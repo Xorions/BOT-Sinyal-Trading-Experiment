@@ -3814,7 +3814,30 @@
           "sl": 0.05564726632772458,
           "tp1": 0.05889218693782034,
           "tp2": 0.05961328040673051,
-          "confidence": 82
+          "confidence": 82,
+          "result": "HIT TP1",
+          "result_price": 0.057949,
+          "result_at": "2026-09-03T01:07:27+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-03",
+      "session": "SCAN",
+      "key": "20260903010728:seeker:BUY",
+      "saved_at": "2026-09-03T01:07:28+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "seeker",
+          "symbol": "SKR",
+          "name": "Seeker",
+          "action": "BUY",
+          "entry": 0.02432745,
+          "sl": 0.02283317287249253,
+          "tp1": 0.025821727127507473,
+          "tp2": 0.026568865691261205,
+          "confidence": 69
         }
       ]
     }
