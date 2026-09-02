@@ -3791,7 +3791,30 @@
           "sl": 0.00833292416343216,
           "tp1": 0.00808934066925427,
           "tp2": 0.008035211003881406,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.0082722,
+          "result_at": "2026-09-02T21:44:15+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "session": "SCAN",
+      "key": "20260902214417:pyth-network:BUY",
+      "saved_at": "2026-09-02T21:44:17+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pyth-network",
+          "symbol": "PYTH",
+          "name": "Pyth Network",
+          "action": "BUY",
+          "entry": 0.05745,
+          "sl": 0.05564726632772458,
+          "tp1": 0.05889218693782034,
+          "tp2": 0.05961328040673051,
+          "confidence": 82
         }
       ]
     }
