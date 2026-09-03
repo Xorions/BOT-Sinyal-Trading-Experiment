@@ -3843,6 +3843,26 @@
           "result_at": "2026-09-03T04:03:31+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-03",
+      "session": "SCAN",
+      "key": "20260903181718:official-trump:BUY",
+      "saved_at": "2026-09-03T18:17:18+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "official-trump",
+          "symbol": "TRUMP",
+          "name": "Official Trump",
+          "action": "BUY",
+          "entry": 2.28,
+          "sl": 2.2346442071561894,
+          "tp1": 2.32535579284381,
+          "tp2": 2.348033689265715,
+          "confidence": 82
+        }
+      ]
     }
   ],
   "meta": {
