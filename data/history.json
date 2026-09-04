@@ -3935,6 +3935,26 @@
           "result_at": "2026-09-04T06:25:52+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-04",
+      "session": "SCAN",
+      "key": "20260904174219:helium:BUY",
+      "saved_at": "2026-09-04T17:42:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "helium",
+          "symbol": "HNT",
+          "name": "Helium",
+          "action": "BUY",
+          "entry": 0.623557,
+          "sl": 0.5842496195305802,
+          "tp1": 0.6628643804694199,
+          "tp2": 0.6825180707041297,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
