@@ -4044,7 +4044,30 @@
           "sl": 0.16480680555404614,
           "tp1": 0.15803719444595388,
           "tp2": 0.15634479166893084,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.166526,
+          "result_at": "2026-09-05T15:50:22+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-05",
+      "session": "SCAN",
+      "key": "20260905155023:pons:BUY",
+      "saved_at": "2026-09-05T15:50:23+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pons",
+          "symbol": "PONS",
+          "name": "Pons",
+          "action": "BUY",
+          "entry": 0.839179,
+          "sl": 0.7689007840992995,
+          "tp1": 0.8954015727205604,
+          "tp2": 0.9235128590808407,
+          "confidence": 76
         }
       ]
     }
