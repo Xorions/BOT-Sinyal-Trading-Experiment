@@ -4004,12 +4004,32 @@
           "result_at": "2026-09-05T03:20:54+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-05",
+      "session": "SCAN",
+      "key": "20260905071835:venice-token:BUY",
+      "saved_at": "2026-09-05T07:18:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "venice-token",
+          "symbol": "VVV",
+          "name": "Venice Token",
+          "action": "BUY",
+          "entry": 18.12,
+          "sl": 17.741201047356963,
+          "tp1": 18.49879895264304,
+          "tp2": 18.688198428964558,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-08-30",
     "winrate_digest_at": "2026-08-30T08:27:55+07:00",
-    "daily_eval_sent": "2026-09-04",
-    "daily_eval_sent_at": "2026-09-04T08:10:39+07:00"
+    "daily_eval_sent": "2026-09-05",
+    "daily_eval_sent_at": "2026-09-05T07:18:34+07:00"
   }
 }
