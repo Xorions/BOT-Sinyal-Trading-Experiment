@@ -4073,6 +4073,26 @@
           "result_at": "2026-09-05T19:24:43+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-06",
+      "session": "SCAN",
+      "key": "20260906043109:ethena:BUY",
+      "saved_at": "2026-09-06T04:31:09+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ethena",
+          "symbol": "ENA",
+          "name": "Ethena",
+          "action": "BUY",
+          "entry": 0.171026,
+          "sl": 0.16700166458978827,
+          "tp1": 0.17424546832816942,
+          "tp2": 0.17585520249225411,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
