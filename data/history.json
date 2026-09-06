@@ -4159,7 +4159,30 @@
           "sl": 0.10811282676079792,
           "tp1": 0.11321917323920208,
           "tp2": 0.11449575985880311,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.108603,
+          "result_at": "2026-09-07T01:52:02+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-07",
+      "session": "SCAN",
+      "key": "20260907015203:zama:BUY",
+      "saved_at": "2026-09-07T01:52:03+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zama",
+          "symbol": "ZAMA",
+          "name": "Zama",
+          "action": "BUY",
+          "entry": 0.057063,
+          "sl": 0.054797947407013825,
+          "tp1": 0.05887504207438895,
+          "tp2": 0.05978106311158342,
+          "confidence": 69
         }
       ]
     }
