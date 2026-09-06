@@ -4119,6 +4119,26 @@
           "result_at": "2026-09-06T17:47:42+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-06",
+      "session": "SCAN",
+      "key": "20260906205757:stonk-3:BUY",
+      "saved_at": "2026-09-06T20:57:57+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "stonk-3",
+          "symbol": "STONK",
+          "name": "STONK",
+          "action": "BUY",
+          "entry": 0.158904,
+          "sl": 0.1355749371268507,
+          "tp1": 0.1775672502985194,
+          "tp2": 0.1868988754477791,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
