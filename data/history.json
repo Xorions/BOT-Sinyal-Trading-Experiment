@@ -4096,11 +4096,31 @@
           "result_at": "2026-09-06T06:20:15+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-06",
+      "session": "SCAN",
+      "key": "20260906125957:dash:BUY",
+      "saved_at": "2026-09-06T12:59:57+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dash",
+          "symbol": "DASH",
+          "name": "Dash",
+          "action": "BUY",
+          "entry": 77.26,
+          "sl": 73.0106514671868,
+          "tp1": 80.65947882625058,
+          "tp2": 82.35921823937585,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
-    "winrate_digest_sent": "2026-08-30",
-    "winrate_digest_at": "2026-08-30T08:27:55+07:00",
+    "winrate_digest_sent": "2026-09-06",
+    "winrate_digest_at": "2026-09-06T12:59:57+07:00",
     "daily_eval_sent": "2026-09-06",
     "daily_eval_sent_at": "2026-09-06T08:14:00+07:00"
   }
