@@ -4251,7 +4251,30 @@
           "sl": 0.4457882544981702,
           "tp1": 0.42661574550182974,
           "tp2": 0.4218226182527446,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.445769,
+          "result_at": "2026-09-08T02:58:14+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "session": "SCAN",
+      "key": "20260908025815:sui:BUY",
+      "saved_at": "2026-09-08T02:58:15+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sui",
+          "symbol": "SUI",
+          "name": "Sui",
+          "action": "BUY",
+          "entry": 0.830539,
+          "sl": 0.8138877257746199,
+          "tp1": 0.8471902742253802,
+          "tp2": 0.8555159113380703,
+          "confidence": 69
         }
       ]
     }
