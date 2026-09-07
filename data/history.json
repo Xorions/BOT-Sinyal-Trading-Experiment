@@ -4205,7 +4205,30 @@
           "sl": 0.18912422183847524,
           "tp1": 0.19416777816152478,
           "tp2": 0.19542866724228714,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.191075,
+          "result_at": "2026-09-07T17:36:46+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-07",
+      "session": "SCAN",
+      "key": "20260907173647:akedo:BUY",
+      "saved_at": "2026-09-07T17:36:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "akedo",
+          "symbol": "AKE",
+          "name": "Akedo",
+          "action": "BUY",
+          "entry": 0.01677174,
+          "sl": 0.015620776558754658,
+          "tp1": 0.01792270344124534,
+          "tp2": 0.018498185161868012,
+          "confidence": 82
         }
       ]
     }
