@@ -4188,6 +4188,26 @@
           "result_at": "2026-09-07T04:04:03+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-07",
+      "session": "SCAN",
+      "key": "20260907121535:stellar:BUY",
+      "saved_at": "2026-09-07T12:15:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "stellar",
+          "symbol": "XLM",
+          "name": "Stellar",
+          "action": "BUY",
+          "entry": 0.191646,
+          "sl": 0.18912422183847524,
+          "tp1": 0.19416777816152478,
+          "tp2": 0.19542866724228714,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
