@@ -4320,7 +4320,30 @@
           "sl": 0.09189719584490562,
           "tp1": 0.09481280415509437,
           "tp2": 0.09554170623264155,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.093565,
+          "result_at": "2026-09-08T12:19:27+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "session": "SCAN",
+      "key": "20260908121928:pancakeswap-token:BUY",
+      "saved_at": "2026-09-08T12:19:28+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pancakeswap-token",
+          "symbol": "CAKE",
+          "name": "PancakeSwap",
+          "action": "BUY",
+          "entry": 2.3,
+          "sl": 2.2464430065536183,
+          "tp1": 2.342845594757105,
+          "tp2": 2.3642683921356578,
+          "confidence": 76
         }
       ]
     }
