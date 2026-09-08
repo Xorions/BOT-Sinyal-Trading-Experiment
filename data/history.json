@@ -4297,7 +4297,30 @@
           "sl": 0.2154488274145337,
           "tp1": 0.2579051725854663,
           "tp2": 0.26851925887819944,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.232561,
+          "result_at": "2026-09-08T07:43:17+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "session": "SCAN",
+      "key": "20260908074319:plasma:BUY",
+      "saved_at": "2026-09-08T07:43:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "plasma",
+          "symbol": "XPL",
+          "name": "Plasma",
+          "action": "BUY",
+          "entry": 0.093355,
+          "sl": 0.09189719584490562,
+          "tp1": 0.09481280415509437,
+          "tp2": 0.09554170623264155,
+          "confidence": 69
         }
       ]
     }
@@ -4305,7 +4328,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-06",
     "winrate_digest_at": "2026-09-06T12:59:57+07:00",
-    "daily_eval_sent": "2026-09-07",
-    "daily_eval_sent_at": "2026-09-07T07:42:44+07:00"
+    "daily_eval_sent": "2026-09-08",
+    "daily_eval_sent_at": "2026-09-08T07:43:17+07:00"
   }
 }
