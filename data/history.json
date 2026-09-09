@@ -4481,7 +4481,30 @@
           "sl": 0.3021381761111512,
           "tp1": 0.342353459111079,
           "tp2": 0.35129018866661854,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.329793,
+          "result_at": "2026-09-09T18:43:18+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "session": "SCAN",
+      "key": "20260909184319:dash:BUY",
+      "saved_at": "2026-09-09T18:43:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dash",
+          "symbol": "DASH",
+          "name": "Dash",
+          "action": "BUY",
+          "entry": 65.37,
+          "sl": 63.878925279729145,
+          "tp1": 66.86107472027086,
+          "tp2": 67.6066120804063,
+          "confidence": 69
         }
       ]
     }
