@@ -4458,6 +4458,29 @@
           "sl": 0.06112094669856097,
           "tp1": 0.06421344264115124,
           "tp2": 0.06490066396172685,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.059948,
+          "result_at": "2026-09-09T13:24:43+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "session": "SCAN",
+      "key": "20260909132444:useless-3:BUY",
+      "saved_at": "2026-09-09T13:24:44+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "useless-3",
+          "symbol": "USELESS",
+          "name": "Useless Coin",
+          "action": "BUY",
+          "entry": 0.32448,
+          "sl": 0.3021381761111512,
+          "tp1": 0.342353459111079,
+          "tp2": 0.35129018866661854,
           "confidence": 76
         }
       ]
