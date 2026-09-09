@@ -4533,6 +4533,26 @@
           "result_at": "2026-09-10T01:46:56+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-10",
+      "session": "SCAN",
+      "key": "20260910063037:starknet:BUY",
+      "saved_at": "2026-09-10T06:30:37+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "starknet",
+          "symbol": "STRK",
+          "name": "Starknet",
+          "action": "BUY",
+          "entry": 0.0316691,
+          "sl": 0.03066871141500042,
+          "tp1": 0.03266948858499958,
+          "tp2": 0.03316968287749937,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
