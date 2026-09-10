@@ -4579,6 +4579,26 @@
           "result_at": "2026-09-10T18:51:08+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-10",
+      "session": "SCAN",
+      "key": "20260910225417:meteora:BUY",
+      "saved_at": "2026-09-10T22:54:17+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "meteora",
+          "symbol": "MET",
+          "name": "Meteora",
+          "action": "BUY",
+          "entry": 0.217392,
+          "sl": 0.2118976072576882,
+          "tp1": 0.2228863927423118,
+          "tp2": 0.22563358911346773,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
