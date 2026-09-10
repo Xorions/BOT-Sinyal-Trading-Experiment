@@ -4602,6 +4602,26 @@
           "result_at": "2026-09-11T01:58:12+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-11",
+      "session": "SCAN",
+      "key": "20260911043222:raydium:BUY",
+      "saved_at": "2026-09-11T04:32:22+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "raydium",
+          "symbol": "RAY",
+          "name": "Raydium",
+          "action": "BUY",
+          "entry": 1.44,
+          "sl": 1.3681991093767507,
+          "tp1": 1.4974407124985993,
+          "tp2": 1.526161068747899,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
