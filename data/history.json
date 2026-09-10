@@ -4550,7 +4550,10 @@
           "sl": 0.03066871141500042,
           "tp1": 0.03266948858499958,
           "tp2": 0.03316968287749937,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.03087538,
+          "result_at": "2026-09-10T08:28:23+07:00"
         }
       ]
     }
@@ -4558,7 +4561,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-06",
     "winrate_digest_at": "2026-09-06T12:59:57+07:00",
-    "daily_eval_sent": "2026-09-09",
-    "daily_eval_sent_at": "2026-09-09T08:22:48+07:00"
+    "daily_eval_sent": "2026-09-10",
+    "daily_eval_sent_at": "2026-09-10T08:28:23+07:00"
   }
 }
