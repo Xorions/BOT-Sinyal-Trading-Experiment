@@ -4665,7 +4665,30 @@
           "sl": 0.16679364845093078,
           "tp1": 0.1490683515490692,
           "tp2": 0.14463702732360378,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.186048,
+          "result_at": "2026-09-11T22:13:34+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-11",
+      "session": "SCAN",
+      "key": "20260911221335:jupiter-exchange-solana:BUY",
+      "saved_at": "2026-09-11T22:13:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jupiter-exchange-solana",
+          "symbol": "JUP",
+          "name": "Jupiter",
+          "action": "BUY",
+          "entry": 0.253816,
+          "sl": 0.24707917078398425,
+          "tp1": 0.26055282921601575,
+          "tp2": 0.2639212438240236,
+          "confidence": 76
         }
       ]
     }
