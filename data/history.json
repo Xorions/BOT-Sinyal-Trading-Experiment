@@ -4688,6 +4688,29 @@
           "sl": 0.24707917078398425,
           "tp1": 0.26055282921601575,
           "tp2": 0.2639212438240236,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.242375,
+          "result_at": "2026-09-12T01:37:20+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-12",
+      "session": "SCAN",
+      "key": "20260912013721:artificial-inu-3:BUY",
+      "saved_at": "2026-09-12T01:37:21+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "artificial-inu-3",
+          "symbol": "AI",
+          "name": "Artificial Inu",
+          "action": "BUY",
+          "entry": 0.309651,
+          "sl": 0.2789076422368636,
+          "tp1": 0.33424568621050915,
+          "tp2": 0.34654302931576375,
           "confidence": 76
         }
       ]
