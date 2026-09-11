@@ -4648,6 +4648,26 @@
           "result_at": "2026-09-11T08:20:23+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-11",
+      "session": "SCAN",
+      "key": "20260911184135:cash-cat:SELL",
+      "saved_at": "2026-09-11T18:41:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "cash-cat",
+          "symbol": "CASHCAT",
+          "name": "Cash Cat",
+          "action": "SELL",
+          "entry": 0.157931,
+          "sl": 0.16679364845093078,
+          "tp1": 0.1490683515490692,
+          "tp2": 0.14463702732360378,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
