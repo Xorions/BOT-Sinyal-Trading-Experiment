@@ -4803,7 +4803,30 @@
           "sl": 0.08276519773046377,
           "tp1": 0.08078880226953623,
           "tp2": 0.08029470340430435,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.080876,
+          "result_at": "2026-09-13T02:21:56+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "session": "SCAN",
+      "key": "20260913022157:lobster-2:BUY",
+      "saved_at": "2026-09-13T02:21:57+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "lobster-2",
+          "symbol": "龙虾",
+          "name": "龙虾 (Lobster)",
+          "action": "BUY",
+          "entry": 0.1517,
+          "sl": 0.1414923905565475,
+          "tp1": 0.159866087554762,
+          "tp2": 0.163949131332143,
+          "confidence": 76
         }
       ]
     }
