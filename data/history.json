@@ -4740,12 +4740,32 @@
           "result_at": "2026-09-12T06:29:06+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-12",
+      "session": "SCAN",
+      "key": "20260912082722:marscoin-4:SELL",
+      "saved_at": "2026-09-12T08:27:22+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "marscoin-4",
+          "symbol": "MARSCOIN",
+          "name": "MarsCoin",
+          "action": "SELL",
+          "entry": 0.114075,
+          "sl": 0.11935256013706824,
+          "tp1": 0.10879743986293175,
+          "tp2": 0.10615865979439762,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-09-06",
     "winrate_digest_at": "2026-09-06T12:59:57+07:00",
-    "daily_eval_sent": "2026-09-11",
-    "daily_eval_sent_at": "2026-09-11T08:20:23+07:00"
+    "daily_eval_sent": "2026-09-12",
+    "daily_eval_sent_at": "2026-09-12T08:27:19+07:00"
   }
 }
