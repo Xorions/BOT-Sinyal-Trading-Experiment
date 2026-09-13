@@ -4878,6 +4878,26 @@
           "result_at": "2026-09-13T13:34:03+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-13",
+      "session": "SCAN",
+      "key": "20260913233320:lisk:BUY",
+      "saved_at": "2026-09-13T23:33:20+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "lisk",
+          "symbol": "LSK",
+          "name": "Lisk",
+          "action": "BUY",
+          "entry": 1.074,
+          "sl": 0.8465319544499105,
+          "tp1": 1.2559744364400718,
+          "tp2": 1.3469616546601075,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
