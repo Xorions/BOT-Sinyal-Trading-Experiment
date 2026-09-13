@@ -4895,7 +4895,30 @@
           "sl": 0.8465319544499105,
           "tp1": 1.2559744364400718,
           "tp2": 1.3469616546601075,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 1.012,
+          "result_at": "2026-09-14T01:57:51+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "session": "SCAN",
+      "key": "20260914015752:pearl-2:BUY",
+      "saved_at": "2026-09-14T01:57:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pearl-2",
+          "symbol": "PRL",
+          "name": "Pearl",
+          "action": "BUY",
+          "entry": 0.549181,
+          "sl": 0.5225849868838254,
+          "tp1": 0.575019579863664,
+          "tp2": 0.587938869795496,
+          "confidence": 76
         }
       ]
     }
