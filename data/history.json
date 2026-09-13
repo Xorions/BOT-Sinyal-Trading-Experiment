@@ -4941,7 +4941,30 @@
           "sl": 4.236079354516639,
           "tp1": 4.38392064548336,
           "tp2": 4.42088096822504,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 4.14,
+          "result_at": "2026-09-14T06:19:42+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "session": "SCAN",
+      "key": "20260914061943:pudgy-penguins:SELL",
+      "saved_at": "2026-09-14T06:19:43+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pudgy-penguins",
+          "symbol": "PENGU",
+          "name": "Pudgy Penguins",
+          "action": "SELL",
+          "entry": 0.00699947,
+          "sl": 0.0071247616230055094,
+          "tp1": 0.006899236701595592,
+          "tp2": 0.0068491200523933884,
+          "confidence": 69
         }
       ]
     }
