@@ -4964,6 +4964,29 @@
           "sl": 0.0071247616230055094,
           "tp1": 0.006899236701595592,
           "tp2": 0.0068491200523933884,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.00700386,
+          "result_at": "2026-09-14T08:22:52+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "session": "SCAN",
+      "key": "20260914082255:pons:SELL",
+      "saved_at": "2026-09-14T08:22:55+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pons",
+          "symbol": "PONS",
+          "name": "Pons",
+          "action": "SELL",
+          "entry": 0.522847,
+          "sl": 0.5519298086947331,
+          "tp1": 0.49958075304421345,
+          "tp2": 0.4879476295663202,
           "confidence": 69
         }
       ]
@@ -4972,7 +4995,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-13",
     "winrate_digest_at": "2026-09-13T08:18:09+07:00",
-    "daily_eval_sent": "2026-09-13",
-    "daily_eval_sent_at": "2026-09-13T08:18:09+07:00"
+    "daily_eval_sent": "2026-09-14",
+    "daily_eval_sent_at": "2026-09-14T08:22:52+07:00"
   }
 }
