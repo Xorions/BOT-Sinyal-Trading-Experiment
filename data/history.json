@@ -4993,12 +4993,32 @@
           "result_at": "2026-09-14T13:45:32+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-15",
+      "session": "SCAN",
+      "key": "20260915074724:monad:SELL",
+      "saved_at": "2026-09-15T07:47:24+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "monad",
+          "symbol": "MON",
+          "name": "Monad",
+          "action": "SELL",
+          "entry": 0.02279076,
+          "sl": 0.023151225799888334,
+          "tp1": 0.022502387360089332,
+          "tp2": 0.022358201040133998,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-09-13",
     "winrate_digest_at": "2026-09-13T08:18:09+07:00",
-    "daily_eval_sent": "2026-09-14",
-    "daily_eval_sent_at": "2026-09-14T08:22:52+07:00"
+    "daily_eval_sent": "2026-09-15",
+    "daily_eval_sent_at": "2026-09-15T07:47:22+07:00"
   }
 }
