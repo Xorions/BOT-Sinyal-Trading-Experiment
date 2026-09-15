@@ -5033,7 +5033,30 @@
           "sl": 0.1625745237229928,
           "tp1": 0.18390178102160573,
           "tp2": 0.1886411715324086,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.165565,
+          "result_at": "2026-09-15T18:11:54+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-15",
+      "session": "SCAN",
+      "key": "20260915181155:elrond-erd-2:SELL",
+      "saved_at": "2026-09-15T18:11:55+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "elrond-erd-2",
+          "symbol": "EGLD",
+          "name": "MultiversX",
+          "action": "SELL",
+          "entry": 4.07,
+          "sl": 4.152167165887,
+          "tp1": 4.004266267290401,
+          "tp2": 3.9713994009356015,
+          "confidence": 69
         }
       ]
     }
