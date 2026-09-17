@@ -5315,6 +5315,26 @@
           "result_at": "2026-09-18T04:46:26+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-18",
+      "session": "SCAN",
+      "key": "20260918065553:pons:BUY",
+      "saved_at": "2026-09-18T06:55:53+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pons",
+          "symbol": "PONS",
+          "name": "Pons",
+          "action": "BUY",
+          "entry": 0.684739,
+          "sl": 0.6606387114269725,
+          "tp1": 0.7088392885730275,
+          "tp2": 0.7208894328595413,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
