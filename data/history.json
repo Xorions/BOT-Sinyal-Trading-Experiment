@@ -5223,12 +5223,32 @@
           "result_at": "2026-09-17T04:54:28+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-17",
+      "session": "SCAN",
+      "key": "20260917070819:arbitrum:BUY",
+      "saved_at": "2026-09-17T07:08:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "arbitrum",
+          "symbol": "ARB",
+          "name": "Arbitrum",
+          "action": "BUY",
+          "entry": 0.167702,
+          "sl": 0.162533839759801,
+          "tp1": 0.17287016024019897,
+          "tp2": 0.17545424036029844,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-09-13",
     "winrate_digest_at": "2026-09-13T08:18:09+07:00",
-    "daily_eval_sent": "2026-09-16",
-    "daily_eval_sent_at": "2026-09-16T07:39:37+07:00"
+    "daily_eval_sent": "2026-09-17",
+    "daily_eval_sent_at": "2026-09-17T07:08:18+07:00"
   }
 }
