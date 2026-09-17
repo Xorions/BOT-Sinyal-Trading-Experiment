@@ -5263,7 +5263,30 @@
           "sl": 0.2634416184337412,
           "tp1": 0.2899123815662588,
           "tp2": 0.2965300723493882,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.25785,
+          "result_at": "2026-09-17T21:42:52+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "session": "SCAN",
+      "key": "20260917214253:raydium:BUY",
+      "saved_at": "2026-09-17T21:42:53+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "raydium",
+          "symbol": "RAY",
+          "name": "Raydium",
+          "action": "BUY",
+          "entry": 1.49,
+          "sl": 1.4447898323027712,
+          "tp1": 1.5352101676972287,
+          "tp2": 1.557815251545843,
+          "confidence": 69
         }
       ]
     }
