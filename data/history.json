@@ -5424,6 +5424,29 @@
           "sl": 7.944331250446379,
           "tp1": 8.548534999642897,
           "tp2": 8.682802499464344,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 8.43,
+          "result_at": "2026-09-19T04:52:41+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-19",
+      "session": "SCAN",
+      "key": "20260919045242:aptos:BUY",
+      "saved_at": "2026-09-19T04:52:42+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "aptos",
+          "symbol": "APT",
+          "name": "Aptos",
+          "action": "BUY",
+          "entry": 0.725712,
+          "sl": 0.7050460144632449,
+          "tp1": 0.7422447884294041,
+          "tp2": 0.7505111826441062,
           "confidence": 76
         }
       ]
