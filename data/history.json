@@ -5332,7 +5332,30 @@
           "sl": 0.6606387114269725,
           "tp1": 0.7088392885730275,
           "tp2": 0.7208894328595413,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP2",
+          "result_price": 0.770696,
+          "result_at": "2026-09-18T10:40:44+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-18",
+      "session": "SCAN",
+      "key": "20260918104047:pendle:BUY",
+      "saved_at": "2026-09-18T10:40:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pendle",
+          "symbol": "PENDLE",
+          "name": "Pendle",
+          "action": "BUY",
+          "entry": 2.48,
+          "sl": 2.4188119939859978,
+          "tp1": 2.528950404811202,
+          "tp2": 2.553425607216803,
+          "confidence": 69
         }
       ]
     }
@@ -5340,7 +5363,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-13",
     "winrate_digest_at": "2026-09-13T08:18:09+07:00",
-    "daily_eval_sent": "2026-09-17",
-    "daily_eval_sent_at": "2026-09-17T07:08:18+07:00"
+    "daily_eval_sent": "2026-09-18",
+    "daily_eval_sent_at": "2026-09-18T10:40:44+07:00"
   }
 }
