@@ -5493,7 +5493,30 @@
           "sl": 0.45601754049951726,
           "tp1": 0.47789016760038616,
           "tp2": 0.48275075140057927,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.448062,
+          "result_at": "2026-09-19T15:13:34+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-19",
+      "session": "SCAN",
+      "key": "20260919151335:meta-2-2:BUY",
+      "saved_at": "2026-09-19T15:13:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "meta-2-2",
+          "symbol": "META",
+          "name": "MetaDAO",
+          "action": "BUY",
+          "entry": 5.94,
+          "sl": 5.542583739176486,
+          "tp1": 6.337416260823515,
+          "tp2": 6.536124391235272,
+          "confidence": 69
         }
       ]
     }
