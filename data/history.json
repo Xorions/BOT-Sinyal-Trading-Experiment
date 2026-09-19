@@ -5522,6 +5522,26 @@
           "result_at": "2026-09-19T19:32:44+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-20",
+      "session": "SCAN",
+      "key": "20260920060508:jito-governance-token:BUY",
+      "saved_at": "2026-09-20T06:05:08+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jito-governance-token",
+          "symbol": "JTO",
+          "name": "Jito",
+          "action": "BUY",
+          "entry": 0.493808,
+          "sl": 0.48224296406353023,
+          "tp1": 0.5053730359364699,
+          "tp2": 0.5111555539047047,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
