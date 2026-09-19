@@ -5470,7 +5470,30 @@
           "sl": 62.09552301927149,
           "tp1": 65.22447698072851,
           "tp2": 66.00671547109276,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 61.68,
+          "result_at": "2026-09-19T10:22:31+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-19",
+      "session": "SCAN",
+      "key": "20260919102233:jito-governance-token:BUY",
+      "saved_at": "2026-09-19T10:22:33+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jito-governance-token",
+          "symbol": "JTO",
+          "name": "Jito",
+          "action": "BUY",
+          "entry": 0.468169,
+          "sl": 0.45601754049951726,
+          "tp1": 0.47789016760038616,
+          "tp2": 0.48275075140057927,
+          "confidence": 76
         }
       ]
     }
@@ -5478,7 +5501,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-13",
     "winrate_digest_at": "2026-09-13T08:18:09+07:00",
-    "daily_eval_sent": "2026-09-18",
-    "daily_eval_sent_at": "2026-09-18T10:40:44+07:00"
+    "daily_eval_sent": "2026-09-19",
+    "daily_eval_sent_at": "2026-09-19T10:22:31+07:00"
   }
 }
