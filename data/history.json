@@ -5660,6 +5660,26 @@
           "result_at": "2026-09-21T07:32:05+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-21",
+      "session": "SCAN",
+      "key": "20260921123051:fartcoin:BUY",
+      "saved_at": "2026-09-21T12:30:51+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "fartcoin",
+          "symbol": "FARTCOIN",
+          "name": "Fartcoin",
+          "action": "BUY",
+          "entry": 0.172486,
+          "sl": 0.16839464475259075,
+          "tp1": 0.17657735524740925,
+          "tp2": 0.17862303287111386,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
