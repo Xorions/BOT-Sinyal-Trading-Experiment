@@ -5677,6 +5677,29 @@
           "sl": 0.16839464475259075,
           "tp1": 0.17657735524740925,
           "tp2": 0.17862303287111386,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.181726,
+          "result_at": "2026-09-21T18:07:17+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "session": "SCAN",
+      "key": "20260921180718:arbitrum:BUY",
+      "saved_at": "2026-09-21T18:07:18+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "arbitrum",
+          "symbol": "ARB",
+          "name": "Arbitrum",
+          "action": "BUY",
+          "entry": 0.234689,
+          "sl": 0.22523983945874432,
+          "tp1": 0.24224832843300456,
+          "tp2": 0.24602799264950684,
           "confidence": 69
         }
       ]
