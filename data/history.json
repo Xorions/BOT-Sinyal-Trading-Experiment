@@ -5706,6 +5706,26 @@
           "result_at": "2026-09-22T00:03:54+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-22",
+      "session": "SCAN",
+      "key": "20260922115619:bonk:BUY",
+      "saved_at": "2026-09-22T11:56:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bonk",
+          "symbol": "BONK",
+          "name": "Bonk",
+          "action": "BUY",
+          "entry": 3.59e-06,
+          "sl": 3.454494343269868e-06,
+          "tp1": 3.698404525384105e-06,
+          "tp2": 3.752606788076158e-06,
+          "confidence": 82
+        }
+      ]
     }
   ],
   "meta": {
