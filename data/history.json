@@ -5815,7 +5815,30 @@
           "sl": 7.095368790256111,
           "tp1": 7.40970496779511,
           "tp2": 7.479557451692665,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 7.19,
+          "result_at": "2026-09-23T14:24:25+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "session": "SCAN",
+      "key": "20260923142426:official-trump:BUY",
+      "saved_at": "2026-09-23T14:24:26+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "official-trump",
+          "symbol": "TRUMP",
+          "name": "Official Trump",
+          "action": "BUY",
+          "entry": 2.26,
+          "sl": 2.220951600600564,
+          "tp1": 2.2990483993994357,
+          "tp2": 2.318572599099154,
+          "confidence": 69
         }
       ]
     }
