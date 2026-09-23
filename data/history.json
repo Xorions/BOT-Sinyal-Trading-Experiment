@@ -5792,7 +5792,30 @@
           "sl": 3.5300025839060744e-06,
           "tp1": 3.6973906982403552e-06,
           "tp2": 3.736086047360533e-06,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 3.72e-06,
+          "result_at": "2026-09-23T08:49:56+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "session": "SCAN",
+      "key": "20260923084959:ethereum-name-service:BUY",
+      "saved_at": "2026-09-23T08:49:59+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ethereum-name-service",
+          "symbol": "ENS",
+          "name": "Ethereum Name Service",
+          "action": "BUY",
+          "entry": 7.27,
+          "sl": 7.095368790256111,
+          "tp1": 7.40970496779511,
+          "tp2": 7.479557451692665,
+          "confidence": 76
         }
       ]
     }
@@ -5800,7 +5823,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-20",
     "winrate_digest_at": "2026-09-20T08:09:10+07:00",
-    "daily_eval_sent": "2026-09-22",
-    "daily_eval_sent_at": "2026-09-22T07:07:27+07:00"
+    "daily_eval_sent": "2026-09-23",
+    "daily_eval_sent_at": "2026-09-23T08:49:56+07:00"
   }
 }
