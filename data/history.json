@@ -5907,6 +5907,29 @@
           "sl": 5.9025238162603735,
           "tp1": 6.417476183739627,
           "tp2": 6.54621427560944,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 5.93,
+          "result_at": "2026-09-24T19:13:35+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "session": "SCAN",
+      "key": "20260924191336:ondo-finance:BUY",
+      "saved_at": "2026-09-24T19:13:36+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ondo-finance",
+          "symbol": "ONDO",
+          "name": "Ondo",
+          "action": "BUY",
+          "entry": 0.465013,
+          "sl": 0.44777738770163106,
+          "tp1": 0.4788014898386952,
+          "tp2": 0.4856957347580428,
           "confidence": 69
         }
       ]
