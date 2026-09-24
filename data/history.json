@@ -5890,6 +5890,26 @@
           "result_at": "2026-09-24T03:42:09+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-24",
+      "session": "SCAN",
+      "key": "20260924133207:meta-2-2:BUY",
+      "saved_at": "2026-09-24T13:32:07+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "meta-2-2",
+          "symbol": "META",
+          "name": "MetaDAO",
+          "action": "BUY",
+          "entry": 6.16,
+          "sl": 5.9025238162603735,
+          "tp1": 6.417476183739627,
+          "tp2": 6.54621427560944,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
