@@ -6091,6 +6091,29 @@
           "sl": 27.314439928116666,
           "tp1": 28.40444805750667,
           "tp2": 28.646672086260004,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 28.67,
+          "result_at": "2026-09-26T06:56:53+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "session": "SCAN",
+      "key": "20260926065654:fartcoin:BUY",
+      "saved_at": "2026-09-26T06:56:54+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "fartcoin",
+          "symbol": "FARTCOIN",
+          "name": "Fartcoin",
+          "action": "BUY",
+          "entry": 0.196516,
+          "sl": 0.19239744269618608,
+          "tp1": 0.2006345573038139,
+          "tp2": 0.20269383595572085,
           "confidence": 69
         }
       ]
