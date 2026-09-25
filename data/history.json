@@ -6068,6 +6068,29 @@
           "sl": 0.3436866330112236,
           "tp1": 0.36263229359102117,
           "tp2": 0.36684244038653174,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.368489,
+          "result_at": "2026-09-26T04:09:00+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "session": "SCAN",
+      "key": "20260926040901:celium:BUY",
+      "saved_at": "2026-09-26T04:09:01+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "celium",
+          "symbol": "SN51",
+          "name": "lium",
+          "action": "BUY",
+          "entry": 27.92,
+          "sl": 27.314439928116666,
+          "tp1": 28.40444805750667,
+          "tp2": 28.646672086260004,
           "confidence": 69
         }
       ]
