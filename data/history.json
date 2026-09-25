@@ -5999,6 +5999,29 @@
           "sl": 143.5855264187058,
           "tp1": 149.28157886503536,
           "tp2": 150.54736829755302,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 146.0,
+          "result_at": "2026-09-25T08:49:28+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-25",
+      "session": "SCAN",
+      "key": "20260925084930:axie-infinity:BUY",
+      "saved_at": "2026-09-25T08:49:30+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "axie-infinity",
+          "symbol": "AXS",
+          "name": "Axie Infinity",
+          "action": "BUY",
+          "entry": 1.15,
+          "sl": 1.1204845187324888,
+          "tp1": 1.1736123850140088,
+          "tp2": 1.1854185775210133,
           "confidence": 76
         }
       ]
@@ -6007,7 +6030,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-20",
     "winrate_digest_at": "2026-09-20T08:09:10+07:00",
-    "daily_eval_sent": "2026-09-24",
-    "daily_eval_sent_at": "2026-09-24T08:26:02+07:00"
+    "daily_eval_sent": "2026-09-25",
+    "daily_eval_sent_at": "2026-09-25T08:49:28+07:00"
   }
 }
