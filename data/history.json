@@ -6045,6 +6045,29 @@
           "sl": 0.22011647159444775,
           "tp1": 0.22825552840555224,
           "tp2": 0.23029029260832837,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.225297,
+          "result_at": "2026-09-26T00:47:14+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "session": "SCAN",
+      "key": "20260926004715:meteora:BUY",
+      "saved_at": "2026-09-26T00:47:15+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "meteora",
+          "symbol": "MET",
+          "name": "Meteora",
+          "action": "BUY",
+          "entry": 0.354212,
+          "sl": 0.3436866330112236,
+          "tp1": 0.36263229359102117,
+          "tp2": 0.36684244038653174,
           "confidence": 69
         }
       ]
