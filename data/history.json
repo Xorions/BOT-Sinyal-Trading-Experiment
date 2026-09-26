@@ -6143,6 +6143,26 @@
           "result_at": "2026-09-27T00:37:53+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-27",
+      "session": "SCAN",
+      "key": "20260927055042:chain-2:BUY",
+      "saved_at": "2026-09-27T05:50:42+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "chain-2",
+          "symbol": "XCN",
+          "name": "Onyxcoin",
+          "action": "BUY",
+          "entry": 0.00518161,
+          "sl": 0.0050752526097250245,
+          "tp1": 0.005266695912219979,
+          "tp2": 0.0053092388683299695,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
