@@ -6206,7 +6206,30 @@
           "sl": 0.03665627100322384,
           "tp1": 0.04879375919742092,
           "tp2": 0.05149097879613138,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.04958309,
+          "result_at": "2026-09-27T19:28:30+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "session": "SCAN",
+      "key": "20260927192831:pudgy-penguins:BUY",
+      "saved_at": "2026-09-27T19:28:31+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pudgy-penguins",
+          "symbol": "PENGU",
+          "name": "Pudgy Penguins",
+          "action": "BUY",
+          "entry": 0.01040131,
+          "sl": 0.010158336873546276,
+          "tp1": 0.01059568850116298,
+          "tp2": 0.010692877751744469,
+          "confidence": 69
         }
       ]
     }
