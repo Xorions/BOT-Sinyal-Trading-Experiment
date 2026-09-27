@@ -6252,7 +6252,30 @@
           "sl": 0.22505335248835678,
           "tp1": 0.23632251800931456,
           "tp2": 0.23882677701397184,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.223295,
+          "result_at": "2026-09-28T06:03:53+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "session": "SCAN",
+      "key": "20260928060354:convex-finance:BUY",
+      "saved_at": "2026-09-28T06:03:54+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "convex-finance",
+          "symbol": "CVX",
+          "name": "Convex Finance",
+          "action": "BUY",
+          "entry": 2.23,
+          "sl": 2.1873683884992903,
+          "tp1": 2.2726316115007097,
+          "tp2": 2.2939474172510645,
+          "confidence": 82
         }
       ]
     }
