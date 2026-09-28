@@ -6327,6 +6327,26 @@
           "result_at": "2026-09-28T22:59:18+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-09-29",
+      "session": "SCAN",
+      "key": "20260929044916:collector-crypt:BUY",
+      "saved_at": "2026-09-29T04:49:16+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "collector-crypt",
+          "symbol": "CARDS",
+          "name": "Collector Crypt",
+          "action": "BUY",
+          "entry": 0.227788,
+          "sl": 0.2143748102343498,
+          "tp1": 0.23851855181252016,
+          "tp2": 0.24388382771878023,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
