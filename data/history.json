@@ -6298,7 +6298,30 @@
           "sl": 0.08244780857170167,
           "tp1": 0.08706515314263868,
           "tp2": 0.08809122971395801,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.080721,
+          "result_at": "2026-09-28T14:39:13+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "session": "SCAN",
+      "key": "20260928143914:marscoin-4:BUY",
+      "saved_at": "2026-09-28T14:39:14+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "marscoin-4",
+          "symbol": "MARSCOIN",
+          "name": "MarsCoin",
+          "action": "BUY",
+          "entry": 0.140773,
+          "sl": 0.13406244118144373,
+          "tp1": 0.1474835588185563,
+          "tp2": 0.15083883822783442,
+          "confidence": 82
         }
       ]
     }
