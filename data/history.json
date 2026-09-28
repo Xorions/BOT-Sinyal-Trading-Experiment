@@ -6275,7 +6275,30 @@
           "sl": 2.1873683884992903,
           "tp1": 2.2726316115007097,
           "tp2": 2.2939474172510645,
-          "confidence": 82
+          "confidence": 82,
+          "result": "HIT SL",
+          "result_price": 2.2,
+          "result_at": "2026-09-28T08:39:37+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "session": "SCAN",
+      "key": "20260928083940:sei-network:BUY",
+      "saved_at": "2026-09-28T08:39:40+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sei-network",
+          "symbol": "SEI",
+          "name": "Sei",
+          "action": "BUY",
+          "entry": 0.085013,
+          "sl": 0.08244780857170167,
+          "tp1": 0.08706515314263868,
+          "tp2": 0.08809122971395801,
+          "confidence": 76
         }
       ]
     }
@@ -6283,7 +6306,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-27",
     "winrate_digest_at": "2026-09-27T08:06:14+07:00",
-    "daily_eval_sent": "2026-09-27",
-    "daily_eval_sent_at": "2026-09-27T08:06:14+07:00"
+    "daily_eval_sent": "2026-09-28",
+    "daily_eval_sent_at": "2026-09-28T08:39:37+07:00"
   }
 }
