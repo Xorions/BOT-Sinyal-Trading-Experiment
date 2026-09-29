@@ -6367,7 +6367,30 @@
           "sl": 2.0062040333001088,
           "tp1": 1.9137959666998914,
           "tp2": 1.890693950049837,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 2.01,
+          "result_at": "2026-09-29T14:27:17+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-29",
+      "session": "SCAN",
+      "key": "20260929142718:virtual-protocol:BUY",
+      "saved_at": "2026-09-29T14:27:18+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "virtual-protocol",
+          "symbol": "VIRTUAL",
+          "name": "Virtuals Protocol",
+          "action": "BUY",
+          "entry": 0.818855,
+          "sl": 0.7943706301428576,
+          "tp1": 0.8433393698571424,
+          "tp2": 0.8555815547857136,
+          "confidence": 69
         }
       ]
     }
