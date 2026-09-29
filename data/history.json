@@ -6344,6 +6344,29 @@
           "sl": 0.2143748102343498,
           "tp1": 0.23851855181252016,
           "tp2": 0.24388382771878023,
+          "confidence": 76,
+          "result": "HIT TP2",
+          "result_price": 0.224959,
+          "result_at": "2026-09-29T08:30:14+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-29",
+      "session": "SCAN",
+      "key": "20260929083017:official-trump:SELL",
+      "saved_at": "2026-09-29T08:30:17+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "official-trump",
+          "symbol": "TRUMP",
+          "name": "Official Trump",
+          "action": "SELL",
+          "entry": 1.96,
+          "sl": 2.0062040333001088,
+          "tp1": 1.9137959666998914,
+          "tp2": 1.890693950049837,
           "confidence": 76
         }
       ]
@@ -6352,7 +6375,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-27",
     "winrate_digest_at": "2026-09-27T08:06:14+07:00",
-    "daily_eval_sent": "2026-09-28",
-    "daily_eval_sent_at": "2026-09-28T08:39:37+07:00"
+    "daily_eval_sent": "2026-09-29",
+    "daily_eval_sent_at": "2026-09-29T08:30:14+07:00"
   }
 }
