@@ -6413,6 +6413,29 @@
           "sl": 1.595520444106479,
           "tp1": 1.6844795558935208,
           "tp2": 1.7067193338402813,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 1.56,
+          "result_at": "2026-09-30T02:33:50+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-30",
+      "session": "SCAN",
+      "key": "20260930023352:quant-network:BUY",
+      "saved_at": "2026-09-30T02:33:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "quant-network",
+          "symbol": "QNT",
+          "name": "Quant",
+          "action": "BUY",
+          "entry": 267.95,
+          "sl": 249.18189412379252,
+          "tp1": 286.71810587620746,
+          "tp2": 296.1021588143112,
           "confidence": 69
         }
       ]
