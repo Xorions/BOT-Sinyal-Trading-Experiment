@@ -6482,7 +6482,30 @@
           "sl": 3.669923020651094e-06,
           "tp1": 3.875141317143465e-06,
           "tp2": 3.922711975715197e-06,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 3.83e-06,
+          "result_at": "2026-09-30T15:34:13+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-30",
+      "session": "SCAN",
+      "key": "20260930153414:dogwifcoin:BUY",
+      "saved_at": "2026-09-30T15:34:14+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dogwifcoin",
+          "symbol": "WIF",
+          "name": "dogwifhat",
+          "action": "BUY",
+          "entry": 0.248522,
+          "sl": 0.2431333243296097,
+          "tp1": 0.2539106756703903,
+          "tp2": 0.2566050135055854,
+          "confidence": 69
         }
       ]
     }
