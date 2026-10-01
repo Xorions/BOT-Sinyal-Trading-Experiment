@@ -6551,7 +6551,30 @@
           "sl": 0.264754537949342,
           "tp1": 0.279267462050658,
           "tp2": 0.282895693075987,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.258142,
+          "result_at": "2026-10-01T18:06:50+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-01",
+      "session": "SCAN",
+      "key": "20261001180651:kite-2:BUY",
+      "saved_at": "2026-10-01T18:06:51+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "kite-2",
+          "symbol": "KITE",
+          "name": "Kite",
+          "action": "BUY",
+          "entry": 0.146651,
+          "sl": 0.1431967203856775,
+          "tp1": 0.1494282229008096,
+          "tp2": 0.1508168343512144,
+          "confidence": 69
         }
       ]
     }
