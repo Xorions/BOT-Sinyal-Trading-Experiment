@@ -6534,12 +6534,32 @@
           "result_at": "2026-10-01T03:13:01+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-01",
+      "session": "SCAN",
+      "key": "20261001112552:ethena:BUY",
+      "saved_at": "2026-10-01T11:25:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ethena",
+          "symbol": "ENA",
+          "name": "Ethena",
+          "action": "BUY",
+          "entry": 0.272011,
+          "sl": 0.264754537949342,
+          "tp1": 0.279267462050658,
+          "tp2": 0.282895693075987,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-09-27",
     "winrate_digest_at": "2026-09-27T08:06:14+07:00",
-    "daily_eval_sent": "2026-09-30",
-    "daily_eval_sent_at": "2026-09-30T09:09:30+07:00"
+    "daily_eval_sent": "2026-10-01",
+    "daily_eval_sent_at": "2026-10-01T11:25:49+07:00"
   }
 }
