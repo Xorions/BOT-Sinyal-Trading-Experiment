@@ -6620,7 +6620,10 @@
           "sl": 3.8483966643105805,
           "tp1": 3.6916033356894196,
           "tp2": 3.65240500353413,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 3.79,
+          "result_at": "2026-10-02T08:18:31+07:00"
         }
       ]
     }
@@ -6628,7 +6631,7 @@
   "meta": {
     "winrate_digest_sent": "2026-09-27",
     "winrate_digest_at": "2026-09-27T08:06:14+07:00",
-    "daily_eval_sent": "2026-10-01",
-    "daily_eval_sent_at": "2026-10-01T11:25:49+07:00"
+    "daily_eval_sent": "2026-10-02",
+    "daily_eval_sent_at": "2026-10-02T08:18:31+07:00"
   }
 }
