@@ -6626,6 +6626,26 @@
           "result_at": "2026-10-02T08:18:31+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-02",
+      "session": "SCAN",
+      "key": "20261002141910:the-sandbox:BUY",
+      "saved_at": "2026-10-02T14:19:10+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "the-sandbox",
+          "symbol": "SAND",
+          "name": "The Sandbox",
+          "action": "BUY",
+          "entry": 0.056323,
+          "sl": 0.053498251922399646,
+          "tp1": 0.05858279846208028,
+          "tp2": 0.059712697693120424,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
