@@ -6695,12 +6695,32 @@
           "result_at": "2026-10-03T06:08:53+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-03",
+      "session": "SCAN",
+      "key": "20261003085711:superfarm:BUY",
+      "saved_at": "2026-10-03T08:57:11+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "superfarm",
+          "symbol": "SUPER",
+          "name": "SuperVerse",
+          "action": "BUY",
+          "entry": 0.237011,
+          "sl": 0.2301257410660954,
+          "tp1": 0.2425192071471237,
+          "tp2": 0.24527331072068553,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-09-27",
     "winrate_digest_at": "2026-09-27T08:06:14+07:00",
-    "daily_eval_sent": "2026-10-02",
-    "daily_eval_sent_at": "2026-10-02T08:18:31+07:00"
+    "daily_eval_sent": "2026-10-03",
+    "daily_eval_sent_at": "2026-10-03T08:57:09+07:00"
   }
 }
