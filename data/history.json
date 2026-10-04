@@ -6758,6 +6758,29 @@
           "sl": 1.3220771762250458,
           "tp1": 1.3979228237749544,
           "tp2": 1.4168842356624314,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 1.36,
+          "result_at": "2026-10-05T04:46:01+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-05",
+      "session": "SCAN",
+      "key": "20261005044602:starknet:BUY",
+      "saved_at": "2026-10-05T04:46:02+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "starknet",
+          "symbol": "STRK",
+          "name": "Starknet",
+          "action": "BUY",
+          "entry": 0.059344,
+          "sl": 0.05676863553310233,
+          "tp1": 0.061404291573518135,
+          "tp2": 0.062434437360277206,
           "confidence": 69
         }
       ]
