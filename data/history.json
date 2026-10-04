@@ -6718,6 +6718,26 @@
           "result_at": "2026-10-03T14:49:48+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-04",
+      "session": "SCAN",
+      "key": "20261004154852:grass:BUY",
+      "saved_at": "2026-10-04T15:48:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "grass",
+          "symbol": "GRASS",
+          "name": "Grass",
+          "action": "BUY",
+          "entry": 0.76145,
+          "sl": 0.7379567420026657,
+          "tp1": 0.7802446063978674,
+          "tp2": 0.7896419095968011,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
