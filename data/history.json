@@ -6741,6 +6741,26 @@
           "result_at": "2026-10-04T21:38:24+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-05",
+      "session": "SCAN",
+      "key": "20261005012238:axie-infinity:BUY",
+      "saved_at": "2026-10-05T01:22:38+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "axie-infinity",
+          "symbol": "AXS",
+          "name": "Axie Infinity",
+          "action": "BUY",
+          "entry": 1.36,
+          "sl": 1.3220771762250458,
+          "tp1": 1.3979228237749544,
+          "tp2": 1.4168842356624314,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
