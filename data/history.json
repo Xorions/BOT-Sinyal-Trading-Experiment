@@ -6804,7 +6804,30 @@
           "sl": 0.05530926762651401,
           "tp1": 0.05123031247265503,
           "tp2": 0.05030846870898255,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.053383,
+          "result_at": "2026-10-06T04:39:22+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-06",
+      "session": "SCAN",
+      "key": "20261006043923:filecoin:BUY",
+      "saved_at": "2026-10-06T04:39:23+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "filecoin",
+          "symbol": "FIL",
+          "name": "Filecoin",
+          "action": "BUY",
+          "entry": 1.19,
+          "sl": 1.1561286602910044,
+          "tp1": 1.2170970717671963,
+          "tp2": 1.2306456076507946,
+          "confidence": 76
         }
       ]
     }
