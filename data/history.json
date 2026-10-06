@@ -6827,7 +6827,30 @@
           "sl": 1.1561286602910044,
           "tp1": 1.2170970717671963,
           "tp2": 1.2306456076507946,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 1.15,
+          "result_at": "2026-10-06T08:55:02+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-06",
+      "session": "SCAN",
+      "key": "20261006085505:dash:SELL",
+      "saved_at": "2026-10-06T08:55:05+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dash",
+          "symbol": "DASH",
+          "name": "Dash",
+          "action": "SELL",
+          "entry": 57.49,
+          "sl": 58.09734122199869,
+          "tp1": 56.882658778001314,
+          "tp2": 56.578988167001974,
+          "confidence": 69
         }
       ]
     }
@@ -6835,7 +6858,7 @@
   "meta": {
     "winrate_digest_sent": "2026-10-04",
     "winrate_digest_at": "2026-10-04T09:39:30+07:00",
-    "daily_eval_sent": "2026-10-05",
-    "daily_eval_sent_at": "2026-10-05T07:27:49+07:00"
+    "daily_eval_sent": "2026-10-06",
+    "daily_eval_sent_at": "2026-10-06T08:55:02+07:00"
   }
 }
