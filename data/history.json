@@ -6856,6 +6856,26 @@
           "result_at": "2026-10-06T15:36:47+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-06",
+      "session": "SCAN",
+      "key": "20261006222746:layerzero:BUY",
+      "saved_at": "2026-10-06T22:27:46+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "layerzero",
+          "symbol": "ZRO",
+          "name": "LayerZero",
+          "action": "BUY",
+          "entry": 2.27,
+          "sl": 2.1976278903684525,
+          "tp1": 2.327897687705238,
+          "tp2": 2.356846531557857,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
