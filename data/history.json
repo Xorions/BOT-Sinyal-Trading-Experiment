@@ -6942,7 +6942,30 @@
           "sl": 0.6104233460844541,
           "tp1": 0.4927657231324368,
           "tp2": 0.4666195846986551,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.517974,
+          "result_at": "2026-10-08T02:20:35+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "session": "SCAN",
+      "key": "20261008022037:near:BUY",
+      "saved_at": "2026-10-08T02:20:37+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "near",
+          "symbol": "NEAR",
+          "name": "NEAR Protocol",
+          "action": "BUY",
+          "entry": 5.3,
+          "sl": 5.18825079792585,
+          "tp1": 5.41174920207415,
+          "tp2": 5.467623803111225,
+          "confidence": 76
         }
       ]
     }
