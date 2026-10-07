@@ -6919,7 +6919,30 @@
           "sl": 0.07125519877855821,
           "tp1": 0.07544680122144179,
           "tp2": 0.07649470183216267,
-          "confidence": 89
+          "confidence": 89,
+          "result": "HIT TP1",
+          "result_price": 0.071688,
+          "result_at": "2026-10-07T20:10:32+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "session": "SCAN",
+      "key": "20261007201034:bedrock-token:SELL",
+      "saved_at": "2026-10-07T20:10:34+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bedrock-token",
+          "symbol": "BR",
+          "name": "Bedrock",
+          "action": "SELL",
+          "entry": 0.545058,
+          "sl": 0.6104233460844541,
+          "tp1": 0.4927657231324368,
+          "tp2": 0.4666195846986551,
+          "confidence": 69
         }
       ]
     }
