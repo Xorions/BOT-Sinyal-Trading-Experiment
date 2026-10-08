@@ -6988,6 +6988,29 @@
           "sl": 0.5471099210911201,
           "tp1": 0.48688807890887986,
           "tp2": 0.47183261836331986,
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.489368,
+          "result_at": "2026-10-08T17:20:02+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "session": "SCAN",
+      "key": "20261008172002:celestia:BUY",
+      "saved_at": "2026-10-08T17:20:02+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "celestia",
+          "symbol": "TIA",
+          "name": "Celestia",
+          "action": "BUY",
+          "entry": 0.486535,
+          "sl": 0.47581827247820974,
+          "tp1": 0.49725172752179025,
+          "tp2": 0.5026100912826854,
           "confidence": 69
         }
       ]
