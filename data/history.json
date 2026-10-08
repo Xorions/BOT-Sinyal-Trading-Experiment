@@ -6971,12 +6971,32 @@
           "result_at": "2026-10-08T06:40:57+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-08",
+      "session": "SCAN",
+      "key": "20261008095802:bedrock-token:SELL",
+      "saved_at": "2026-10-08T09:58:02+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bedrock-token",
+          "symbol": "BR",
+          "name": "Bedrock",
+          "action": "SELL",
+          "entry": 0.516999,
+          "sl": 0.5471099210911201,
+          "tp1": 0.48688807890887986,
+          "tp2": 0.47183261836331986,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-10-04",
     "winrate_digest_at": "2026-10-04T09:39:30+07:00",
-    "daily_eval_sent": "2026-10-07",
-    "daily_eval_sent_at": "2026-10-07T07:02:15+07:00"
+    "daily_eval_sent": "2026-10-08",
+    "daily_eval_sent_at": "2026-10-08T09:57:59+07:00"
   }
 }
