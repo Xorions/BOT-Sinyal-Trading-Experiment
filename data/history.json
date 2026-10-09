@@ -7040,12 +7040,32 @@
           "result_at": "2026-10-09T05:28:46+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-09",
+      "session": "SCAN",
+      "key": "20261009092841:pyth-network:BUY",
+      "saved_at": "2026-10-09T09:28:41+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pyth-network",
+          "symbol": "PYTH",
+          "name": "Pyth Network",
+          "action": "BUY",
+          "entry": 0.081691,
+          "sl": 0.07862002083530731,
+          "tp1": 0.08476197916469269,
+          "tp2": 0.08629746874703904,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-10-04",
     "winrate_digest_at": "2026-10-04T09:39:30+07:00",
-    "daily_eval_sent": "2026-10-08",
-    "daily_eval_sent_at": "2026-10-08T09:57:59+07:00"
+    "daily_eval_sent": "2026-10-09",
+    "daily_eval_sent_at": "2026-10-09T09:28:38+07:00"
   }
 }
