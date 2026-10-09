@@ -7057,7 +7057,30 @@
           "sl": 0.07862002083530731,
           "tp1": 0.08476197916469269,
           "tp2": 0.08629746874703904,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.084859,
+          "result_at": "2026-10-09T16:31:32+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "session": "SCAN",
+      "key": "20261009163133:kaia:BUY",
+      "saved_at": "2026-10-09T16:31:33+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "kaia",
+          "symbol": "KAIA",
+          "name": "Kaia",
+          "action": "BUY",
+          "entry": 0.055374,
+          "sl": 0.05169609578237664,
+          "tp1": 0.058316323374098686,
+          "tp2": 0.05978748506114803,
+          "confidence": 76
         }
       ]
     }
