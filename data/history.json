@@ -7080,6 +7080,29 @@
           "sl": 0.05169609578237664,
           "tp1": 0.058316323374098686,
           "tp2": 0.05978748506114803,
+          "confidence": 76,
+          "result": "HIT TP2",
+          "result_price": 0.052165,
+          "result_at": "2026-10-09T23:36:13+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "session": "SCAN",
+      "key": "20261009233614:basic-attention-token:BUY",
+      "saved_at": "2026-10-09T23:36:14+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "basic-attention-token",
+          "symbol": "BAT",
+          "name": "Basic Attention",
+          "action": "BUY",
+          "entry": 0.130996,
+          "sl": 0.12466334303400797,
+          "tp1": 0.13606212557279362,
+          "tp2": 0.13859518835919044,
           "confidence": 76
         }
       ]
