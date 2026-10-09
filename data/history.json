@@ -7103,7 +7103,30 @@
           "sl": 0.12466334303400797,
           "tp1": 0.13606212557279362,
           "tp2": 0.13859518835919044,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.134363,
+          "result_at": "2026-10-10T04:18:17+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-10",
+      "session": "SCAN",
+      "key": "20261010041818:optimism:BUY",
+      "saved_at": "2026-10-10T04:18:18+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "optimism",
+          "symbol": "OP",
+          "name": "Optimism",
+          "action": "BUY",
+          "entry": 0.127655,
+          "sl": 0.12504763307985273,
+          "tp1": 0.13026236692014725,
+          "tp2": 0.13156605038022087,
+          "confidence": 69
         }
       ]
     }
