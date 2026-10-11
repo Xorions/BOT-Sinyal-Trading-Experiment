@@ -7155,6 +7155,26 @@
           "result_at": "2026-10-10T14:07:13+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-11",
+      "session": "SCAN",
+      "key": "20261011132852:basic-attention-token:BUY",
+      "saved_at": "2026-10-11T13:28:52+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "basic-attention-token",
+          "symbol": "BAT",
+          "name": "Basic Attention",
+          "action": "BUY",
+          "entry": 0.145507,
+          "sl": 0.1387686824525254,
+          "tp1": 0.15089765403797967,
+          "tp2": 0.1535929810569695,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
