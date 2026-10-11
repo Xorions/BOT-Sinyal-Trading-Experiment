@@ -7178,6 +7178,26 @@
           "result_at": "2026-10-11T20:23:14+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-12",
+      "session": "SCAN",
+      "key": "20261012051707:pons:SELL",
+      "saved_at": "2026-10-12T05:17:07+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pons",
+          "symbol": "PONS",
+          "name": "Pons",
+          "action": "SELL",
+          "entry": 0.345763,
+          "sl": 0.3541075591539149,
+          "tp1": 0.3374184408460851,
+          "tp2": 0.3332461612691276,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
