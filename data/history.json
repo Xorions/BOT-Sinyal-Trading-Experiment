@@ -7201,6 +7201,26 @@
           "result_at": "2026-10-12T08:33:29+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-13",
+      "session": "SCAN",
+      "key": "20261013004516:morpho:SELL",
+      "saved_at": "2026-10-13T00:45:16+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "morpho",
+          "symbol": "MORPHO",
+          "name": "Morpho",
+          "action": "SELL",
+          "entry": 2.38,
+          "sl": 2.417961372672281,
+          "tp1": 2.3420386273277187,
+          "tp2": 2.323057940991578,
+          "confidence": 82
+        }
+      ]
     }
   ],
   "meta": {
