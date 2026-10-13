@@ -7264,6 +7264,29 @@
           "sl": 0.062054925332533074,
           "tp1": 0.06863225973397355,
           "tp2": 0.07009388960096032,
+          "confidence": 76,
+          "result": "HIT TP2",
+          "result_price": 0.055807,
+          "result_at": "2026-10-14T02:48:39+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-14",
+      "session": "SCAN",
+      "key": "20261014024839:zksync:BUY",
+      "saved_at": "2026-10-14T02:48:39+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zksync",
+          "symbol": "ZK",
+          "name": "ZKsync",
+          "action": "BUY",
+          "entry": 0.01640993,
+          "sl": 0.015728030093943936,
+          "tp1": 0.01695544992484485,
+          "tp2": 0.017228209887267275,
           "confidence": 76
         }
       ]
