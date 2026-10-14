@@ -7293,6 +7293,26 @@
           "result_at": "2026-10-14T06:37:15+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-14",
+      "session": "SCAN",
+      "key": "20261014200603:ethena:SELL",
+      "saved_at": "2026-10-14T20:06:03+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "ethena",
+          "symbol": "ENA",
+          "name": "Ethena",
+          "action": "SELL",
+          "entry": 0.200456,
+          "sl": 0.20462772055150316,
+          "tp1": 0.19711862355879747,
+          "tp2": 0.1954499353381962,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
