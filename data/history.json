@@ -7402,7 +7402,30 @@
           "sl": 4.765614380433799,
           "tp1": 4.534385619566201,
           "tp2": 4.476578429349302,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 4.69,
+          "result_at": "2026-10-15T21:19:57+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "session": "SCAN",
+      "key": "20261015211958:spacex-bstocks-tokenized-stock:SELL",
+      "saved_at": "2026-10-15T21:19:58+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "spacex-bstocks-tokenized-stock",
+          "symbol": "SPCXB",
+          "name": "SpaceX (bStocks Tokenized Stock)",
+          "action": "SELL",
+          "entry": 144.31,
+          "sl": 146.65189226737377,
+          "tp1": 142.33338439860404,
+          "tp2": 141.34507659790606,
+          "confidence": 76
         }
       ]
     }
