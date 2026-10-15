@@ -7448,7 +7448,30 @@
           "sl": 0.1833601269971342,
           "tp1": 0.1989078730028658,
           "tp2": 0.2027948095042987,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.219523,
+          "result_at": "2026-10-16T04:41:48+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "session": "SCAN",
+      "key": "20261016044148:sonic-3:BUY",
+      "saved_at": "2026-10-16T04:41:48+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sonic-3",
+          "symbol": "S",
+          "name": "Sonic",
+          "action": "BUY",
+          "entry": 0.056442,
+          "sl": 0.05419705354525399,
+          "tp1": 0.05868694645474601,
+          "tp2": 0.05980941968211902,
+          "confidence": 76
         }
       ]
     }
