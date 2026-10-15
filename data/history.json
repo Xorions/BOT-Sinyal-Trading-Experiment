@@ -7362,6 +7362,26 @@
           "result_at": "2026-10-15T07:07:48+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-15",
+      "session": "SCAN",
+      "key": "20261015113855:zksync:BUY",
+      "saved_at": "2026-10-15T11:38:55+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zksync",
+          "symbol": "ZK",
+          "name": "ZKsync",
+          "action": "BUY",
+          "entry": 0.01805113,
+          "sl": 0.017231963534152652,
+          "tp1": 0.018706463172677875,
+          "tp2": 0.019034129759016815,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
