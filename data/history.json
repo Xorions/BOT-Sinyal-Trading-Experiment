@@ -7494,7 +7494,30 @@
           "sl": 0.13972349874721754,
           "tp1": 0.14463650125278246,
           "tp2": 0.1458647518791737,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.135928,
+          "result_at": "2026-10-17T00:37:37+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "session": "SCAN",
+      "key": "20261017003738:jito-governance-token:SELL",
+      "saved_at": "2026-10-17T00:37:38+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jito-governance-token",
+          "symbol": "JTO",
+          "name": "Jito",
+          "action": "SELL",
+          "entry": 0.460163,
+          "sl": 0.46846976015057207,
+          "tp1": 0.4518562398494279,
+          "tp2": 0.44770285977414187,
+          "confidence": 82
         }
       ]
     }
