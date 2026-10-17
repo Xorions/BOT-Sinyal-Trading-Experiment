@@ -7592,6 +7592,26 @@
           "result_at": "2026-10-17T16:41:37+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-17",
+      "session": "SCAN",
+      "key": "20261017201436:polkadot:SELL",
+      "saved_at": "2026-10-17T20:14:36+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "polkadot",
+          "symbol": "DOT",
+          "name": "Polkadot",
+          "action": "SELL",
+          "entry": 1.13,
+          "sl": 1.1501170764990793,
+          "tp1": 1.1098829235009204,
+          "tp2": 1.0998243852513805,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
