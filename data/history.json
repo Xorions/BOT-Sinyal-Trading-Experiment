@@ -7609,6 +7609,29 @@
           "sl": 1.1501170764990793,
           "tp1": 1.1098829235009204,
           "tp2": 1.0998243852513805,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 1.12,
+          "result_at": "2026-10-17T23:29:12+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "session": "SCAN",
+      "key": "20261017232913:sei-network:SELL",
+      "saved_at": "2026-10-17T23:29:13+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sei-network",
+          "symbol": "SEI",
+          "name": "Sei",
+          "action": "SELL",
+          "entry": 0.061882,
+          "sl": 0.06274865049170807,
+          "tp1": 0.061015349508291926,
+          "tp2": 0.06058202426243789,
           "confidence": 69
         }
       ]
