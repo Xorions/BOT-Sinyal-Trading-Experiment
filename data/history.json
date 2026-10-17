@@ -7638,6 +7638,26 @@
           "result_at": "2026-10-18T01:45:34+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-18",
+      "session": "SCAN",
+      "key": "20261018041519:reserve-rights-token:BUY",
+      "saved_at": "2026-10-18T04:15:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "reserve-rights-token",
+          "symbol": "RSR",
+          "name": "Reserve Rights",
+          "action": "BUY",
+          "entry": 0.00202869,
+          "sl": 0.0019822002725908595,
+          "tp1": 0.0020751797274091406,
+          "tp2": 0.0020984245911137107,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
