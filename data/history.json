@@ -7661,6 +7661,26 @@
           "result_at": "2026-10-18T06:11:56+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-18",
+      "session": "SCAN",
+      "key": "20261018125409:optimism:SELL",
+      "saved_at": "2026-10-18T12:54:09+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "optimism",
+          "symbol": "OP",
+          "name": "Optimism",
+          "action": "SELL",
+          "entry": 0.125469,
+          "sl": 0.12781850415594617,
+          "tp1": 0.12311949584405382,
+          "tp2": 0.12194474376608072,
+          "confidence": 82
+        }
+      ]
     }
   ],
   "meta": {
