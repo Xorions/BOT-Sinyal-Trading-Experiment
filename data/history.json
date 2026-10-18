@@ -7753,6 +7753,26 @@
           "result_at": "2026-10-19T04:54:15+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-19",
+      "session": "SCAN",
+      "key": "20261019065612:sentient:BUY",
+      "saved_at": "2026-10-19T06:56:12+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sentient",
+          "symbol": "SENT",
+          "name": "Sentient",
+          "action": "BUY",
+          "entry": 0.02258235,
+          "sl": 0.022117471798791342,
+          "tp1": 0.02304722820120866,
+          "tp2": 0.023279667301812988,
+          "confidence": 82
+        }
+      ]
     }
   ],
   "meta": {
