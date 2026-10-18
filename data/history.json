@@ -7730,6 +7730,26 @@
           "result_at": "2026-10-19T00:23:25+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-19",
+      "session": "SCAN",
+      "key": "20261019023221:the-sandbox:SELL",
+      "saved_at": "2026-10-19T02:32:21+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "the-sandbox",
+          "symbol": "SAND",
+          "name": "The Sandbox",
+          "action": "SELL",
+          "entry": 0.057711,
+          "sl": 0.06025419741674354,
+          "tp1": 0.05567644206660517,
+          "tp2": 0.05465916309990775,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
