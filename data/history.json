@@ -7678,7 +7678,30 @@
           "sl": 0.12781850415594617,
           "tp1": 0.12311949584405382,
           "tp2": 0.12194474376608072,
-          "confidence": 82
+          "confidence": 82,
+          "result": "HIT SL",
+          "result_price": 0.126753,
+          "result_at": "2026-10-18T17:29:03+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-18",
+      "session": "SCAN",
+      "key": "20261018172904:starknet:SELL",
+      "saved_at": "2026-10-18T17:29:04+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "starknet",
+          "symbol": "STRK",
+          "name": "Starknet",
+          "action": "SELL",
+          "entry": 0.062223,
+          "sl": 0.0640974077426485,
+          "tp1": 0.0607234738058812,
+          "tp2": 0.059973710708821806,
+          "confidence": 69
         }
       ]
     }
