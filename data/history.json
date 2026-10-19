@@ -7776,6 +7776,26 @@
           "result_at": "2026-10-19T10:45:01+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-19",
+      "session": "SCAN",
+      "key": "20261019162009:vaulta:SELL",
+      "saved_at": "2026-10-19T16:20:09+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "vaulta",
+          "symbol": "A",
+          "name": "Vaulta",
+          "action": "SELL",
+          "entry": 0.088142,
+          "sl": 0.09051485936711758,
+          "tp1": 0.08576914063288242,
+          "tp2": 0.08458271094932364,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
