@@ -7793,6 +7793,29 @@
           "sl": 0.09051485936711758,
           "tp1": 0.08576914063288242,
           "tp2": 0.08458271094932364,
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.085753,
+          "result_at": "2026-10-19T23:35:33+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-19",
+      "session": "SCAN",
+      "key": "20261019233534:injective-protocol:BUY",
+      "saved_at": "2026-10-19T23:35:34+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "injective-protocol",
+          "symbol": "INJ",
+          "name": "Injective",
+          "action": "BUY",
+          "entry": 8.68,
+          "sl": 8.511750976294474,
+          "tp1": 8.840836820287684,
+          "tp2": 8.921255230431528,
           "confidence": 69
         }
       ]
