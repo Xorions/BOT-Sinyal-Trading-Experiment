@@ -7908,6 +7908,29 @@
           "sl": 0.14306882673060167,
           "tp1": 0.13959873861551864,
           "tp2": 0.13882760792327795,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.14871,
+          "result_at": "2026-10-20T22:06:09+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "session": "SCAN",
+      "key": "20261020220609:monero:BUY",
+      "saved_at": "2026-10-20T22:06:09+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "monero",
+          "symbol": "XMR",
+          "name": "Monero",
+          "action": "BUY",
+          "entry": 623.56,
+          "sl": 614.1003744639103,
+          "tp1": 631.1277004288717,
+          "tp2": 634.9115506433076,
           "confidence": 69
         }
       ]
