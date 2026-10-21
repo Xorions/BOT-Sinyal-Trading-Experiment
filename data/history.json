@@ -8023,7 +8023,30 @@
           "sl": 0.5819322727203049,
           "tp1": 0.6003357272796952,
           "tp2": 0.6049365909195428,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.573275,
+          "result_at": "2026-10-21T23:03:02+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "session": "SCAN",
+      "key": "20261021230303:layerzero:BUY",
+      "saved_at": "2026-10-21T23:03:03+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "layerzero",
+          "symbol": "ZRO",
+          "name": "LayerZero",
+          "action": "BUY",
+          "entry": 2.1,
+          "sl": 2.0526863554455343,
+          "tp1": 2.147313644554466,
+          "tp2": 2.1709704668316987,
+          "confidence": 76
         }
       ]
     }
