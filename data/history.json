@@ -8000,6 +8000,29 @@
           "sl": 4.8892400223673995,
           "tp1": 5.090759977632601,
           "tp2": 5.1411399664489,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 5.19,
+          "result_at": "2026-10-21T18:15:37+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "session": "SCAN",
+      "key": "20261021181538:worldcoin-wld:BUY",
+      "saved_at": "2026-10-21T18:15:38+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "worldcoin-wld",
+          "symbol": "WLD",
+          "name": "Worldcoin",
+          "action": "BUY",
+          "entry": 0.591134,
+          "sl": 0.5819322727203049,
+          "tp1": 0.6003357272796952,
+          "tp2": 0.6049365909195428,
           "confidence": 69
         }
       ]
