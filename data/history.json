@@ -8121,6 +8121,26 @@
           "result_at": "2026-10-22T19:28:39+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-23",
+      "session": "SCAN",
+      "key": "20261023034950:bedrock-token:BUY",
+      "saved_at": "2026-10-23T03:49:50+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bedrock-token",
+          "symbol": "BR",
+          "name": "Bedrock",
+          "action": "BUY",
+          "entry": 0.519315,
+          "sl": 0.4906243634439915,
+          "tp1": 0.5480056365560084,
+          "tp2": 0.5623509548340127,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
