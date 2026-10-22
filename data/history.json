@@ -8069,6 +8069,29 @@
           "sl": 2.01089314447903,
           "tp1": 1.9091068555209698,
           "tp2": 1.8836602832814549,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 1.95,
+          "result_at": "2026-10-22T08:41:53+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "session": "SCAN",
+      "key": "20261022084155:venice-token:BUY",
+      "saved_at": "2026-10-22T08:41:55+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "venice-token",
+          "symbol": "VVV",
+          "name": "Venice Token",
+          "action": "BUY",
+          "entry": 27.63,
+          "sl": 26.92120114958344,
+          "tp1": 28.33879885041656,
+          "tp2": 28.69319827562484,
           "confidence": 69
         }
       ]
@@ -8077,7 +8100,7 @@
   "meta": {
     "winrate_digest_sent": "2026-10-18",
     "winrate_digest_at": "2026-10-18T08:04:59+07:00",
-    "daily_eval_sent": "2026-10-21",
-    "daily_eval_sent_at": "2026-10-21T07:59:09+07:00"
+    "daily_eval_sent": "2026-10-22",
+    "daily_eval_sent_at": "2026-10-22T08:41:53+07:00"
   }
 }
