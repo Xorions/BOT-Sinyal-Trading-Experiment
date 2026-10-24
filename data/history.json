@@ -8299,7 +8299,30 @@
           "sl": 0.5325206164149926,
           "tp1": 0.5101753835850075,
           "tp2": 0.5045890753775112,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.531064,
+          "result_at": "2026-10-25T02:15:44+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "session": "SCAN",
+      "key": "20261025021545:cap-4:BUY",
+      "saved_at": "2026-10-25T02:15:45+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "cap-4",
+          "symbol": "CAP",
+          "name": "Cap",
+          "action": "BUY",
+          "entry": 0.078575,
+          "sl": 0.07618202237773793,
+          "tp1": 0.08096797762226209,
+          "tp2": 0.08216446643339313,
+          "confidence": 69
         }
       ]
     }
