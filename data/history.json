@@ -8207,6 +8207,29 @@
           "sl": 53.130635995883026,
           "tp1": 54.789364004116976,
           "tp2": 55.20404600617546,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 51.84,
+          "result_at": "2026-10-24T07:02:47+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-24",
+      "session": "SCAN",
+      "key": "20261024070249:memecore:BUY",
+      "saved_at": "2026-10-24T07:02:49+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "memecore",
+          "symbol": "M",
+          "name": "MemeCore",
+          "action": "BUY",
+          "entry": 0.928476,
+          "sl": 0.9053912909513273,
+          "tp1": 0.9515607090486726,
+          "tp2": 0.9631030635730089,
           "confidence": 69
         }
       ]
@@ -8215,7 +8238,7 @@
   "meta": {
     "winrate_digest_sent": "2026-10-18",
     "winrate_digest_at": "2026-10-18T08:04:59+07:00",
-    "daily_eval_sent": "2026-10-23",
-    "daily_eval_sent_at": "2026-10-23T10:35:22+07:00"
+    "daily_eval_sent": "2026-10-24",
+    "daily_eval_sent_at": "2026-10-24T07:02:47+07:00"
   }
 }
