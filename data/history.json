@@ -8230,7 +8230,30 @@
           "sl": 0.9053912909513273,
           "tp1": 0.9515607090486726,
           "tp2": 0.9631030635730089,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.959091,
+          "result_at": "2026-10-24T11:36:27+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-24",
+      "session": "SCAN",
+      "key": "20261024113629:kamino:BUY",
+      "saved_at": "2026-10-24T11:36:29+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "kamino",
+          "symbol": "KMNO",
+          "name": "Kamino",
+          "action": "BUY",
+          "entry": 0.04401657,
+          "sl": 0.042875903120044044,
+          "tp1": 0.04515723687995595,
+          "tp2": 0.04572757031993393,
+          "confidence": 76
         }
       ]
     }
