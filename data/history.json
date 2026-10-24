@@ -8328,6 +8328,26 @@
           "result_at": "2026-10-25T04:44:43+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-25",
+      "session": "SCAN",
+      "key": "20261025064641:useless-3:BUY",
+      "saved_at": "2026-10-25T06:46:41+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "useless-3",
+          "symbol": "USELESS",
+          "name": "Useless Coin",
+          "action": "BUY",
+          "entry": 0.16931,
+          "sl": 0.1640559704516869,
+          "tp1": 0.17456402954831307,
+          "tp2": 0.1771910443224696,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
