@@ -8420,6 +8420,26 @@
           "result_at": "2026-10-26T02:37:02+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-26",
+      "session": "SCAN",
+      "key": "20261026050413:hash-2:SELL",
+      "saved_at": "2026-10-26T05:04:13+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "hash-2",
+          "symbol": "HASH",
+          "name": "Provenance Blockchain",
+          "action": "SELL",
+          "entry": 0.00603333,
+          "sl": 0.006233002153126627,
+          "tp1": 0.0058336578468733725,
+          "tp2": 0.005733821770310059,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
