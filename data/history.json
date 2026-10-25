@@ -8351,6 +8351,26 @@
           "result_at": "2026-10-25T10:25:23+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-25",
+      "session": "SCAN",
+      "key": "20261025153846:dogwifcoin:SELL",
+      "saved_at": "2026-10-25T15:38:46+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dogwifcoin",
+          "symbol": "WIF",
+          "name": "dogwifhat",
+          "action": "SELL",
+          "entry": 0.178194,
+          "sl": 0.18091603997607963,
+          "tp1": 0.17601636801913628,
+          "tp2": 0.17492755202870441,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
