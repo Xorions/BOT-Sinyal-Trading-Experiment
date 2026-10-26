@@ -8443,6 +8443,26 @@
           "result_at": "2026-10-26T07:23:34+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-26",
+      "session": "SCAN",
+      "key": "20261026120850:memecore:BUY",
+      "saved_at": "2026-10-26T12:08:50+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "memecore",
+          "symbol": "M",
+          "name": "MemeCore",
+          "action": "BUY",
+          "entry": 0.968105,
+          "sl": 0.946778589838827,
+          "tp1": 0.989431410161173,
+          "tp2": 1.0000946152417596,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
