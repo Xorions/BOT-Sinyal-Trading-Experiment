@@ -8552,6 +8552,29 @@
           "sl": 1.007621765601863,
           "tp1": 1.0483782343981372,
           "tp2": 1.0585673515972058,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 1.06,
+          "result_at": "2026-10-28T01:18:21+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "session": "SCAN",
+      "key": "20261028011821:quack-ai:SELL",
+      "saved_at": "2026-10-28T01:18:21+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "quack-ai",
+          "symbol": "Q",
+          "name": "Quack AI",
+          "action": "SELL",
+          "entry": 0.054581,
+          "sl": 0.07465065879402755,
+          "tp1": 0.03451134120597245,
+          "tp2": 0.024476511808958674,
           "confidence": 69
         }
       ]
