@@ -8667,7 +8667,30 @@
           "sl": 0.06130657117548145,
           "tp1": 0.07954142882451855,
           "tp2": 0.08410014323677782,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.068867,
+          "result_at": "2026-10-29T06:54:16+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "session": "SCAN",
+      "key": "20261029065416:lighter:SELL",
+      "saved_at": "2026-10-29T06:54:16+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "lighter",
+          "symbol": "LIT",
+          "name": "Lighter",
+          "action": "SELL",
+          "entry": 2.93,
+          "sl": 2.9945735038874677,
+          "tp1": 2.8783411968900263,
+          "tp2": 2.8525117953350394,
+          "confidence": 69
         }
       ]
     }
