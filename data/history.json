@@ -8644,7 +8644,30 @@
           "sl": 0.14323896743486023,
           "tp1": 0.13600103256513976,
           "tp2": 0.13419154884770965,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.140936,
+          "result_at": "2026-10-29T02:45:47+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "session": "SCAN",
+      "key": "20261029024548:quack-ai:BUY",
+      "saved_at": "2026-10-29T02:45:48+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "quack-ai",
+          "symbol": "Q",
+          "name": "Quack AI",
+          "action": "BUY",
+          "entry": 0.070424,
+          "sl": 0.06130657117548145,
+          "tp1": 0.07954142882451855,
+          "tp2": 0.08410014323677782,
+          "confidence": 76
         }
       ]
     }
