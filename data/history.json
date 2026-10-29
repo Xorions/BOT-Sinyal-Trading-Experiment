@@ -8713,6 +8713,29 @@
           "sl": 0.04498136136659912,
           "tp1": 0.04372769863340089,
           "tp2": 0.043414282950101336,
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.04428058,
+          "result_at": "2026-10-29T18:06:40+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "session": "SCAN",
+      "key": "20261029180641:kinetiq:BUY",
+      "saved_at": "2026-10-29T18:06:41+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "kinetiq",
+          "symbol": "KNTQ",
+          "name": "Kinetiq",
+          "action": "BUY",
+          "entry": 0.471574,
+          "sl": 0.4550887488693986,
+          "tp1": 0.4847622009044811,
+          "tp2": 0.49135630135672165,
           "confidence": 69
         }
       ]
