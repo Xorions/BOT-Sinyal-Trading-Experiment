@@ -8690,6 +8690,29 @@
           "sl": 2.9945735038874677,
           "tp1": 2.8783411968900263,
           "tp2": 2.8525117953350394,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 2.79,
+          "result_at": "2026-10-29T11:36:23+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "session": "SCAN",
+      "key": "20261029113626:sonic-3:SELL",
+      "saved_at": "2026-10-29T11:36:26+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sonic-3",
+          "symbol": "S",
+          "name": "Sonic",
+          "action": "SELL",
+          "entry": 0.04435453,
+          "sl": 0.04498136136659912,
+          "tp1": 0.04372769863340089,
+          "tp2": 0.043414282950101336,
           "confidence": 69
         }
       ]
@@ -8698,7 +8721,7 @@
   "meta": {
     "winrate_digest_sent": "2026-10-25",
     "winrate_digest_at": "2026-10-25T10:25:24+07:00",
-    "daily_eval_sent": "2026-10-28",
-    "daily_eval_sent_at": "2026-10-28T08:36:47+07:00"
+    "daily_eval_sent": "2026-10-29",
+    "daily_eval_sent_at": "2026-10-29T11:36:23+07:00"
   }
 }
