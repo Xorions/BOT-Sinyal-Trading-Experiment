@@ -8736,6 +8736,29 @@
           "sl": 0.4550887488693986,
           "tp1": 0.4847622009044811,
           "tp2": 0.49135630135672165,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.534322,
+          "result_at": "2026-10-30T00:25:45+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "session": "SCAN",
+      "key": "20261030002546:bitway:SELL",
+      "saved_at": "2026-10-30T00:25:46+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bitway",
+          "symbol": "BTW",
+          "name": "Bitway",
+          "action": "SELL",
+          "entry": 1.55,
+          "sl": 1.6163737426499507,
+          "tp1": 1.4836262573500494,
+          "tp2": 1.4504393860250742,
           "confidence": 69
         }
       ]
