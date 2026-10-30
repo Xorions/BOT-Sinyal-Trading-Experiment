@@ -8782,7 +8782,30 @@
           "sl": 0.16289912926500238,
           "tp1": 0.15165429658799812,
           "tp2": 0.14915544488199717,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.153579,
+          "result_at": "2026-10-30T08:40:26+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "session": "SCAN",
+      "key": "20261030084028:injective-protocol:SELL",
+      "saved_at": "2026-10-30T08:40:28+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "injective-protocol",
+          "symbol": "INJ",
+          "name": "Injective",
+          "action": "SELL",
+          "entry": 7.08,
+          "sl": 7.283191227298378,
+          "tp1": 6.876808772701622,
+          "tp2": 6.775213159052433,
+          "confidence": 76
         }
       ]
     }
@@ -8790,7 +8813,7 @@
   "meta": {
     "winrate_digest_sent": "2026-10-25",
     "winrate_digest_at": "2026-10-25T10:25:24+07:00",
-    "daily_eval_sent": "2026-10-29",
-    "daily_eval_sent_at": "2026-10-29T11:36:23+07:00"
+    "daily_eval_sent": "2026-10-30",
+    "daily_eval_sent_at": "2026-10-30T08:40:26+07:00"
   }
 }
