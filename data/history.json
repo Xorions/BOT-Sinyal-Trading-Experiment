@@ -8805,7 +8805,30 @@
           "sl": 7.283191227298378,
           "tp1": 6.876808772701622,
           "tp2": 6.775213159052433,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 7.33,
+          "result_at": "2026-10-30T14:43:43+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "session": "SCAN",
+      "key": "20261030144344:circle-internet-group-bstock:SELL",
+      "saved_at": "2026-10-30T14:43:44+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "circle-internet-group-bstock",
+          "symbol": "CRCLB",
+          "name": "Circle Internet Group (bStocks Tokenized Stock)",
+          "action": "SELL",
+          "entry": 76.25,
+          "sl": 77.64786376125228,
+          "tp1": 75.06876729385472,
+          "tp2": 74.47815094078209,
+          "confidence": 69
         }
       ]
     }
