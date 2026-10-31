@@ -8949,6 +8949,26 @@
           "result_at": "2026-11-01T02:18:01+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-01",
+      "session": "SCAN",
+      "key": "20261101054140:jasmycoin:SELL",
+      "saved_at": "2026-11-01T05:41:40+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "jasmycoin",
+          "symbol": "JASMY",
+          "name": "JasmyCoin",
+          "action": "SELL",
+          "entry": 0.00369761,
+          "sl": 0.003759671186706549,
+          "tp1": 0.0036479610506347606,
+          "tp2": 0.003623136575952141,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
