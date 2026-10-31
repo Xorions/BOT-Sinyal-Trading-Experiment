@@ -8926,6 +8926,26 @@
           "result_at": "2026-10-31T15:53:45+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-10-31",
+      "session": "SCAN",
+      "key": "20261031220511:quack-ai:SELL",
+      "saved_at": "2026-10-31T22:05:11+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "quack-ai",
+          "symbol": "Q",
+          "name": "Quack AI",
+          "action": "SELL",
+          "entry": 0.03264736,
+          "sl": 0.03586529650656646,
+          "tp1": 0.029429423493433544,
+          "tp2": 0.027820455240150314,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
