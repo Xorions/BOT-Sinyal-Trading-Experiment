@@ -8972,6 +8972,26 @@
           "result_at": "2026-11-01T08:29:26+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-01",
+      "session": "SCAN",
+      "key": "20261101150154:quant-network:BUY",
+      "saved_at": "2026-11-01T15:01:54+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "quant-network",
+          "symbol": "QNT",
+          "name": "Quant",
+          "action": "BUY",
+          "entry": 201.1,
+          "sl": 198.69622379068258,
+          "tp1": 203.5037762093174,
+          "tp2": 204.70566431397611,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
