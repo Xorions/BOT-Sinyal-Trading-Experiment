@@ -9041,12 +9041,32 @@
           "result_at": "2026-11-02T06:06:17+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-02",
+      "session": "SCAN",
+      "key": "20261102093139:blockstack:BUY",
+      "saved_at": "2026-11-02T09:31:39+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "blockstack",
+          "symbol": "STX",
+          "name": "Stacks",
+          "action": "BUY",
+          "entry": 0.332149,
+          "sl": 0.32426160664325065,
+          "tp1": 0.3384589146853995,
+          "tp2": 0.3416138720280993,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-01",
     "winrate_digest_at": "2026-11-01T08:29:27+07:00",
-    "daily_eval_sent": "2026-11-01",
-    "daily_eval_sent_at": "2026-11-01T08:29:27+07:00"
+    "daily_eval_sent": "2026-11-02",
+    "daily_eval_sent_at": "2026-11-02T09:31:37+07:00"
   }
 }
