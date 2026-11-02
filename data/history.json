@@ -9058,7 +9058,30 @@
           "sl": 0.32426160664325065,
           "tp1": 0.3384589146853995,
           "tp2": 0.3416138720280993,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.3215,
+          "result_at": "2026-11-02T16:58:41+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "session": "SCAN",
+      "key": "20261102165841:aave:SELL",
+      "saved_at": "2026-11-02T16:58:41+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "aave",
+          "symbol": "AAVE",
+          "name": "Aave",
+          "action": "SELL",
+          "entry": 131.69,
+          "sl": 133.16088149050825,
+          "tp1": 130.21911850949175,
+          "tp2": 129.48367776423763,
+          "confidence": 69
         }
       ]
     }
