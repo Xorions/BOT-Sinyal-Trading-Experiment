@@ -9104,6 +9104,29 @@
           "sl": 0.06569266104790096,
           "tp1": 0.06259907116167923,
           "tp2": 0.06191160674251885,
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.063858,
+          "result_at": "2026-11-03T16:51:48+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "session": "SCAN",
+      "key": "20261103165148:venice-token:SELL",
+      "saved_at": "2026-11-03T16:51:48+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "venice-token",
+          "symbol": "VVV",
+          "name": "Venice Token",
+          "action": "SELL",
+          "entry": 20.67,
+          "sl": 21.070354777361775,
+          "tp1": 20.349716178110583,
+          "tp2": 20.189574267165874,
           "confidence": 69
         }
       ]
