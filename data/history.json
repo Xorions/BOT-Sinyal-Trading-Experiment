@@ -9087,12 +9087,32 @@
           "result_at": "2026-11-03T03:12:16+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-03",
+      "session": "SCAN",
+      "key": "20261103092154:plasma:SELL",
+      "saved_at": "2026-11-03T09:21:54+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "plasma",
+          "symbol": "XPL",
+          "name": "Plasma",
+          "action": "SELL",
+          "entry": 0.063974,
+          "sl": 0.06569266104790096,
+          "tp1": 0.06259907116167923,
+          "tp2": 0.06191160674251885,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-01",
     "winrate_digest_at": "2026-11-01T08:29:27+07:00",
-    "daily_eval_sent": "2026-11-02",
-    "daily_eval_sent_at": "2026-11-02T09:31:37+07:00"
+    "daily_eval_sent": "2026-11-03",
+    "daily_eval_sent_at": "2026-11-03T09:21:52+07:00"
   }
 }
