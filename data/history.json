@@ -9156,12 +9156,32 @@
           "result_at": "2026-11-04T05:31:32+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-04",
+      "session": "SCAN",
+      "key": "20261104094330:spacex-bstocks-tokenized-stock:SELL",
+      "saved_at": "2026-11-04T09:43:30+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "spacex-bstocks-tokenized-stock",
+          "symbol": "SPCXB",
+          "name": "SpaceX (bStocks Tokenized Stock)",
+          "action": "SELL",
+          "entry": 133.43,
+          "sl": 136.13046101431533,
+          "tp1": 131.26963118854775,
+          "tp2": 130.18944678282162,
+          "confidence": 82
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-01",
     "winrate_digest_at": "2026-11-01T08:29:27+07:00",
-    "daily_eval_sent": "2026-11-03",
-    "daily_eval_sent_at": "2026-11-03T09:21:52+07:00"
+    "daily_eval_sent": "2026-11-04",
+    "daily_eval_sent_at": "2026-11-04T09:43:28+07:00"
   }
 }
