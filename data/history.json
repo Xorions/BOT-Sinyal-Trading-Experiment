@@ -9173,7 +9173,30 @@
           "sl": 136.13046101431533,
           "tp1": 131.26963118854775,
           "tp2": 130.18944678282162,
-          "confidence": 82
+          "confidence": 82,
+          "result": "HIT TP2",
+          "result_price": 137.42,
+          "result_at": "2026-11-05T00:48:05+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-05",
+      "session": "SCAN",
+      "key": "20261105004806:beam-2:BUY",
+      "saved_at": "2026-11-05T00:48:06+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "beam-2",
+          "symbol": "BEAM",
+          "name": "Beam",
+          "action": "BUY",
+          "entry": 0.0044295,
+          "sl": 0.004192533714669934,
+          "tp1": 0.004619073028264053,
+          "tp2": 0.004713859542396079,
+          "confidence": 69
         }
       ]
     }
