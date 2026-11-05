@@ -9242,6 +9242,29 @@
           "sl": 0.22345346969863517,
           "tp1": 0.21169682424109187,
           "tp2": 0.2090842363616378,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.191202,
+          "result_at": "2026-11-06T01:59:14+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "session": "SCAN",
+      "key": "20261106015915:aerodrome-finance:SELL",
+      "saved_at": "2026-11-06T01:59:15+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "aerodrome-finance",
+          "symbol": "AERO",
+          "name": "Aerodrome Finance",
+          "action": "SELL",
+          "entry": 0.601352,
+          "sl": 0.6184502499915961,
+          "tp1": 0.5842537500084038,
+          "tp2": 0.5757046250126059,
           "confidence": 69
         }
       ]
