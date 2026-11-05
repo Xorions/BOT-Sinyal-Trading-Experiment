@@ -9202,12 +9202,32 @@
           "result_at": "2026-11-05T06:15:40+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-05",
+      "session": "SCAN",
+      "key": "20261105103659:uniswap:BUY",
+      "saved_at": "2026-11-05T10:36:59+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "BUY",
+          "entry": 7.78,
+          "sl": 7.631292029452179,
+          "tp1": 7.928707970547822,
+          "tp2": 8.003061955821734,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-01",
     "winrate_digest_at": "2026-11-01T08:29:27+07:00",
-    "daily_eval_sent": "2026-11-04",
-    "daily_eval_sent_at": "2026-11-04T09:43:28+07:00"
+    "daily_eval_sent": "2026-11-05",
+    "daily_eval_sent_at": "2026-11-05T10:36:57+07:00"
   }
 }
