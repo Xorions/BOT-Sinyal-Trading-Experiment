@@ -9265,7 +9265,30 @@
           "sl": 0.6184502499915961,
           "tp1": 0.5842537500084038,
           "tp2": 0.5757046250126059,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 0.598721,
+          "result_at": "2026-11-06T07:02:43+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "session": "SCAN",
+      "key": "20261106070244:collector-crypt:SELL",
+      "saved_at": "2026-11-06T07:02:44+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "collector-crypt",
+          "symbol": "CARDS",
+          "name": "Collector Crypt",
+          "action": "SELL",
+          "entry": 0.250837,
+          "sl": 0.267015060322127,
+          "tp1": 0.23465893967787294,
+          "tp2": 0.22656990951680944,
+          "confidence": 76
         }
       ]
     }
@@ -9273,7 +9296,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-01",
     "winrate_digest_at": "2026-11-01T08:29:27+07:00",
-    "daily_eval_sent": "2026-11-05",
-    "daily_eval_sent_at": "2026-11-05T10:36:57+07:00"
+    "daily_eval_sent": "2026-11-06",
+    "daily_eval_sent_at": "2026-11-06T07:02:43+07:00"
   }
 }
