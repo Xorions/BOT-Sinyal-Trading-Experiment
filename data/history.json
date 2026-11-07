@@ -9317,12 +9317,32 @@
           "result_at": "2026-11-07T03:42:05+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-07",
+      "session": "SCAN",
+      "key": "20261107072257:sei-network:BUY",
+      "saved_at": "2026-11-07T07:22:57+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sei-network",
+          "symbol": "SEI",
+          "name": "Sei",
+          "action": "BUY",
+          "entry": 0.04681058,
+          "sl": 0.046308029803961946,
+          "tp1": 0.04731313019603805,
+          "tp2": 0.047564405294057074,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-01",
     "winrate_digest_at": "2026-11-01T08:29:27+07:00",
-    "daily_eval_sent": "2026-11-06",
-    "daily_eval_sent_at": "2026-11-06T07:02:43+07:00"
+    "daily_eval_sent": "2026-11-07",
+    "daily_eval_sent_at": "2026-11-07T07:22:55+07:00"
   }
 }
