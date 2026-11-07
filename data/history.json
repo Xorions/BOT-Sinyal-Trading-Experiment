@@ -9340,6 +9340,26 @@
           "result_at": "2026-11-07T13:23:13+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-07",
+      "session": "SCAN",
+      "key": "20261107202449:useless-3:SELL",
+      "saved_at": "2026-11-07T20:24:49+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "useless-3",
+          "symbol": "USELESS",
+          "name": "Useless Coin",
+          "action": "SELL",
+          "entry": 0.130051,
+          "sl": 0.13240228906880852,
+          "tp1": 0.12769971093119148,
+          "tp2": 0.12652406639678723,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
