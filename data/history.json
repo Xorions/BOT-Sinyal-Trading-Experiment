@@ -9357,6 +9357,29 @@
           "sl": 0.13240228906880852,
           "tp1": 0.12769971093119148,
           "tp2": 0.12652406639678723,
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.132358,
+          "result_at": "2026-11-08T01:10:18+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "session": "SCAN",
+      "key": "20261108011019:dash:SELL",
+      "saved_at": "2026-11-08T01:10:19+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dash",
+          "symbol": "DASH",
+          "name": "Dash",
+          "action": "SELL",
+          "entry": 46.3,
+          "sl": 46.79738083788547,
+          "tp1": 45.802619162114524,
+          "tp2": 45.55392874317179,
           "confidence": 69
         }
       ]
