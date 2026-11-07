@@ -9380,6 +9380,29 @@
           "sl": 46.79738083788547,
           "tp1": 45.802619162114524,
           "tp2": 45.55392874317179,
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 45.91,
+          "result_at": "2026-11-08T04:50:33+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "session": "SCAN",
+      "key": "20261108045034:apenft:SELL",
+      "saved_at": "2026-11-08T04:50:34+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "apenft",
+          "symbol": "NFT",
+          "name": "AINFT",
+          "action": "SELL",
+          "entry": 2.0173e-07,
+          "sl": 2.0619140433941161e-07,
+          "tp1": 1.9816087652847068e-07,
+          "tp2": 1.9637631479270604e-07,
           "confidence": 69
         }
       ]
