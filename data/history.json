@@ -9426,7 +9426,30 @@
           "sl": 1.6061923788611168,
           "tp1": 1.5590460969111066,
           "tp2": 1.54856914536666,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT SL",
+          "result_price": 1.6,
+          "result_at": "2026-11-09T01:57:43+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "session": "SCAN",
+      "key": "20261109015744:janction:BUY",
+      "saved_at": "2026-11-09T01:57:44+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "janction",
+          "symbol": "JCT",
+          "name": "Janction",
+          "action": "BUY",
+          "entry": 0.01318397,
+          "sl": 0.010881584929373135,
+          "tp1": 0.01502587805650149,
+          "tp2": 0.015946832084752238,
+          "confidence": 76
         }
       ]
     }
