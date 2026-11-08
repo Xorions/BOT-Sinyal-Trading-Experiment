@@ -9403,15 +9403,18 @@
           "sl": 2.0619140433941161e-07,
           "tp1": 1.9816087652847068e-07,
           "tp2": 1.9637631479270604e-07,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 2.00633e-07,
+          "result_at": "2026-11-08T08:07:07+07:00"
         }
       ]
     }
   ],
   "meta": {
-    "winrate_digest_sent": "2026-11-01",
-    "winrate_digest_at": "2026-11-01T08:29:27+07:00",
-    "daily_eval_sent": "2026-11-07",
-    "daily_eval_sent_at": "2026-11-07T07:22:55+07:00"
+    "winrate_digest_sent": "2026-11-08",
+    "winrate_digest_at": "2026-11-08T08:07:07+07:00",
+    "daily_eval_sent": "2026-11-08",
+    "daily_eval_sent_at": "2026-11-08T08:07:07+07:00"
   }
 }
