@@ -9472,7 +9472,30 @@
           "sl": 0.14011381232903786,
           "tp1": 0.1356213501367697,
           "tp2": 0.13462302520515457,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.142085,
+          "result_at": "2026-11-09T09:02:07+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "session": "SCAN",
+      "key": "20261109090209:akedo:SELL",
+      "saved_at": "2026-11-09T09:02:09+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "akedo",
+          "symbol": "AKE",
+          "name": "Akedo",
+          "action": "SELL",
+          "entry": 0.00503395,
+          "sl": 0.005281830209191077,
+          "tp1": 0.004786069790808922,
+          "tp2": 0.004662129686213384,
+          "confidence": 69
         }
       ]
     }
@@ -9480,7 +9503,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-08",
     "winrate_digest_at": "2026-11-08T08:07:07+07:00",
-    "daily_eval_sent": "2026-11-08",
-    "daily_eval_sent_at": "2026-11-08T08:07:07+07:00"
+    "daily_eval_sent": "2026-11-09",
+    "daily_eval_sent_at": "2026-11-09T09:02:07+07:00"
   }
 }
