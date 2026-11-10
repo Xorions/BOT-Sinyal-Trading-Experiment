@@ -9524,6 +9524,26 @@
           "result_at": "2026-11-10T03:26:53+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-10",
+      "session": "SCAN",
+      "key": "20261110174834:dash:SELL",
+      "saved_at": "2026-11-10T17:48:34+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dash",
+          "symbol": "DASH",
+          "name": "Dash",
+          "action": "SELL",
+          "entry": 45.53,
+          "sl": 46.123137282481686,
+          "tp1": 44.936862717518316,
+          "tp2": 44.64029407627748,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
