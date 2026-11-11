@@ -9547,12 +9547,32 @@
           "result_at": "2026-11-11T01:29:00+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-11",
+      "session": "SCAN",
+      "key": "20261111100321:collector-crypt:SELL",
+      "saved_at": "2026-11-11T10:03:21+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "collector-crypt",
+          "symbol": "CARDS",
+          "name": "Collector Crypt",
+          "action": "SELL",
+          "entry": 0.216241,
+          "sl": 0.2231601388625899,
+          "tp1": 0.20932186113741008,
+          "tp2": 0.2058622917061151,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-08",
     "winrate_digest_at": "2026-11-08T08:07:07+07:00",
-    "daily_eval_sent": "2026-11-10",
-    "daily_eval_sent_at": "2026-11-10T09:51:30+07:00"
+    "daily_eval_sent": "2026-11-11",
+    "daily_eval_sent_at": "2026-11-11T10:03:19+07:00"
   }
 }
