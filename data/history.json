@@ -9570,6 +9570,26 @@
           "result_at": "2026-11-11T17:57:03+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-12",
+      "session": "SCAN",
+      "key": "20261112012936:quack-ai:BUY",
+      "saved_at": "2026-11-12T01:29:36+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "quack-ai",
+          "symbol": "Q",
+          "name": "Quack AI",
+          "action": "BUY",
+          "entry": 0.02850831,
+          "sl": 0.027574876817651042,
+          "tp1": 0.029441743182348955,
+          "tp2": 0.029908459773523435,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
