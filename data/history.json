@@ -9587,7 +9587,30 @@
           "sl": 0.027574876817651042,
           "tp1": 0.029441743182348955,
           "tp2": 0.029908459773523435,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 0.02878175,
+          "result_at": "2026-11-12T07:57:10+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "session": "SCAN",
+      "key": "20261112075711:uniswap:SELL",
+      "saved_at": "2026-11-12T07:57:11+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "SELL",
+          "entry": 6.21,
+          "sl": 6.351259149210813,
+          "tp1": 6.096992680631349,
+          "tp2": 6.040489020947024,
+          "confidence": 69
         }
       ]
     }
@@ -9595,7 +9618,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-08",
     "winrate_digest_at": "2026-11-08T08:07:07+07:00",
-    "daily_eval_sent": "2026-11-11",
-    "daily_eval_sent_at": "2026-11-11T10:03:19+07:00"
+    "daily_eval_sent": "2026-11-12",
+    "daily_eval_sent_at": "2026-11-12T07:57:10+07:00"
   }
 }
