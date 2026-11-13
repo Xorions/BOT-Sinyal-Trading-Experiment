@@ -9656,6 +9656,29 @@
           "sl": 5.972467275527932,
           "tp1": 5.770026179577655,
           "tp2": 5.725039269366483,
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 5.78,
+          "result_at": "2026-11-13T17:36:54+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "session": "SCAN",
+      "key": "20261113173654:apenft:SELL",
+      "saved_at": "2026-11-13T17:36:54+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "apenft",
+          "symbol": "NFT",
+          "name": "AINFT",
+          "action": "SELL",
+          "entry": 1.97369e-07,
+          "sl": 2.0096358632442636e-07,
+          "tp1": 1.9377441367557364e-07,
+          "tp2": 1.9197712051336045e-07,
           "confidence": 69
         }
       ]
