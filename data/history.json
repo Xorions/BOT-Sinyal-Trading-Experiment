@@ -9639,12 +9639,32 @@
           "result_at": "2026-11-12T23:48:22+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-13",
+      "session": "SCAN",
+      "key": "20261113095526:uniswap:SELL",
+      "saved_at": "2026-11-13T09:55:26+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "uniswap",
+          "symbol": "UNI",
+          "name": "Uniswap",
+          "action": "SELL",
+          "entry": 5.86,
+          "sl": 5.972467275527932,
+          "tp1": 5.770026179577655,
+          "tp2": 5.725039269366483,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-08",
     "winrate_digest_at": "2026-11-08T08:07:07+07:00",
-    "daily_eval_sent": "2026-11-12",
-    "daily_eval_sent_at": "2026-11-12T07:57:10+07:00"
+    "daily_eval_sent": "2026-11-13",
+    "daily_eval_sent_at": "2026-11-13T09:55:24+07:00"
   }
 }
