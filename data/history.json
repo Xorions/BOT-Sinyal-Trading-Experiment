@@ -9771,7 +9771,30 @@
           "sl": 3.973521898515678e-06,
           "tp1": 3.786478101484322e-06,
           "tp2": 3.7397171522264834e-06,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 3.83e-06,
+          "result_at": "2026-11-15T04:07:36+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "session": "SCAN",
+      "key": "20261115040737:bianrensheng:SELL",
+      "saved_at": "2026-11-15T04:07:37+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "bianrensheng",
+          "symbol": "币安人生",
+          "name": "币安人生 (BinanceLife)",
+          "action": "SELL",
+          "entry": 0.441072,
+          "sl": 0.4541047100696133,
+          "tp1": 0.4306458319443094,
+          "tp2": 0.42543274791646407,
+          "confidence": 69
         }
       ]
     }
