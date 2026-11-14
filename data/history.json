@@ -9748,6 +9748,29 @@
           "sl": 0.7576424564488488,
           "tp1": 0.593218834840921,
           "tp2": 0.5566802522613815,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.699211,
+          "result_at": "2026-11-14T23:55:22+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "session": "SCAN",
+      "key": "20261114235524:pepe:SELL",
+      "saved_at": "2026-11-14T23:55:24+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pepe",
+          "symbol": "PEPE",
+          "name": "Pepe",
+          "action": "SELL",
+          "entry": 3.88e-06,
+          "sl": 3.973521898515678e-06,
+          "tp1": 3.786478101484322e-06,
+          "tp2": 3.7397171522264834e-06,
           "confidence": 76
         }
       ]
