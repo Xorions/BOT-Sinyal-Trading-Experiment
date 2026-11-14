@@ -9702,6 +9702,29 @@
           "sl": 0.43626369276952354,
           "tp1": 0.4101570457843812,
           "tp2": 0.4043555686765718,
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.413973,
+          "result_at": "2026-11-14T10:35:11+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "session": "SCAN",
+      "key": "20261114103514:pepe:SELL",
+      "saved_at": "2026-11-14T10:35:14+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pepe",
+          "symbol": "PEPE",
+          "name": "Pepe",
+          "action": "SELL",
+          "entry": 4.22e-06,
+          "sl": 4.315122475257269e-06,
+          "tp1": 4.143902019794185e-06,
+          "tp2": 4.105853029691277e-06,
           "confidence": 69
         }
       ]
@@ -9710,7 +9733,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-08",
     "winrate_digest_at": "2026-11-08T08:07:07+07:00",
-    "daily_eval_sent": "2026-11-13",
-    "daily_eval_sent_at": "2026-11-13T09:55:24+07:00"
+    "daily_eval_sent": "2026-11-14",
+    "daily_eval_sent_at": "2026-11-14T10:35:11+07:00"
   }
 }
