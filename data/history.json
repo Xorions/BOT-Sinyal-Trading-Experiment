@@ -9800,6 +9800,26 @@
           "result_at": "2026-11-15T08:03:17+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-17",
+      "session": "SCAN",
+      "key": "20261117155000:backpack:BUY",
+      "saved_at": "2026-11-17T15:50:00+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "backpack",
+          "symbol": "BP",
+          "name": "Backpack",
+          "action": "BUY",
+          "entry": 1.058,
+          "sl": 0.9817903329950377,
+          "tp1": 1.1342096670049624,
+          "tp2": 1.1723145005074436,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
