@@ -9823,12 +9823,32 @@
           "result_at": "2026-11-18T01:11:11+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-18",
+      "session": "SCAN",
+      "key": "20261118075755:zcash:BUY",
+      "saved_at": "2026-11-18T07:57:55+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zcash",
+          "symbol": "ZEC",
+          "name": "Zcash",
+          "action": "BUY",
+          "entry": 961.4,
+          "sl": 940.0032935483873,
+          "tp1": 981.6088038107832,
+          "tp2": 991.7132057161748,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-15",
     "winrate_digest_at": "2026-11-15T08:03:17+07:00",
-    "daily_eval_sent": "2026-11-17",
-    "daily_eval_sent_at": "2026-11-17T07:47:45+07:00"
+    "daily_eval_sent": "2026-11-18",
+    "daily_eval_sent_at": "2026-11-18T07:57:54+07:00"
   }
 }
