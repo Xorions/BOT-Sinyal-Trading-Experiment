@@ -9846,12 +9846,32 @@
           "result_at": "2026-11-18T15:23:15+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-19",
+      "session": "SCAN",
+      "key": "20261119112727:sentient:BUY",
+      "saved_at": "2026-11-19T11:27:27+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sentient",
+          "symbol": "SENT",
+          "name": "Sentient",
+          "action": "BUY",
+          "entry": 0.02256094,
+          "sl": 0.021987721473092917,
+          "tp1": 0.023134158526907086,
+          "tp2": 0.02342076779036063,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-15",
     "winrate_digest_at": "2026-11-15T08:03:17+07:00",
-    "daily_eval_sent": "2026-11-18",
-    "daily_eval_sent_at": "2026-11-18T07:57:54+07:00"
+    "daily_eval_sent": "2026-11-19",
+    "daily_eval_sent_at": "2026-11-19T11:27:25+07:00"
   }
 }
