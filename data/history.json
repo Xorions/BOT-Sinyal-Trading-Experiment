@@ -9869,6 +9869,26 @@
           "result_at": "2026-11-19T20:45:45+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-20",
+      "session": "SCAN",
+      "key": "20261120045828:circle-internet-group-bstock:SELL",
+      "saved_at": "2026-11-20T04:58:28+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "circle-internet-group-bstock",
+          "symbol": "CRCLB",
+          "name": "Circle Internet Group (bStocks Tokenized Stock)",
+          "action": "SELL",
+          "entry": 51.2,
+          "sl": 52.282040259555274,
+          "tp1": 50.334367792355785,
+          "tp2": 49.90155168853368,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
