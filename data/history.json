@@ -9909,7 +9909,10 @@
           "sl": 0.0243573268456107,
           "tp1": 0.02318370895102578,
           "tp2": 0.022921438426538668,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP1",
+          "result_price": 0.02400691,
+          "result_at": "2026-11-21T07:47:24+07:00"
         }
       ]
     }
@@ -9917,7 +9920,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-15",
     "winrate_digest_at": "2026-11-15T08:03:17+07:00",
-    "daily_eval_sent": "2026-11-20",
-    "daily_eval_sent_at": "2026-11-20T09:58:04+07:00"
+    "daily_eval_sent": "2026-11-21",
+    "daily_eval_sent_at": "2026-11-21T07:47:24+07:00"
   }
 }
