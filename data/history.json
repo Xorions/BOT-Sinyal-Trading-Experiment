@@ -9932,7 +9932,30 @@
           "sl": 0.7883642258914858,
           "tp1": 0.8213277741085141,
           "tp2": 0.8295686611627712,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.815644,
+          "result_at": "2026-11-22T15:51:13+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "session": "SCAN",
+      "key": "20261122155114:pieverse:BUY",
+      "saved_at": "2026-11-22T15:51:14+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "pieverse",
+          "symbol": "PIEVERSE",
+          "name": "Pieverse",
+          "action": "BUY",
+          "entry": 4.14,
+          "sl": 3.931968698081158,
+          "tp1": 4.306425041535073,
+          "tp2": 4.389637562302609,
+          "confidence": 76
         }
       ]
     }
