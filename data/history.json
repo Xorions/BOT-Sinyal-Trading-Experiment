@@ -9915,12 +9915,32 @@
           "result_at": "2026-11-21T07:47:24+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-22",
+      "session": "SCAN",
+      "key": "20261122083527:dgrid-ai:BUY",
+      "saved_at": "2026-11-22T08:35:27+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "dgrid-ai",
+          "symbol": "DGAI",
+          "name": "DGrid AI",
+          "action": "BUY",
+          "entry": 0.804846,
+          "sl": 0.7883642258914858,
+          "tp1": 0.8213277741085141,
+          "tp2": 0.8295686611627712,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
-    "winrate_digest_sent": "2026-11-15",
-    "winrate_digest_at": "2026-11-15T08:03:17+07:00",
-    "daily_eval_sent": "2026-11-21",
-    "daily_eval_sent_at": "2026-11-21T07:47:24+07:00"
+    "winrate_digest_sent": "2026-11-22",
+    "winrate_digest_at": "2026-11-22T08:35:26+07:00",
+    "daily_eval_sent": "2026-11-22",
+    "daily_eval_sent_at": "2026-11-22T08:35:26+07:00"
   }
 }
