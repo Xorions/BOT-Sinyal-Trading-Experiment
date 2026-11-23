@@ -9961,12 +9961,32 @@
           "result_at": "2026-11-22T23:54:36+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-23",
+      "session": "SCAN",
+      "key": "20261123095747:fetch-ai:SELL",
+      "saved_at": "2026-11-23T09:57:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "fetch-ai",
+          "symbol": "FET",
+          "name": "Artificial Superintelligence Alliance",
+          "action": "SELL",
+          "entry": 0.104624,
+          "sl": 0.1069250455965362,
+          "tp1": 0.10278316352277103,
+          "tp2": 0.10186274528415655,
+          "confidence": 76
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-22",
     "winrate_digest_at": "2026-11-22T08:35:26+07:00",
-    "daily_eval_sent": "2026-11-22",
-    "daily_eval_sent_at": "2026-11-22T08:35:26+07:00"
+    "daily_eval_sent": "2026-11-23",
+    "daily_eval_sent_at": "2026-11-23T09:57:45+07:00"
   }
 }
