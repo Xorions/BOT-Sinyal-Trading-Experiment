@@ -9984,12 +9984,32 @@
           "result_at": "2026-11-23T19:05:53+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-24",
+      "session": "SCAN",
+      "key": "20261124153837:official-trump:SELL",
+      "saved_at": "2026-11-24T15:38:37+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "official-trump",
+          "symbol": "TRUMP",
+          "name": "Official Trump",
+          "action": "SELL",
+          "entry": 0.860266,
+          "sl": 0.8750654117259856,
+          "tp1": 0.8454665882740143,
+          "tp2": 0.8380668824110216,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
     "winrate_digest_sent": "2026-11-22",
     "winrate_digest_at": "2026-11-22T08:35:26+07:00",
-    "daily_eval_sent": "2026-11-23",
-    "daily_eval_sent_at": "2026-11-23T09:57:45+07:00"
+    "daily_eval_sent": "2026-11-24",
+    "daily_eval_sent_at": "2026-11-24T15:38:35+07:00"
   }
 }
