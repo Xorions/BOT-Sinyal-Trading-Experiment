@@ -10024,7 +10024,30 @@
           "sl": 0.10581784859319313,
           "tp1": 0.1019031211254455,
           "tp2": 0.10103318168816824,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 0.107595,
+          "result_at": "2026-11-26T05:17:34+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "session": "SCAN",
+      "key": "20261126051735:decred:BUY",
+      "saved_at": "2026-11-26T05:17:35+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "decred",
+          "symbol": "DCR",
+          "name": "Decred",
+          "action": "BUY",
+          "entry": 10.66,
+          "sl": 10.53610477750771,
+          "tp1": 10.759116177993832,
+          "tp2": 10.80867426699075,
+          "confidence": 76
         }
       ]
     }
