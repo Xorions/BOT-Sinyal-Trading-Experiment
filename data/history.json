@@ -10047,7 +10047,30 @@
           "sl": 10.53610477750771,
           "tp1": 10.759116177993832,
           "tp2": 10.80867426699075,
-          "confidence": 76
+          "confidence": 76,
+          "result": "HIT TP1",
+          "result_price": 10.59,
+          "result_at": "2026-11-26T11:15:45+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-26",
+      "session": "SCAN",
+      "key": "20261126111547:derive:BUY",
+      "saved_at": "2026-11-26T11:15:47+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "derive",
+          "symbol": "DRV",
+          "name": "Derive",
+          "action": "BUY",
+          "entry": 0.369252,
+          "sl": 0.36109432155210724,
+          "tp1": 0.3774096784478928,
+          "tp2": 0.3814885176718392,
+          "confidence": 69
         }
       ]
     }
@@ -10055,7 +10078,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-22",
     "winrate_digest_at": "2026-11-22T08:35:26+07:00",
-    "daily_eval_sent": "2026-11-25",
-    "daily_eval_sent_at": "2026-11-25T10:11:23+07:00"
+    "daily_eval_sent": "2026-11-26",
+    "daily_eval_sent_at": "2026-11-26T11:15:45+07:00"
   }
 }
