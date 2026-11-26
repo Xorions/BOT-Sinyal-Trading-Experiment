@@ -10076,6 +10076,26 @@
           "result_at": "2026-11-26T21:12:14+07:00"
         }
       ]
+    },
+    {
+      "date": "2026-11-27",
+      "session": "SCAN",
+      "key": "20261127060030:zcash:SELL",
+      "saved_at": "2026-11-27T06:00:30+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "zcash",
+          "symbol": "ZEC",
+          "name": "Zcash",
+          "action": "SELL",
+          "entry": 692.54,
+          "sl": 712.503719989384,
+          "tp1": 676.5690240084928,
+          "tp2": 668.5835360127393,
+          "confidence": 69
+        }
+      ]
     }
   ],
   "meta": {
