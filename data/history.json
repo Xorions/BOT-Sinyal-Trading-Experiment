@@ -10093,7 +10093,30 @@
           "sl": 712.503719989384,
           "tp1": 676.5690240084928,
           "tp2": 668.5835360127393,
-          "confidence": 69
+          "confidence": 69,
+          "result": "HIT TP2",
+          "result_price": 755.69,
+          "result_at": "2026-11-27T11:55:25+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-27",
+      "session": "SCAN",
+      "key": "20261127115527:sentient:BUY",
+      "saved_at": "2026-11-27T11:55:27+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "sentient",
+          "symbol": "SENT",
+          "name": "Sentient",
+          "action": "BUY",
+          "entry": 0.0225523,
+          "sl": 0.02204421652090637,
+          "tp1": 0.022958766783274905,
+          "tp2": 0.023162000174912357,
+          "confidence": 76
         }
       ]
     }
@@ -10101,7 +10124,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-22",
     "winrate_digest_at": "2026-11-22T08:35:26+07:00",
-    "daily_eval_sent": "2026-11-26",
-    "daily_eval_sent_at": "2026-11-26T11:15:45+07:00"
+    "daily_eval_sent": "2026-11-27",
+    "daily_eval_sent_at": "2026-11-27T11:55:25+07:00"
   }
 }
