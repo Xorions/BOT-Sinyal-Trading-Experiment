@@ -10162,6 +10162,29 @@
           "sl": 0.1399938753362807,
           "tp1": 0.14566949973097545,
           "tp2": 0.14693074959646318,
+          "confidence": 76,
+          "result": "HIT SL",
+          "result_price": 0.139936,
+          "result_at": "2026-11-28T11:40:34+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "session": "SCAN",
+      "key": "20261128114036:o1-exchange:BUY",
+      "saved_at": "2026-11-28T11:40:36+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "o1-exchange",
+          "symbol": "O",
+          "name": "o1.exchange",
+          "action": "BUY",
+          "entry": 0.689337,
+          "sl": 0.677579499604555,
+          "tp1": 0.6987430003163559,
+          "tp2": 0.703446000474534,
           "confidence": 76
         }
       ]
@@ -10170,7 +10193,7 @@
   "meta": {
     "winrate_digest_sent": "2026-11-22",
     "winrate_digest_at": "2026-11-22T08:35:26+07:00",
-    "daily_eval_sent": "2026-11-27",
-    "daily_eval_sent_at": "2026-11-27T11:55:25+07:00"
+    "daily_eval_sent": "2026-11-28",
+    "daily_eval_sent_at": "2026-11-28T11:40:34+07:00"
   }
 }
