@@ -10185,6 +10185,29 @@
           "sl": 0.677579499604555,
           "tp1": 0.6987430003163559,
           "tp2": 0.703446000474534,
+          "confidence": 76,
+          "result": "HIT TP2",
+          "result_price": 0.872348,
+          "result_at": "2026-11-28T20:39:04+07:00"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "session": "SCAN",
+      "key": "20261128203905:o1-exchange:BUY",
+      "saved_at": "2026-11-28T20:39:05+07:00",
+      "evaluated_at": null,
+      "signals": [
+        {
+          "coin_id": "o1-exchange",
+          "symbol": "O",
+          "name": "o1.exchange",
+          "action": "BUY",
+          "entry": 0.872348,
+          "sl": 0.8254697549549459,
+          "tp1": 0.9098505960360433,
+          "tp2": 0.928601894054065,
           "confidence": 76
         }
       ]
